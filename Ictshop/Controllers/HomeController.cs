@@ -8,7 +8,7 @@ namespace Ictshop.Controllers
 {
     public class HomeController : Controller
     {
-      
+      //test commit
         public ActionResult Index()
         {
        
