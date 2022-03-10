@@ -42,6 +42,7 @@ namespace Ictshop.Controllers
             }
             return View(chitiet);
         }
+        // test commit
 
     }
 
