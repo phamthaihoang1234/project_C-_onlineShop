@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<Ictshop.Models.Sanpham>
+﻿@model PagedList.IPagedList<Ictshop.Models.Product>
 
 @using PagedList.Mvc;
 
@@ -67,10 +67,10 @@
                 @*@Html.DisplayFor(modelItem => item.Anhbia)*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Hangsanxuat.Tenhang)
+                @Html.DisplayFor(modelItem => item.Brand.Tenhang)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Hedieuhanh.Tenhdh)
+                @Html.DisplayFor(modelItem => item.Category.Tenhdh)
             </td>
             <td>
                 @Html.ActionLink("Sửa", "Edit", new { id = item.Masp })|

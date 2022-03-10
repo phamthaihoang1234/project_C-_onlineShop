@@ -13,7 +13,7 @@ namespace Ictshop.Controllers
         // GET: Danhmuc
         public ActionResult DanhmucPartial()
         {
-            var danhmuc = db.Hangsanxuats.ToList();
+            var danhmuc = db.Brands.ToList();
             return PartialView(danhmuc);
         }
     }

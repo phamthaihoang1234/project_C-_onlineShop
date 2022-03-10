@@ -25,7 +25,7 @@ namespace Ictshop.Areas.Admin.Controllers
 
             // 3. Tạo truy vấn sql, lưu ý phải sắp xếp theo trường nào đó, ví dụ OrderBy
             // theo Masp mới có thể phân trang.
-            var sp = db.Sanphams.OrderBy(x => x.Masp);
+            var sp = db.Products.OrderBy(x => x.Masp);
 
             // 4. Tạo kích thước trang (pageSize) hay là số sản phẩm hiển thị trên 1 trang
             int pageSize = 5;
@@ -42,7 +42,7 @@ namespace Ictshop.Areas.Admin.Controllers
         // Xem chi tiết người dùng GET: Admin/Home/Details/5 
         public ActionResult Details(int id)
         {
-            var dt = db.Sanphams.Find(id);
+            var dt = db.Products.Find(id);
             return View(dt);
         }
 
@@ -50,21 +50,21 @@ namespace Ictshop.Areas.Admin.Controllers
         public ActionResult Create()
         {
             //Để tạo dropdownList bên view
-            var hangselected = new SelectList(db.Hangsanxuats, "Mahang", "Tenhang");
+            var hangselected = new SelectList(db.Brands, "Mahang", "Tenhang");
             ViewBag.Mahang = hangselected;
-            var hdhselected = new SelectList(db.Hedieuhanhs, "Mahdh", "Tenhdh");
+            var hdhselected = new SelectList(db.Categorys, "Mahdh", "Tenhdh");
             ViewBag.Mahdh = hdhselected;
             return View();
         }
 
         // Tạo sản phẩm mới phương thức POST: Admin/Home/Create
         [HttpPost]
-        public ActionResult Create(Sanpham sanpham)
+        public ActionResult Create(Product Product)
         {
             try
             { 
                 //Thêm  sản phẩm mới
-                db.Sanphams.Add(sanpham);
+                db.Products.Add(Product);
                 // Lưu lại
                 db.SaveChanges();
                 // Thành công chuyển đến trang index
@@ -80,10 +80,10 @@ namespace Ictshop.Areas.Admin.Controllers
         public ActionResult Edit(int id)
         {
             // Hiển thị dropdownlist
-            var dt = db.Sanphams.Find(id);
-            var hangselected = new SelectList(db.Hangsanxuats, "Mahang", "Tenhang",dt.Mahang);
+            var dt = db.Products.Find(id);
+            var hangselected = new SelectList(db.Brands, "Mahang", "Tenhang",dt.Mahang);
             ViewBag.Mahang = hangselected;
-            var hdhselected = new SelectList(db.Hedieuhanhs, "Mahdh", "Tenhdh",dt.Mahdh);
+            var hdhselected = new SelectList(db.Categorys, "Mahdh", "Tenhdh",dt.Mahdh);
             ViewBag.Mahdh = hdhselected;
            // 
             return View(dt);
@@ -92,22 +92,22 @@ namespace Ictshop.Areas.Admin.Controllers
 
         // POST: Admin/Home/Edit/5
         [HttpPost]
-        public ActionResult Edit(Sanpham sanpham)
+        public ActionResult Edit(Product Product)
         {
             try
             {
                 // Sửa sản phẩm theo mã sản phẩm
-                var oldItem = db.Sanphams.Find(sanpham.Masp);
-                oldItem.Tensp = sanpham.Tensp;
-                oldItem.Giatien = sanpham.Giatien;
-                oldItem.Soluong = sanpham.Soluong;
-                oldItem.Mota = sanpham.Mota;
-                oldItem.Anhbia = sanpham.Anhbia;
-                oldItem.Bonhotrong = sanpham.Bonhotrong;
-                oldItem.Ram = sanpham.Ram;
-                oldItem.Thesim = sanpham.Thesim;
-                oldItem.Mahang = sanpham.Mahang;
-                oldItem.Mahdh = sanpham.Mahdh;
+                var oldItem = db.Products.Find(Product.Masp);
+                oldItem.Tensp = Product.Tensp;
+                oldItem.Giatien = Product.Giatien;
+                oldItem.Soluong = Product.Soluong;
+                oldItem.Mota = Product.Mota;
+                oldItem.Anhbia = Product.Anhbia;
+                oldItem.Bonhotrong = Product.Bonhotrong;
+                oldItem.Ram = Product.Ram;
+                oldItem.Thesim = Product.Thesim;
+                oldItem.Mahang = Product.Mahang;
+                oldItem.Mahdh = Product.Mahdh;
                 // lưu lại
                 db.SaveChanges();
                 // xong chuyển qua index
@@ -123,7 +123,7 @@ namespace Ictshop.Areas.Admin.Controllers
         // Xoá sản phẩm phương thức GET: Admin/Home/Delete/5
         public ActionResult Delete(int id)
         {
-            var dt = db.Sanphams.Find(id);
+            var dt = db.Products.Find(id);
             return View(dt);
         }
 
@@ -134,9 +134,9 @@ namespace Ictshop.Areas.Admin.Controllers
             try
             {
                 //Lấy được thông tin sản phẩm theo ID(mã sản phẩm)
-                var dt = db.Sanphams.Find(id);
+                var dt = db.Products.Find(id);
                 // Xoá
-                db.Sanphams.Remove(dt);
+                db.Products.Remove(dt);
                 // Lưu lại
                 db.SaveChanges();
                 return RedirectToAction("Index");

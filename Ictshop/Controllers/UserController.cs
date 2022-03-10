@@ -17,12 +17,12 @@ namespace Ictshop.Controllers
 
         // ĐĂNG KÝ PHƯƠNG THỨC POST
         [HttpPost]
-        public ActionResult Dangky(Nguoidung nguoidung)
+        public ActionResult Dangky(User User)
         {
             try
             {
                 // Thêm người dùng  mới
-                db.Nguoidungs.Add(nguoidung);
+                db.Users.Add(User);
                 // Lưu lại vào cơ sở dữ liệu
                 db.SaveChanges();
                 // Nếu dữ liệu đúng thì trả về trang đăng nhập
@@ -51,7 +51,7 @@ namespace Ictshop.Controllers
         {
             string userMail = userlog["userMail"].ToString();
             string password = userlog["password"].ToString();
-            var islogin = db.Nguoidungs.SingleOrDefault(x => x.Email.Equals(userMail) && x.Matkhau.Equals(password));
+            var islogin = db.Users.SingleOrDefault(x => x.Email.Equals(userMail) && x.Matkhau.Equals(password));
 
             if (islogin != null)
                 {

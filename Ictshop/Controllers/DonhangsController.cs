@@ -10,11 +10,11 @@ using Ictshop.Models;
 
 namespace Ictshop.Controllers
 {
-    public class DonhangsController : Controller
+    public class OrdersController : Controller
     {
         private Qlbanhang db = new Qlbanhang();
 
-        // GET: Donhangs
+        // GET: Orders
         // Hiển thị danh sách đơn hàng
         public ActionResult Index()
         {
@@ -23,13 +23,13 @@ namespace Ictshop.Controllers
             {
                 return RedirectToAction("Dangnhap", "User");
             }
-            Nguoidung kh = (Nguoidung)Session["use"];
-            int maND = kh.MaNguoiDung;
-            var donhangs = db.Donhangs.Include(d => d.Nguoidung).Where(d=>d.MaNguoidung == maND);
-            return View(donhangs.ToList());
+            User kh = (User)Session["use"];
+            int maND = kh.MaUser;
+            var Orders = db.Orders.Include(d => d.User).Where(d=>d.MaUser == maND);
+            return View(Orders.ToList());
         }
 
-        // GET: Donhangs/Details/5
+        // GET: Orders/Details/5
         //Hiển thị chi tiết đơn hàng
         public ActionResult Details(int? id)
         {
@@ -37,9 +37,9 @@ namespace Ictshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Donhang donhang = db.Donhangs.Find(id);
-            var chitiet = db.Chitietdonhangs.Include(d => d.Sanpham).Where(d=> d.Madon == id).ToList();
-            if (donhang == null)
+            Order Order = db.Orders.Find(id);
+            var chitiet = db.OrderDetails.Include(d => d.Product).Where(d=> d.Madon == id).ToList();
+            if (Order == null)
             {
                 return HttpNotFound();
             }

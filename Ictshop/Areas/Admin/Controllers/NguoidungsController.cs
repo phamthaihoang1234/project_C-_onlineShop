@@ -10,20 +10,20 @@ using Ictshop.Models;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
-    public class NguoidungsController : Controller
+    public class UsersController : Controller
     {
         private Qlbanhang db = new Qlbanhang();
 
         // Xem quản lý tất cả người dùng
-        // GET: Admin/Nguoidungs
+        // GET: Admin/Users
         public ActionResult Index()
         {
-            var nguoidungs = db.Nguoidungs.Include(n => n.PhanQuyen);
-            return View(nguoidungs.ToList());
+            var Users = db.Users.Include(n => n.Role);
+            return View(Users.ToList());
         }
 
         //Xem chi tiết người dùng theo Mã người dùng
-        // GET: Admin/Nguoidungs/Details/5
+        // GET: Admin/Users/Details/5
         public ActionResult Details(int? id)
         {
             // Nếu không có người dùng có mã được truyền vào thì trả về trang báo lỗi
@@ -32,94 +32,94 @@ namespace Ictshop.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // Khai báo một người dùng theo mã
-            Nguoidung nguoidung = db.Nguoidungs.Find(id);
-            if (nguoidung == null)
+            User User = db.Users.Find(id);
+            if (User == null)
             {
                 return HttpNotFound();
             }
             // trả về trang chi tiết người dùng
-            return View(nguoidung);
+            return View(User);
         }
 
-        //// GET: Admin/Nguoidungs/Create
+        //// GET: Admin/Users/Create
         //public ActionResult Create()
         //{
-        //    ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen");
+        //    ViewBag.IDQuyen = new SelectList(db.Roles, "IDQuyen", "TenQuyen");
         //    return View();
         //}
 
-        //// POST: Admin/Nguoidungs/Create
+        //// POST: Admin/Users/Create
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "MaNguoiDung,Hoten,Email,Dienthoai,Matkhau,IDQuyen")] Nguoidung nguoidung)
+        //public ActionResult Create([Bind(Include = "MaUser,Hoten,Email,Dienthoai,Matkhau,IDQuyen")] User User)
         //{
         //    if (ModelState.IsValid)
         //    {
-        //        db.Nguoidungs.Add(nguoidung);
+        //        db.Users.Add(User);
         //        db.SaveChanges();
         //        return RedirectToAction("Index");
         //    }
 
-        //    ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen", nguoidung.IDQuyen);
-        //    return View(nguoidung);
+        //    ViewBag.IDQuyen = new SelectList(db.Roles, "IDQuyen", "TenQuyen", User.IDQuyen);
+        //    return View(User);
         //}
 
 
             // Chỉnh sửa người dùng
-        // GET: Admin/Nguoidungs/Edit/5
+        // GET: Admin/Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nguoidung nguoidung = db.Nguoidungs.Find(id);
-            if (nguoidung == null)
+            User User = db.Users.Find(id);
+            if (User == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen", nguoidung.IDQuyen);
-            return View(nguoidung);
+            ViewBag.IDQuyen = new SelectList(db.Roles, "IDQuyen", "TenQuyen", User.IDQuyen);
+            return View(User);
         }
 
-        // POST: Admin/Nguoidungs/Edit/5
+        // POST: Admin/Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaNguoiDung,Hoten,Email,Dienthoai,Matkhau,IDQuyen")] Nguoidung nguoidung)
+        public ActionResult Edit([Bind(Include = "MaUser,Hoten,Email,Dienthoai,Matkhau,IDQuyen")] User User)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nguoidung).State = EntityState.Modified;
+                db.Entry(User).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen", nguoidung.IDQuyen);
-            return View(nguoidung);
+            ViewBag.IDQuyen = new SelectList(db.Roles, "IDQuyen", "TenQuyen", User.IDQuyen);
+            return View(User);
         }
 
         // Xoá người dùng 
-        // GET: Admin/Nguoidungs/Delete/5
+        // GET: Admin/Users/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nguoidung nguoidung = db.Nguoidungs.Find(id);
-            if (nguoidung == null)
+            User User = db.Users.Find(id);
+            if (User == null)
             {
                 return HttpNotFound();
             }
-            return View(nguoidung);
+            return View(User);
         }
 
-        // POST: Admin/Nguoidungs/Delete/5
+        // POST: Admin/Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Nguoidung nguoidung = db.Nguoidungs.Find(id);
-            db.Nguoidungs.Remove(nguoidung);
+            User User = db.Users.Find(id);
+            db.Users.Remove(User);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

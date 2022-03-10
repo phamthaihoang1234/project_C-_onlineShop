@@ -27,7 +27,7 @@ namespace Ictshop.Controllers
         //Thêm giỏ hàng
         public ActionResult ThemGioHang(int iMasp, string strURL)
         {
-            Sanpham sp = db.Sanphams.SingleOrDefault(n => n.Masp == iMasp);
+            Product sp = db.Products.SingleOrDefault(n => n.Masp == iMasp);
             if ( sp == null)
             {
                 Response.StatusCode = 404;
@@ -36,17 +36,17 @@ namespace Ictshop.Controllers
             //Lấy ra session giỏ hàng
             List<GioHang> lstGioHang = LayGioHang();
             //Kiểm tra sp này đã tồn tại trong session[giohang] chưa
-            GioHang sanpham = lstGioHang.Find(n => n.iMasp == iMasp);
-            if (sanpham == null)
+            GioHang Product = lstGioHang.Find(n => n.iMasp == iMasp);
+            if (Product == null)
             {
-                sanpham = new GioHang(iMasp);
+                Product = new GioHang(iMasp);
                 //Add sản phẩm mới thêm vào list
-                lstGioHang.Add(sanpham);
+                lstGioHang.Add(Product);
                 return Redirect(strURL);
             }
             else
             {
-                sanpham.iSoLuong++;
+                Product.iSoLuong++;
                 return Redirect(strURL);
             }
         }
@@ -54,7 +54,7 @@ namespace Ictshop.Controllers
         public ActionResult CapNhatGioHang(int iMaSP, FormCollection f)
         {
             //Kiểm tra masp
-            Sanpham sp = db.Sanphams.SingleOrDefault(n => n.Masp== iMaSP);
+            Product sp = db.Products.SingleOrDefault(n => n.Masp== iMaSP);
             //Nếu get sai masp thì sẽ trả về trang lỗi 404
             if (sp == null)
             {
@@ -64,11 +64,11 @@ namespace Ictshop.Controllers
             //Lấy giỏ hàng ra từ session
             List<GioHang> lstGioHang = LayGioHang();
             //Kiểm tra sp có tồn tại trong session["GioHang"]
-            GioHang sanpham = lstGioHang.SingleOrDefault(n => n.iMasp == iMaSP);
+            GioHang Product = lstGioHang.SingleOrDefault(n => n.iMasp == iMaSP);
             //Nếu mà tồn tại thì chúng ta cho sửa số lượng
-            if (sanpham != null)
+            if (Product != null)
             {
-                sanpham.iSoLuong = int.Parse(f["txtSoLuong"].ToString());
+                Product.iSoLuong = int.Parse(f["txtSoLuong"].ToString());
 
             }
             return RedirectToAction("GioHang");
@@ -77,7 +77,7 @@ namespace Ictshop.Controllers
         public ActionResult XoaGioHang(int iMaSP)
         {
             //Kiểm tra masp
-            Sanpham sp = db.Sanphams.SingleOrDefault(n => n.Masp== iMaSP);
+            Product sp = db.Products.SingleOrDefault(n => n.Masp== iMaSP);
             //Nếu get sai masp thì sẽ trả về trang lỗi 404
             if (sp == null)
             {
@@ -86,9 +86,9 @@ namespace Ictshop.Controllers
             }
             //Lấy giỏ hàng ra từ session
             List<GioHang> lstGioHang = LayGioHang();
-            GioHang sanpham = lstGioHang.SingleOrDefault(n => n.iMasp == iMaSP);
+            GioHang Product = lstGioHang.SingleOrDefault(n => n.iMasp == iMaSP);
             //Nếu mà tồn tại thì chúng ta cho sửa số lượng
-            if (sanpham != null)
+            if (Product != null)
             {
                 lstGioHang.RemoveAll(n => n.iMasp == iMaSP);
 
@@ -171,28 +171,28 @@ namespace Ictshop.Controllers
                 RedirectToAction("Index", "Home");
             }
             //Thêm đơn hàng
-            Donhang ddh = new Donhang();
-            Nguoidung kh = (Nguoidung)Session["use"];
+            Order ddh = new Order();
+            User kh = (User)Session["use"];
             List<GioHang> gh = LayGioHang();
-            ddh.MaNguoidung = kh.MaNguoiDung;
+            ddh.MaUser = kh.MaUser;
             ddh.Ngaydat = DateTime.Now;
             Console.WriteLine(ddh);
-            db.Donhangs.Add(ddh);
+            db.Orders.Add(ddh);
             db.SaveChanges();
             //Thêm chi tiết đơn hàng
             foreach (var item in gh)
             {
-                Chitietdonhang ctDH = new Chitietdonhang();
+                OrderDetail ctDH = new OrderDetail();
                 decimal thanhtien =  item.iSoLuong * (decimal) item.dDonGia;
                 ctDH.Madon = ddh.Madon;
                 ctDH.Masp = item.iMasp;
                 ctDH.Soluong = item.iSoLuong;
                 ctDH.Dongia = (decimal)item.dDonGia;
                 ctDH.Thanhtien = (decimal) thanhtien;
-                db.Chitietdonhangs.Add(ctDH);
+                db.OrderDetails.Add(ctDH);
             }
             db.SaveChanges();
-            return RedirectToAction("Index", "Donhangs");
+            return RedirectToAction("Index", "Orders");
         }
         #endregion
 

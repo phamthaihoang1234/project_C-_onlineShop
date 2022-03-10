@@ -1,4 +1,4 @@
-﻿@model Ictshop.Models.Sanpham
+﻿@model Ictshop.Models.Product
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -8,23 +8,23 @@
 
 
 <div>
-    <h4>Sanpham</h4>
+    <h4>Product</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Hangsanxuat.Tenhang)
+            @Html.DisplayNameFor(model => model.Brand.Tenhang)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Hangsanxuat.Tenhang)
+            @Html.DisplayFor(model => model.Brand.Tenhang)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Hedieuhanh.Tenhdh)
+            @Html.DisplayNameFor(model => model.Category.Tenhdh)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Hedieuhanh.Tenhdh)
+            @Html.DisplayFor(model => model.Category.Tenhdh)
         </dd>
 
         <dt>
@@ -76,11 +76,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Sanphammoi)
+            @Html.DisplayNameFor(model => model.NewProduct)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Sanphammoi)
+            @Html.DisplayFor(model => model.NewProduct)
         </dd>
 
         <dt>

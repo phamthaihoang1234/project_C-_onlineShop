@@ -1,4 +1,4 @@
-﻿@model Ictshop.Models.Sanpham
+﻿@model Ictshop.Models.Product
 
 @{
     ViewBag.Title = "Edit";
@@ -66,11 +66,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Sanphammoi, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.NewProduct, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.Sanphammoi)
-                    @Html.ValidationMessageFor(model => model.Sanphammoi, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.NewProduct)
+                    @Html.ValidationMessageFor(model => model.NewProduct, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>

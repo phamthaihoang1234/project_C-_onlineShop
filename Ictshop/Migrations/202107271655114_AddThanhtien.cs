@@ -8,7 +8,7 @@ namespace Ictshop.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Chitietdonhang",
+                "dbo.OrderDetail",
                 c => new
                     {
                         Madon = c.Int(nullable: false),
@@ -18,29 +18,29 @@ namespace Ictshop.Migrations
                         Thanhtien = c.Double(),
                     })
                 .PrimaryKey(t => new { t.Madon, t.Masp })
-                .ForeignKey("dbo.Donhang", t => t.Madon)
-                .ForeignKey("dbo.Sanpham", t => t.Masp)
+                .ForeignKey("dbo.Order", t => t.Madon)
+                .ForeignKey("dbo.Product", t => t.Masp)
                 .Index(t => t.Madon)
                 .Index(t => t.Masp);
             
             CreateTable(
-                "dbo.Donhang",
+                "dbo.Order",
                 c => new
                     {
                         Madon = c.Int(nullable: false, identity: true),
                         Ngaydat = c.DateTime(),
                         Tinhtrang = c.Int(),
-                        MaNguoidung = c.Int(),
+                        MaUser = c.Int(),
                     })
                 .PrimaryKey(t => t.Madon)
-                .ForeignKey("dbo.Nguoidung", t => t.MaNguoidung)
-                .Index(t => t.MaNguoidung);
+                .ForeignKey("dbo.User", t => t.MaUser)
+                .Index(t => t.MaUser);
             
             CreateTable(
-                "dbo.Nguoidung",
+                "dbo.User",
                 c => new
                     {
-                        MaNguoiDung = c.Int(nullable: false, identity: true),
+                        MaUser = c.Int(nullable: false, identity: true),
                         Hoten = c.String(maxLength: 50),
                         Email = c.String(maxLength: 50),
                         Dienthoai = c.String(maxLength: 10, fixedLength: true),
@@ -48,12 +48,12 @@ namespace Ictshop.Migrations
                         IDQuyen = c.Int(),
                         Diachi = c.String(maxLength: 100),
                     })
-                .PrimaryKey(t => t.MaNguoiDung)
-                .ForeignKey("dbo.PhanQuyen", t => t.IDQuyen)
+                .PrimaryKey(t => t.MaUser)
+                .ForeignKey("dbo.Role", t => t.IDQuyen)
                 .Index(t => t.IDQuyen);
             
             CreateTable(
-                "dbo.PhanQuyen",
+                "dbo.Role",
                 c => new
                     {
                         IDQuyen = c.Int(nullable: false, identity: true),
@@ -62,7 +62,7 @@ namespace Ictshop.Migrations
                 .PrimaryKey(t => t.IDQuyen);
             
             CreateTable(
-                "dbo.Sanpham",
+                "dbo.Product",
                 c => new
                     {
                         Masp = c.Int(nullable: false, identity: true),
@@ -72,20 +72,20 @@ namespace Ictshop.Migrations
                         Mota = c.String(storeType: "ntext"),
                         Thesim = c.Int(),
                         Bonhotrong = c.Int(),
-                        Sanphammoi = c.Boolean(),
+                        NewProduct = c.Boolean(),
                         Ram = c.Int(),
                         Anhbia = c.String(maxLength: 10),
                         Mahang = c.Int(),
                         Mahdh = c.Int(),
                     })
                 .PrimaryKey(t => t.Masp)
-                .ForeignKey("dbo.Hangsanxuat", t => t.Mahang)
-                .ForeignKey("dbo.Hedieuhanh", t => t.Mahdh)
+                .ForeignKey("dbo.Brand", t => t.Mahang)
+                .ForeignKey("dbo.Category", t => t.Mahdh)
                 .Index(t => t.Mahang)
                 .Index(t => t.Mahdh);
             
             CreateTable(
-                "dbo.Hangsanxuat",
+                "dbo.Brand",
                 c => new
                     {
                         Mahang = c.Int(nullable: false, identity: true),
@@ -94,7 +94,7 @@ namespace Ictshop.Migrations
                 .PrimaryKey(t => t.Mahang);
             
             CreateTable(
-                "dbo.Hedieuhanh",
+                "dbo.Category",
                 c => new
                     {
                         Mahdh = c.Int(nullable: false, identity: true),
@@ -118,26 +118,26 @@ namespace Ictshop.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Sanpham", "Mahdh", "dbo.Hedieuhanh");
-            DropForeignKey("dbo.Sanpham", "Mahang", "dbo.Hangsanxuat");
-            DropForeignKey("dbo.Chitietdonhang", "Masp", "dbo.Sanpham");
-            DropForeignKey("dbo.Nguoidung", "IDQuyen", "dbo.PhanQuyen");
-            DropForeignKey("dbo.Donhang", "MaNguoidung", "dbo.Nguoidung");
-            DropForeignKey("dbo.Chitietdonhang", "Madon", "dbo.Donhang");
-            DropIndex("dbo.Sanpham", new[] { "Mahdh" });
-            DropIndex("dbo.Sanpham", new[] { "Mahang" });
-            DropIndex("dbo.Nguoidung", new[] { "IDQuyen" });
-            DropIndex("dbo.Donhang", new[] { "MaNguoidung" });
-            DropIndex("dbo.Chitietdonhang", new[] { "Masp" });
-            DropIndex("dbo.Chitietdonhang", new[] { "Madon" });
+            DropForeignKey("dbo.Product", "Mahdh", "dbo.Category");
+            DropForeignKey("dbo.Product", "Mahang", "dbo.Brand");
+            DropForeignKey("dbo.OrderDetail", "Masp", "dbo.Product");
+            DropForeignKey("dbo.User", "IDQuyen", "dbo.Role");
+            DropForeignKey("dbo.Order", "MaUser", "dbo.User");
+            DropForeignKey("dbo.OrderDetail", "Madon", "dbo.Order");
+            DropIndex("dbo.Product", new[] { "Mahdh" });
+            DropIndex("dbo.Product", new[] { "Mahang" });
+            DropIndex("dbo.User", new[] { "IDQuyen" });
+            DropIndex("dbo.Order", new[] { "MaUser" });
+            DropIndex("dbo.OrderDetail", new[] { "Masp" });
+            DropIndex("dbo.OrderDetail", new[] { "Madon" });
             DropTable("dbo.sysdiagrams");
-            DropTable("dbo.Hedieuhanh");
-            DropTable("dbo.Hangsanxuat");
-            DropTable("dbo.Sanpham");
-            DropTable("dbo.PhanQuyen");
-            DropTable("dbo.Nguoidung");
-            DropTable("dbo.Donhang");
-            DropTable("dbo.Chitietdonhang");
+            DropTable("dbo.Category");
+            DropTable("dbo.Brand");
+            DropTable("dbo.Product");
+            DropTable("dbo.Role");
+            DropTable("dbo.User");
+            DropTable("dbo.Order");
+            DropTable("dbo.OrderDetail");
         }
     }
 }

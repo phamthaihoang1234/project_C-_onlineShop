@@ -10,107 +10,107 @@ using Ictshop.Models;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
-    public class HedieuhanhsController : Controller
+    public class CategorysController : Controller
     {
         private Qlbanhang db = new Qlbanhang();
 
-        // GET: Admin/Hedieuhanhs
+        // GET: Admin/Categorys
         public ActionResult Index()
         {
-            return View(db.Hedieuhanhs.ToList());
+            return View(db.Categorys.ToList());
         }
 
-        // GET: Admin/Hedieuhanhs/Details/5
+        // GET: Admin/Categorys/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hedieuhanh hedieuhanh = db.Hedieuhanhs.Find(id);
-            if (hedieuhanh == null)
+            Category Category = db.Categorys.Find(id);
+            if (Category == null)
             {
                 return HttpNotFound();
             }
-            return View(hedieuhanh);
+            return View(Category);
         }
 
-        // GET: Admin/Hedieuhanhs/Create
+        // GET: Admin/Categorys/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Hedieuhanhs/Create
+        // POST: Admin/Categorys/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Mahdh,Tenhdh")] Hedieuhanh hedieuhanh)
+        public ActionResult Create([Bind(Include = "Mahdh,Tenhdh")] Category Category)
         {
             if (ModelState.IsValid)
             {
-                db.Hedieuhanhs.Add(hedieuhanh);
+                db.Categorys.Add(Category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(hedieuhanh);
+            return View(Category);
         }
 
-        // GET: Admin/Hedieuhanhs/Edit/5
+        // GET: Admin/Categorys/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hedieuhanh hedieuhanh = db.Hedieuhanhs.Find(id);
-            if (hedieuhanh == null)
+            Category Category = db.Categorys.Find(id);
+            if (Category == null)
             {
                 return HttpNotFound();
             }
-            return View(hedieuhanh);
+            return View(Category);
         }
 
-        // POST: Admin/Hedieuhanhs/Edit/5
+        // POST: Admin/Categorys/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Mahdh,Tenhdh")] Hedieuhanh hedieuhanh)
+        public ActionResult Edit([Bind(Include = "Mahdh,Tenhdh")] Category Category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(hedieuhanh).State = EntityState.Modified;
+                db.Entry(Category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(hedieuhanh);
+            return View(Category);
         }
 
-        // GET: Admin/Hedieuhanhs/Delete/5
+        // GET: Admin/Categorys/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hedieuhanh hedieuhanh = db.Hedieuhanhs.Find(id);
-            if (hedieuhanh == null)
+            Category Category = db.Categorys.Find(id);
+            if (Category == null)
             {
                 return HttpNotFound();
             }
-            return View(hedieuhanh);
+            return View(Category);
         }
 
-        // POST: Admin/Hedieuhanhs/Delete/5
+        // POST: Admin/Categorys/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Hedieuhanh hedieuhanh = db.Hedieuhanhs.Find(id);
-            db.Hedieuhanhs.Remove(hedieuhanh);
+            Category Category = db.Categorys.Find(id);
+            db.Categorys.Remove(Category);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

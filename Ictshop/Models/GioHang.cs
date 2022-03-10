@@ -28,7 +28,7 @@ namespace Ictshop.Models
         public GioHang(int Masp)
         {
             iMasp = Masp;
-            Sanpham sp = db.Sanphams.Single(n => n.Masp == iMasp);
+            Product sp = db.Products.Single(n => n.Masp == iMasp);
             sTensp =sp.Tensp;
             sAnhBia = sp.Anhbia;
             dDonGia = double.Parse(sp.Giatien.ToString());

@@ -10,107 +10,107 @@ using Ictshop.Models;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
-    public class HangsanxuatsController : Controller
+    public class BrandsController : Controller
     {
         private Qlbanhang db = new Qlbanhang();
 
-        // GET: Admin/Hangsanxuats
+        // GET: Admin/Brands
         public ActionResult Index()
         {
-            return View(db.Hangsanxuats.ToList());
+            return View(db.Brands.ToList());
         }
 
-        // GET: Admin/Hangsanxuats/Details/5
+        // GET: Admin/Brands/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hangsanxuat hangsanxuat = db.Hangsanxuats.Find(id);
-            if (hangsanxuat == null)
+            Brand Brand = db.Brands.Find(id);
+            if (Brand == null)
             {
                 return HttpNotFound();
             }
-            return View(hangsanxuat);
+            return View(Brand);
         }
 
-        // GET: Admin/Hangsanxuats/Create
+        // GET: Admin/Brands/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Hangsanxuats/Create
+        // POST: Admin/Brands/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Mahang,Tenhang")] Hangsanxuat hangsanxuat)
+        public ActionResult Create([Bind(Include = "Mahang,Tenhang")] Brand Brand)
         {
             if (ModelState.IsValid)
             {
-                db.Hangsanxuats.Add(hangsanxuat);
+                db.Brands.Add(Brand);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(hangsanxuat);
+            return View(Brand);
         }
 
-        // GET: Admin/Hangsanxuats/Edit/5
+        // GET: Admin/Brands/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hangsanxuat hangsanxuat = db.Hangsanxuats.Find(id);
-            if (hangsanxuat == null)
+            Brand Brand = db.Brands.Find(id);
+            if (Brand == null)
             {
                 return HttpNotFound();
             }
-            return View(hangsanxuat);
+            return View(Brand);
         }
 
-        // POST: Admin/Hangsanxuats/Edit/5
+        // POST: Admin/Brands/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Mahang,Tenhang")] Hangsanxuat hangsanxuat)
+        public ActionResult Edit([Bind(Include = "Mahang,Tenhang")] Brand Brand)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(hangsanxuat).State = EntityState.Modified;
+                db.Entry(Brand).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(hangsanxuat);
+            return View(Brand);
         }
 
-        // GET: Admin/Hangsanxuats/Delete/5
+        // GET: Admin/Brands/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hangsanxuat hangsanxuat = db.Hangsanxuats.Find(id);
-            if (hangsanxuat == null)
+            Brand Brand = db.Brands.Find(id);
+            if (Brand == null)
             {
                 return HttpNotFound();
             }
-            return View(hangsanxuat);
+            return View(Brand);
         }
 
-        // POST: Admin/Hangsanxuats/Delete/5
+        // POST: Admin/Brands/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Hangsanxuat hangsanxuat = db.Hangsanxuats.Find(id);
-            db.Hangsanxuats.Remove(hangsanxuat);
+            Brand Brand = db.Brands.Find(id);
+            db.Brands.Remove(Brand);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

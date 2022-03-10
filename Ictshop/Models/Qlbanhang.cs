@@ -12,49 +12,49 @@ namespace Ictshop.Models
         {
         }
 
-        public virtual DbSet<Chitietdonhang> Chitietdonhangs { get; set; }
-        public virtual DbSet<Donhang> Donhangs { get; set; }
-        public virtual DbSet<Hangsanxuat> Hangsanxuats { get; set; }
-        public virtual DbSet<Hedieuhanh> Hedieuhanhs { get; set; }
-        public virtual DbSet<Nguoidung> Nguoidungs { get; set; }
-        public virtual DbSet<PhanQuyen> PhanQuyens { get; set; }
-        public virtual DbSet<Sanpham> Sanphams { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<Category> Categorys { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Chitietdonhang>()
+            modelBuilder.Entity<OrderDetail>()
                 .Property(e => e.Dongia)
                 .HasPrecision(18, 0);
 
-            modelBuilder.Entity<Donhang>()
-                .HasMany(e => e.Chitietdonhang)
-                .WithRequired(e => e.Donhang)
+            modelBuilder.Entity<Order>()
+                .HasMany(e => e.OrderDetail)
+                .WithRequired(e => e.Order)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Hangsanxuat>()
+            modelBuilder.Entity<Brand>()
                 .Property(e => e.Tenhang)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Hedieuhanh>()
+            modelBuilder.Entity<Category>()
                 .Property(e => e.Tenhdh)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Nguoidung>()
+            modelBuilder.Entity<User>()
                 .Property(e => e.Dienthoai)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Nguoidung>()
+            modelBuilder.Entity<User>()
                 .Property(e => e.Matkhau)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Sanpham>()
+            modelBuilder.Entity<Product>()
                 .Property(e => e.Giatien)
                 .HasPrecision(18, 0);
 
-            modelBuilder.Entity<Sanpham>()
-                .HasMany(e => e.Chitietdonhang)
-                .WithRequired(e => e.Sanpham)
+            modelBuilder.Entity<Product>()
+                .HasMany(e => e.OrderDetail)
+                .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
         }
     }

@@ -80,7 +80,7 @@
 <body>
 
     @{ 
-         var u = Session["use"] as Ictshop.Models.Nguoidung;
+        var u = Session["use"] as Ictshop.Models.User;
     }
 
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -174,7 +174,7 @@
                     <li>
                         <a style="color:white"
                            class="nav-link" 
-                           href="@Url.Action("Index", "DonHangs")">ĐƠN HÀNG</a>
+                           href="@Url.Action("Index", "Orders")">ĐƠN HÀNG</a>
                     </li>
                 </ul>
             </div>
