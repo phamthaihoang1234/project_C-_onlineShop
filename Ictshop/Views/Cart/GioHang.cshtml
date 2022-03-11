@@ -1,5 +1,5 @@
 ﻿@using Ictshop.Models;
-@model List<GioHang>
+@model List<Cart>
 
 @{
     ViewBag.Title = "GioHang";
@@ -27,15 +27,15 @@
     @foreach (var item in Model)
     {
         <tr class="font-italic">
-            <td> @item.iMasp</td>
+            <td> @item.cProID</td>
 
-            <td> @item.sTensp</td>
+            <td> @item.cProName</td>
 
-            <td> <img src="@Url.Content("~/HinhanhSP/" +item.sAnhBia)" width="50" height="50" /></td>
+            <td> <img src="@Url.Content("~/HinhanhSP/" +item.cProImage)" width="50" height="50" /></td>
 
-            <td>  @String.Format("{0:0,0}", item.dDonGia) VNĐ</td>
+            <td>  @String.Format("{0:0,0}", item.cProPrice) VNĐ</td>
 
-            <td> @item.iSoLuong</td>
+            <td> @item.cProQuantity</td>
 
             <td>   @String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
 

@@ -120,16 +120,16 @@ namespace Ictshop.Migrations
         {
             DropForeignKey("dbo.Product", "Mahdh", "dbo.Category");
             DropForeignKey("dbo.Product", "Mahang", "dbo.Brand");
-            DropForeignKey("dbo.OrderDetail", "Masp", "dbo.Product");
+            DropForeignKey("dbo.OrderDetail", "ProductID", "dbo.Product");
             DropForeignKey("dbo.User", "IDQuyen", "dbo.Role");
             DropForeignKey("dbo.Order", "MaUser", "dbo.User");
-            DropForeignKey("dbo.OrderDetail", "Madon", "dbo.Order");
+            DropForeignKey("dbo.OrderDetail", "OrderID", "dbo.Order");
             DropIndex("dbo.Product", new[] { "Mahdh" });
             DropIndex("dbo.Product", new[] { "Mahang" });
             DropIndex("dbo.User", new[] { "IDQuyen" });
             DropIndex("dbo.Order", new[] { "MaUser" });
-            DropIndex("dbo.OrderDetail", new[] { "Masp" });
-            DropIndex("dbo.OrderDetail", new[] { "Madon" });
+            DropIndex("dbo.OrderDetail", new[] { "ProductID" });
+            DropIndex("dbo.OrderDetail", new[] { "OrderID" });
             DropTable("dbo.sysdiagrams");
             DropTable("dbo.Category");
             DropTable("dbo.Brand");

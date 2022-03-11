@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace Ictshop.Models
 {
-    public partial class Qlbanhang : DbContext
+    public partial class ShopManagement : DbContext
     {
-        public Qlbanhang()
-            : base("name=Qlbanhang")
+        public ShopManagement()
+            : base("name=PROJECT_PRN211")
         {
         }
 
@@ -24,7 +24,7 @@ namespace Ictshop.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<OrderDetail>()
-                .Property(e => e.Dongia)
+                .Property(e => e.UnitPrice)
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<Order>()
@@ -33,23 +33,23 @@ namespace Ictshop.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Brand>()
-                .Property(e => e.Tenhang)
+                .Property(e => e.BrandName)
                 .IsFixedLength();
 
             modelBuilder.Entity<Category>()
-                .Property(e => e.Tenhdh)
+                .Property(e => e.CateName)
                 .IsFixedLength();
 
             modelBuilder.Entity<User>()
-                .Property(e => e.Dienthoai)
+                .Property(e => e.Phone)
                 .IsFixedLength();
 
             modelBuilder.Entity<User>()
-                .Property(e => e.Matkhau)
+                .Property(e => e.Password)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Product>()
-                .Property(e => e.Giatien)
+                .Property(e => e.Price)
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<Product>()

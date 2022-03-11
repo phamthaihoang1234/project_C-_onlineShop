@@ -11,7 +11,7 @@ namespace Ictshop.Areas.Admin.Controllers
     public class HomeController : Controller
         
     {
-        Qlbanhang db = new Qlbanhang();
+        ShopManagement db = new ShopManagement();
        
         // GET: Admin/Home
         
@@ -24,8 +24,8 @@ namespace Ictshop.Areas.Admin.Controllers
             if (page == null) page = 1;
 
             // 3. Tạo truy vấn sql, lưu ý phải sắp xếp theo trường nào đó, ví dụ OrderBy
-            // theo Masp mới có thể phân trang.
-            var sp = db.Products.OrderBy(x => x.Masp);
+            // theo ProductID mới có thể phân trang.
+            var sp = db.Products.OrderBy(x => x.ProductID);
 
             // 4. Tạo kích thước trang (pageSize) hay là số sản phẩm hiển thị trên 1 trang
             int pageSize = 5;
@@ -50,10 +50,10 @@ namespace Ictshop.Areas.Admin.Controllers
         public ActionResult Create()
         {
             //Để tạo dropdownList bên view
-            var hangselected = new SelectList(db.Brands, "Mahang", "Tenhang");
-            ViewBag.Mahang = hangselected;
-            var hdhselected = new SelectList(db.Categorys, "Mahdh", "Tenhdh");
-            ViewBag.Mahdh = hdhselected;
+            var hangselected = new SelectList(db.Brands, "BrandID", "BrandName");
+            ViewBag.BrandID = hangselected;
+            var hdhselected = new SelectList(db.Categorys, "CateID", "CateName");
+            ViewBag.CateID = hdhselected;
             return View();
         }
 
@@ -81,10 +81,10 @@ namespace Ictshop.Areas.Admin.Controllers
         {
             // Hiển thị dropdownlist
             var dt = db.Products.Find(id);
-            var hangselected = new SelectList(db.Brands, "Mahang", "Tenhang",dt.Mahang);
-            ViewBag.Mahang = hangselected;
-            var hdhselected = new SelectList(db.Categorys, "Mahdh", "Tenhdh",dt.Mahdh);
-            ViewBag.Mahdh = hdhselected;
+            var hangselected = new SelectList(db.Brands, "BrandID", "BrandName",dt.BrandID);
+            ViewBag.BrandID = hangselected;
+            var hdhselected = new SelectList(db.Categorys, "CateID", "CateName",dt.CateID);
+            ViewBag.CateID = hdhselected;
            // 
             return View(dt);
             
@@ -97,17 +97,16 @@ namespace Ictshop.Areas.Admin.Controllers
             try
             {
                 // Sửa sản phẩm theo mã sản phẩm
-                var oldItem = db.Products.Find(Product.Masp);
-                oldItem.Tensp = Product.Tensp;
-                oldItem.Giatien = Product.Giatien;
-                oldItem.Soluong = Product.Soluong;
-                oldItem.Mota = Product.Mota;
-                oldItem.Anhbia = Product.Anhbia;
-                oldItem.Bonhotrong = Product.Bonhotrong;
+                var oldItem = db.Products.Find(Product.ProductID);
+                oldItem.ProductName = Product.ProductName;
+                oldItem.Price = Product.Price;
+                oldItem.Quantity = Product.Quantity;
+                oldItem.Description = Product.Description;
+                oldItem.Image = Product.Image;
+                oldItem.Memory = Product.Memory;
                 oldItem.Ram = Product.Ram;
-                oldItem.Thesim = Product.Thesim;
-                oldItem.Mahang = Product.Mahang;
-                oldItem.Mahdh = Product.Mahdh;
+                oldItem.BrandID = Product.BrandID;
+                oldItem.CateID = Product.CateID;
                 // lưu lại
                 db.SaveChanges();
                 // xong chuyển qua index

@@ -12,18 +12,18 @@ namespace Ictshop.Models
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Madon { get; set; }
+        public int OrderID { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Masp { get; set; }
+        public int ProductID { get; set; }
 
-        public int? Soluong { get; set; }
+        public int? Quantity { get; set; }
 
-        public decimal? Dongia { get; set; }
+        public decimal? UnitPrice { get; set; }
 
-        public decimal? Thanhtien { get; set; }
+        public decimal? TotalCost { get; set; }
 
         public virtual Order Order { get; set; }
 

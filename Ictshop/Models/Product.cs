@@ -16,32 +16,30 @@ namespace Ictshop.Models
         }
 
         [Key]
-        public int Masp { get; set; }
+        public int ProductID { get; set; }
 
         [StringLength(50)]
-        public string Tensp { get; set; }
+        public string ProductName { get; set; }
 
-        public decimal? Giatien { get; set; }
+        public decimal? Price { get; set; }
 
-        public int? Soluong { get; set; }
+        public int? Quantity { get; set; }
 
         [Column(TypeName = "ntext")]
-        public string Mota { get; set; }
+        public string Description { get; set; }
 
-        public int? Thesim { get; set; }
-
-        public int? Bonhotrong { get; set; }
+        public int? Memory { get; set; }
 
         public bool? NewProduct { get; set; }
 
         public int? Ram { get; set; }
 
         [StringLength(10)]
-        public string Anhbia { get; set; }
+        public string Image { get; set; }
 
-        public int? Mahang { get; set; }
+        public int? BrandID { get; set; }
 
-        public int? Mahdh { get; set; }
+        public int? CateID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }

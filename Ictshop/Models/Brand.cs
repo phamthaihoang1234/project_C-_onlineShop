@@ -16,10 +16,10 @@ namespace Ictshop.Models
         }
 
         [Key]
-        public int Mahang { get; set; }
+        public int BrandID { get; set; }
 
         [StringLength(10)]
-        public string Tenhang { get; set; }
+        public string BrandName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }

@@ -5,14 +5,14 @@ namespace Ictshop.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Ictshop.Models.Qlbanhang>
+    internal sealed class Configuration : DbMigrationsConfiguration<Ictshop.Models.ShopManagement>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Ictshop.Models.Qlbanhang context)
+        protected override void Seed(Ictshop.Models.ShopManagement context)
         {
             //  This method will be called after migrating to the latest version.
 

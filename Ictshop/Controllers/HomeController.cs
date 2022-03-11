@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ictshop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,11 @@ namespace Ictshop.Controllers
 {
     public class HomeController : Controller
     {
-      //test commit
+
+        ShopManagement db = new ShopManagement();
         public ActionResult Index()
         {
-       
+            
             return View();
 
         }
@@ -33,6 +35,14 @@ namespace Ictshop.Controllers
         {
             return PartialView();
 
+        }
+
+
+        public ActionResult Category()
+        {
+            var model = db.Categorys.ToList();  
+
+            return PartialView("Category",model);
         }
     }
 }

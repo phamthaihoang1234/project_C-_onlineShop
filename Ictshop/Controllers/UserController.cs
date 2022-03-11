@@ -8,7 +8,7 @@ namespace Ictshop.Controllers
 {
     public class UserController : Controller
     {
-        Qlbanhang db = new Qlbanhang();
+        ShopManagement db = new ShopManagement();
         // ĐĂNG KÝ
         public ActionResult Dangky()
         {
@@ -51,7 +51,7 @@ namespace Ictshop.Controllers
         {
             string userMail = userlog["userMail"].ToString();
             string password = userlog["password"].ToString();
-            var islogin = db.Users.SingleOrDefault(x => x.Email.Equals(userMail) && x.Matkhau.Equals(password));
+            var islogin = db.Users.SingleOrDefault(x => x.Email.Equals(userMail) && x.Password.Equals(password));
 
             if (islogin != null)
                 {

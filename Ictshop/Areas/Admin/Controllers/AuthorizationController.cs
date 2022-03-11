@@ -10,107 +10,107 @@ using Ictshop.Models;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
-    public class CategorysController : Controller
+    public class RolesController : Controller
     {
-        private Qlbanhang db = new Qlbanhang();
+        private ShopManagement db = new ShopManagement();
 
-        // GET: Admin/Categorys
+        // GET: Admin/Roles
         public ActionResult Index()
         {
-            return View(db.Categorys.ToList());
+            return View(db.Roles.ToList());
         }
 
-        // GET: Admin/Categorys/Details/5
+        // GET: Admin/Roles/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category Category = db.Categorys.Find(id);
-            if (Category == null)
+            Role Role = db.Roles.Find(id);
+            if (Role == null)
             {
                 return HttpNotFound();
             }
-            return View(Category);
+            return View(Role);
         }
 
-        // GET: Admin/Categorys/Create
+        // GET: Admin/Roles/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Categorys/Create
+        // POST: Admin/Roles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Mahdh,Tenhdh")] Category Category)
+        public ActionResult Create([Bind(Include = "RoleID,RoleName")] Role Role)
         {
             if (ModelState.IsValid)
             {
-                db.Categorys.Add(Category);
+                db.Roles.Add(Role);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(Category);
+            return View(Role);
         }
 
-        // GET: Admin/Categorys/Edit/5
+        // GET: Admin/Roles/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category Category = db.Categorys.Find(id);
-            if (Category == null)
+            Role Role = db.Roles.Find(id);
+            if (Role == null)
             {
                 return HttpNotFound();
             }
-            return View(Category);
+            return View(Role);
         }
 
-        // POST: Admin/Categorys/Edit/5
+        // POST: Admin/Roles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Mahdh,Tenhdh")] Category Category)
+        public ActionResult Edit([Bind(Include = "RoleID,RoleName")] Role Role)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(Category).State = EntityState.Modified;
+                db.Entry(Role).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(Category);
+            return View(Role);
         }
 
-        // GET: Admin/Categorys/Delete/5
+        // GET: Admin/Roles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category Category = db.Categorys.Find(id);
-            if (Category == null)
+            Role Role = db.Roles.Find(id);
+            if (Role == null)
             {
                 return HttpNotFound();
             }
-            return View(Category);
+            return View(Role);
         }
 
-        // POST: Admin/Categorys/Delete/5
+        // POST: Admin/Roles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category Category = db.Categorys.Find(id);
-            db.Categorys.Remove(Category);
+            Role Role = db.Roles.Find(id);
+            db.Roles.Remove(Role);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

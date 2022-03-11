@@ -135,16 +135,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\HangsanxuatsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HedieuhanhsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\NguoidungsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\PhanQuyensController.cs" />
-    <Compile Include="Controllers\DanhmucController.cs" />
-    <Compile Include="Controllers\DonhangsController.cs" />
-    <Compile Include="Controllers\GioHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AuthorizationController.cs" />
+    <Compile Include="Controllers\BrandController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SanphamController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -156,13 +156,13 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\Qlbanhang.cs" />
+    <Compile Include="Models\ShopManagement.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -337,12 +337,14 @@
     <Content Include="Views\User\Dangky.cshtml" />
     <Content Include="Views\User\Dangnhap.cshtml" />
     <Content Include="Views\User\Test.cshtml" />
-    <Content Include="Views\GioHang\GioHang.cshtml" />
-    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
-    <Content Include="Views\GioHang\SuaGioHang.cshtml" />
     <Content Include="Web.Config" />
-    <Content Include="Views\Order\Details.cshtml" />
-    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Product\ListProduct.cshtml" />
+    <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Cart\GioHang.cshtml" />
+    <Content Include="Views\Cart\GioHangPartial.cshtml" />
+    <Content Include="Views\Cart\SuaGioHang.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>

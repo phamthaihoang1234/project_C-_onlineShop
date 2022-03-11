@@ -29,16 +29,13 @@
             Mô tả
         </th>
         <th>
-            Thẻ sim
-        </th>
-        <th>
             Ảnh bìa
         </th>
         <th>
             Tên hãng
         </th>
         <th>
-            Hệ điều hành
+            Loại sản phẩm
         </th>
         <th> Hành động</th>
     </tr>
@@ -48,34 +45,31 @@
         <tr>
 
             <td>
-                @Html.DisplayFor(modelItem => item.Tensp)
+                @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Giatien)
+                @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Soluong)
+                @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Mota)
-            </td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>        
             <td>
-                @Html.DisplayFor(modelItem => item.Thesim)
-            </td>
-            <td>
-                <img src="@Url.Content("~/HinhanhSP/" +item.Anhbia)" width="50" height="50" />
+                <img src="@Url.Content("~/HinhanhSP/" +item.Image)" width="50" height="50" />
                 @*@Html.DisplayFor(modelItem => item.Anhbia)*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Brand.Tenhang)
+                @Html.DisplayFor(modelItem => item.Brand.BrandName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.Tenhdh)
+                @Html.DisplayFor(modelItem => item.Category.CateName)
             </td>
             <td>
-                @Html.ActionLink("Sửa", "Edit", new { id = item.Masp })|
-                @Html.ActionLink("Chi tiết", "Details", new { id = item.Masp }) |
-                @Html.ActionLink("Xoá", "Delete", new { id = item.Masp })
+                @Html.ActionLink("Sửa", "Edit", new { id = item.ProductID })|
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.ProductID }) |
+                @Html.ActionLink("Xoá", "Delete", new { id = item.ProductID })
             </td>
         </tr>
     }

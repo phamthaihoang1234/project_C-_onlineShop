@@ -12,7 +12,7 @@ namespace Ictshop.Controllers
 {
     public class OrdersController : Controller
     {
-        private Qlbanhang db = new Qlbanhang();
+        private ShopManagement db = new ShopManagement();
 
         // GET: Orders
         // Hiển thị danh sách đơn hàng
@@ -24,8 +24,8 @@ namespace Ictshop.Controllers
                 return RedirectToAction("Dangnhap", "User");
             }
             User kh = (User)Session["use"];
-            int maND = kh.MaUser;
-            var Orders = db.Orders.Include(d => d.User).Where(d=>d.MaUser == maND);
+            int maND = kh.UserID;
+            var Orders = db.Orders.Include(d => d.User).Where(d=>d.UserID == maND);
             return View(Orders.ToList());
         }
 
@@ -38,7 +38,7 @@ namespace Ictshop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Order Order = db.Orders.Find(id);
-            var chitiet = db.OrderDetails.Include(d => d.Product).Where(d=> d.Madon == id).ToList();
+            var chitiet = db.OrderDetails.Include(d => d.Product).Where(d=> d.OrderID == id).ToList();
             if (Order == null)
             {
                 return HttpNotFound();

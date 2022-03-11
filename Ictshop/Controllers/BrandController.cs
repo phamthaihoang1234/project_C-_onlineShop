@@ -9,7 +9,7 @@ namespace Ictshop.Controllers
 {
     public class DanhmucController : Controller
     {
-        Qlbanhang db = new Qlbanhang();
+        ShopManagement db = new ShopManagement();
         // GET: Danhmuc
         public ActionResult DanhmucPartial()
         {

@@ -12,7 +12,7 @@ namespace Ictshop.Areas.Admin.Controllers
 {
     public class BrandsController : Controller
     {
-        private Qlbanhang db = new Qlbanhang();
+        private ShopManagement db = new ShopManagement();
 
         // GET: Admin/Brands
         public ActionResult Index()

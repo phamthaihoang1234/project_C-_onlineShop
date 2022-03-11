@@ -24,15 +24,15 @@
 @foreach (var item in Model) {
 <tr>
     <td>
-        @Html.DisplayFor(modelItem => item.Mahdh)
+        @Html.DisplayFor(modelItem => item.CateID)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.Tenhdh)
+        @Html.DisplayFor(modelItem => item.CateName)
     </td>
     <td>
-        @Html.ActionLink("Sửa", "Edit", new { id = item.Mahdh }) |
-        @Html.ActionLink("Chi tiết", "Details", new { id = item.Mahdh }) |
-        @Html.ActionLink("Thêm mới ", "Delete", new { id = item.Mahdh })
+        @Html.ActionLink("Sửa", "Edit", new { id = item.CateID }) |
+        @Html.ActionLink("Chi tiết", "Details", new { id = item.CateID }) |
+        @Html.ActionLink("Thêm mới ", "Delete", new { id = item.CateID })
     </td>
 </tr>
 }

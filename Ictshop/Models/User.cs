@@ -16,24 +16,24 @@ namespace Ictshop.Models
         }
 
         [Key]
-        public int MaUser { get; set; }
+        public int UserID { get; set; }
 
         [StringLength(50)]
-        public string Hoten { get; set; }
+        public string FullName { get; set; }
 
         [StringLength(50)]
         public string Email { get; set; }
 
         [StringLength(10)]
-        public string Dienthoai { get; set; }
+        public string Phone { get; set; }
 
         [StringLength(50)]
-        public string Matkhau { get; set; }
+        public string Password { get; set; }
 
-        public int? IDQuyen { get; set; }
+        public int? RoleID { get; set; }
 
         [StringLength(100)]
-        public string Diachi { get; set; }
+        public string Address { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }

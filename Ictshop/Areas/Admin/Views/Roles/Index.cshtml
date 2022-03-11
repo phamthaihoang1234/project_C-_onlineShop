@@ -24,15 +24,15 @@
 @foreach (var item in Model) {
 <tr>
     <td>
-        @Html.DisplayFor(modelItem => item.IDQuyen)
+        @Html.DisplayFor(modelItem => item.RoleID)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.TenQuyen)
+        @Html.DisplayFor(modelItem => item.RoleName)
     </td>
     <td>
-        @Html.ActionLink("Sửa", "Edit", new { id = item.IDQuyen }) |
-        @Html.ActionLink("Chi tiết", "Details", new { id = item.IDQuyen }) |
-        @Html.ActionLink("Xoá", "Delete", new { id = item.IDQuyen })
+        @Html.ActionLink("Sửa", "Edit", new { id = item.RoleID }) |
+        @Html.ActionLink("Chi tiết", "Details", new { id = item.RoleID }) |
+        @Html.ActionLink("Xoá", "Delete", new { id = item.RoleID })
     </td>
 </tr>
 }

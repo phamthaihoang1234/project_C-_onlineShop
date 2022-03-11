@@ -12,7 +12,7 @@ namespace Ictshop.Areas.Admin.Controllers
 {
     public class UsersController : Controller
     {
-        private Qlbanhang db = new Qlbanhang();
+        private ShopManagement db = new ShopManagement();
 
         // Xem quản lý tất cả người dùng
         // GET: Admin/Users
@@ -51,7 +51,7 @@ namespace Ictshop.Areas.Admin.Controllers
         //// POST: Admin/Users/Create
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "MaUser,Hoten,Email,Dienthoai,Matkhau,IDQuyen")] User User)
+        //public ActionResult Create([Bind(Include = "MaUser,FullName,Email,Phone,Password,IDQuyen")] User User)
         //{
         //    if (ModelState.IsValid)
         //    {
@@ -78,14 +78,14 @@ namespace Ictshop.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDQuyen = new SelectList(db.Roles, "IDQuyen", "TenQuyen", User.IDQuyen);
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName", User.RoleID);
             return View(User);
         }
 
         // POST: Admin/Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaUser,Hoten,Email,Dienthoai,Matkhau,IDQuyen")] User User)
+        public ActionResult Edit([Bind(Include = "UserID,FullName,Email,Phone,Password,RoleID")] User User)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace Ictshop.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDQuyen = new SelectList(db.Roles, "IDQuyen", "TenQuyen", User.IDQuyen);
+            ViewBag.IDQuyen = new SelectList(db.Roles, "RoleID", "RoleName", User.RoleID);
             return View(User);
         }
 

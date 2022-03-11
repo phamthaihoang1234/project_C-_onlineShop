@@ -17,13 +17,13 @@ namespace Ictshop.Models
 
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Madon { get; set; }
+        public int OrderID { get; set; }
 
-        public DateTime? Ngaydat { get; set; }
+        public DateTime? OrderDate { get; set; }
 
-        public int? Tinhtrang { get; set; }
+        public int? OrderStatus { get; set; }
 
-        public int? MaUser { get; set; }
+        public int? UserID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
