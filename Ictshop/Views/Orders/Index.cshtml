@@ -25,17 +25,17 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.User.Hoten)
+            @Html.DisplayFor(modelItem => item.User.FullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Ngaydat)
+            @Html.DisplayFor(modelItem => item.OrderDate)
         </td>
         <td>
-            <div style="color:red">Đang chờ xác nhận</div>
+            <div style="color:red">@item.Order_Status.StatusName</div>
         </td>
         <td>
             <button class="btn-primary">
-                @Html.ActionLink("Chi tiết", "Details", new { id = item.Madon }, new { @style = "color:white;" })
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.OrderID }, new { @style = "color:white;" })
             </button>
 
         </td>

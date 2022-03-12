@@ -7,13 +7,13 @@ using System.Web.Mvc;
 
 namespace Ictshop.Controllers
 {
+    
     public class HomeController : Controller
     {
 
         ShopManagement db = new ShopManagement();
         public ActionResult Index()
-        {
-            
+        {           
             return View();
 
         }
@@ -42,7 +42,7 @@ namespace Ictshop.Controllers
         {
             var model = db.Categorys.ToList();  
 
-            return PartialView("Category",model);
+            return PartialView(model);
         }
     }
 }

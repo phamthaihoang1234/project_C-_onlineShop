@@ -1,0 +1,17 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="row" style="margin-top:80px;">
+    <div class="col-md-3 bg-danger">
+      @Html.Action("ListBrand","Product")   
+    </div>
+    <div class="col-md-9 bg-white">
+        @RenderBody()
+    </div>
+
+</div>
+
+

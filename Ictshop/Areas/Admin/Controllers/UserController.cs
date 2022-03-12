@@ -10,6 +10,7 @@ using Ictshop.Models;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class UsersController : Controller
     {
         private ShopManagement db = new ShopManagement();

@@ -7,7 +7,7 @@ using Ictshop.Models;
 
 namespace Ictshop.Controllers
 {
-    public class DanhmucController : Controller
+    public class BrandController : Controller
     {
         ShopManagement db = new ShopManagement();
         // GET: Danhmuc

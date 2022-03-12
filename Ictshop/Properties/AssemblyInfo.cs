@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
-// set of attributes. Change these attribute values to modify the information
+// set of attributes. Change these attribute values TotalCost modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Ictshop")]
 [assembly: AssemblyDescription("")]
@@ -14,12 +14,12 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible
-// to COM components.  If you need to access a type in this assembly from
-// COM, set the ComVisible attribute to true on that type.
+// Setting ComVisible TotalCost false makes the types in this assembly not visible
+// TotalCost COM components.  If you need TotalCost access a type in this assembly from
+// COM, set the ComVisible attribute TotalCost true on that type.
 [assembly: ComVisible(false)]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
+// The following GUID is for the ID of the typelib if this project is exposed TotalCost COM
 [assembly: Guid("15f80cf1-4045-46d1-bc34-03cbfe9f3048")]
 
 // Version information for an assembly consists of the following four values:

@@ -12,10 +12,9 @@ namespace Ictshop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            Order = new HashSet<Order>();
+            Orders = new HashSet<Order>();
         }
 
-        [Key]
         public int UserID { get; set; }
 
         [StringLength(50)]
@@ -36,7 +35,7 @@ namespace Ictshop.Models
         public string Address { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
 
         public virtual Role Role { get; set; }
     }

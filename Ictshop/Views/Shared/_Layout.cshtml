@@ -130,18 +130,16 @@
                     <span class="icon-bar"></span>
                 </button>
                 <img class="navbar-brand" src="~/HinhanhSP/logo1.jpg" width="50" height="50" style="padding:0" />
-                @Html.ActionLink(" DiDong36", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <form class="form-inline" style="float:left">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
-                    @*<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>*@
-                </form>
-
+                @Html.ActionLink(" Online Store", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @using (Html.BeginForm("SearchResult", "Search")){
+                  <input class="form-control mr-sm-2"  name="key" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                }
             </div>
 
             <div class="navbar-collapse collapse">
             
-                <ul class="nav navbar-nav">  
-                    @*@Html.Action("Category","Home")*@
+                <ul class="nav navbar-nav">
                     <li>
                         <a href="/Home/Contact" title="LIENHE">
                             @*<span><i class="fas fa-headphones"></i></span>*@
@@ -149,12 +147,14 @@
 
                         </a>
                     </li>
-                    <li>
-                        <a href="@Url.Action("ListProduct","Product")" title="LAPTOP">
+                    <!--<li>
+                        <a href="@Url.Action("ListProduct","Product")" title="LAPTOP">-->
                             @*<span><i class="fas fa-tablet"></i></span>*@
-                            <span>LAPTOP</span>
-
+                            <!--<span>LAPTOP</span>
                         </a>
+                    </li>-->
+                    <li>
+                        @Html.Action("Category", "Home")
                     </li>
                     <li>
                         <a style="color:white"

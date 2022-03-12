@@ -176,6 +176,7 @@ namespace Ictshop.Controllers
             List<Cart> gh = LayGioHang();
             ddh.UserID = kh.UserID;
             ddh.OrderDate = DateTime.Now;
+            ddh.StatusID = 1;
             Console.WriteLine(ddh);
             db.Orders.Add(ddh);
             db.SaveChanges();
@@ -188,7 +189,7 @@ namespace Ictshop.Controllers
                 ctDH.ProductID = item.cProID;
                 ctDH.Quantity = item.cProQuantity;
                 ctDH.UnitPrice = (decimal)item.cProPrice;
-                ctDH.TotalCost = (decimal) thanhtien;
+                ctDH.TotalCost =  thanhtien;
                 db.OrderDetails.Add(ctDH);
             }
             db.SaveChanges();

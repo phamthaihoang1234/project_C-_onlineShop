@@ -1,17 +1,10 @@
-﻿
-@model IEnumerable<Ictshop.Models.Category>
-@{
-    ViewBag.Title = "Category";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model IEnumerable<Ictshop.Models.Category>
 
-<h2>Category</h2>
-@foreach (var c in Model)
+
+@foreach (var item in Model)
 {
-    <li>
-        <a href="#" title="dienthoai">        
-            <span>@c.Tenhdh</span>
-        </a>
-    </li>
+    <a style="display:inline-block" href="/Product/ListByCateID?CateID=@item.CateID">
+        @item.CateName
+    </a>
+   
 }
-

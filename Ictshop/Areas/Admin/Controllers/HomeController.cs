@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using Ictshop.Models;
 using PagedList;
+using Ictshop.App_Start;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class HomeController : Controller
         
     {
@@ -15,8 +17,10 @@ namespace Ictshop.Areas.Admin.Controllers
        
         // GET: Admin/Home
         
+        
         public ActionResult Index(int ?page)
         {
+           
             // 1. Tham số int? dùng để thể hiện null và kiểu int( số nguyên)
             // page có thể có giá trị là null ( rỗng) và kiểu int.
 
@@ -28,7 +32,7 @@ namespace Ictshop.Areas.Admin.Controllers
             var sp = db.Products.OrderBy(x => x.ProductID);
 
             // 4. Tạo kích thước trang (pageSize) hay là số sản phẩm hiển thị trên 1 trang
-            int pageSize = 5;
+            int pageSize = 3;
 
             // 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
             // nếu page = null thì lấy giá trị 1 cho biến pageNumber.

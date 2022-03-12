@@ -10,107 +10,108 @@ using Ictshop.Models;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
-    public class CategorysController : Controller
+    [AdminAuthorize]
+    public class BrandsController : Controller
     {
         private ShopManagement db = new ShopManagement();
 
-        // GET: Admin/Categorys
+        // GET: Admin/Brands
         public ActionResult Index()
         {
-            return View(db.Categorys.ToList());
+            return View(db.Brands.ToList());
         }
 
-        // GET: Admin/Categorys/Details/5
+        // GET: Admin/Brands/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category Category = db.Categorys.Find(id);
-            if (Category == null)
+            Brand Brand = db.Brands.Find(id);
+            if (Brand == null)
             {
                 return HttpNotFound();
             }
-            return View(Category);
+            return View(Brand);
         }
 
-        // GET: Admin/Categorys/Create
+        // GET: Admin/Brands/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Categorys/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // POST: Admin/Brands/Create
+        // To protect from overposting attacks, please enable the specific properties you want TotalCost bind TotalCost, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Mahdh,Tenhdh")] Category Category)
+        public ActionResult Create([Bind(Include = "BrandID,BrandName")] Brand Brand)
         {
             if (ModelState.IsValid)
             {
-                db.Categorys.Add(Category);
+                db.Brands.Add(Brand);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(Category);
+            return View(Brand);
         }
 
-        // GET: Admin/Categorys/Edit/5
+        // GET: Admin/Brands/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category Category = db.Categorys.Find(id);
-            if (Category == null)
+            Brand Brand = db.Brands.Find(id);
+            if (Brand == null)
             {
                 return HttpNotFound();
             }
-            return View(Category);
+            return View(Brand);
         }
 
-        // POST: Admin/Categorys/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // POST: Admin/Brands/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want TotalCost bind TotalCost, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Mahdh,Tenhdh")] Category Category)
+        public ActionResult Edit([Bind(Include = "BrandID,BrandName")] Brand Brand)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(Category).State = EntityState.Modified;
+                db.Entry(Brand).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(Category);
+            return View(Brand);
         }
 
-        // GET: Admin/Categorys/Delete/5
+        // GET: Admin/Brands/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category Category = db.Categorys.Find(id);
-            if (Category == null)
+            Brand Brand = db.Brands.Find(id);
+            if (Brand == null)
             {
                 return HttpNotFound();
             }
-            return View(Category);
+            return View(Brand);
         }
 
-        // POST: Admin/Categorys/Delete/5
+        // POST: Admin/Brands/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category Category = db.Categorys.Find(id);
-            db.Categorys.Remove(Category);
+            Brand Brand = db.Brands.Find(id);
+            db.Brands.Remove(Brand);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

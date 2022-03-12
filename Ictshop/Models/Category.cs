@@ -12,7 +12,7 @@ namespace Ictshop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
-            Product = new HashSet<Product>();
+            Products = new HashSet<Product>();
         }
 
         [Key]
@@ -22,6 +22,6 @@ namespace Ictshop.Models
         public string CateName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Product { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

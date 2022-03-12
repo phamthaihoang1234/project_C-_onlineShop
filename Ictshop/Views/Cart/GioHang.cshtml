@@ -52,7 +52,7 @@
         @Html.ActionLink("Chỉnh sửa giỏ hàng", "SuaGioHang")
     </td>
     <td colspan="6" style="text-align:right;color:blue">
-        @using (Html.BeginForm("DatHang", "GioHang",new { @class=""}))
+        @using (Html.BeginForm("DatHang", "Cart",new { @class=""}))
         {
             <input type="submit" value="Đặt hàng" class="btn-danger" />
         }

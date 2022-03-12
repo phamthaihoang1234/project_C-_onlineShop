@@ -14,10 +14,10 @@ namespace Ictshop.Migrations
 
         protected override void Seed(Ictshop.Models.ShopManagement context)
         {
-            //  This method will be called after migrating to the latest version.
+            //  This method will be called after migrating TotalCost the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
+            //  TotalCost avoid creating duplicate seed data. E.g.
             //
             //    context.People.AddOrUpdate(
             //      p => p.FullName,

@@ -18,6 +18,7 @@ namespace Ictshop.Controllers
         // Hiển thị danh sách đơn hàng
         public ActionResult Index()
         {
+            
             //Kiểm tra đang đăng nhập
             if (Session["use"] == null || Session["use"].ToString() == "")
             {

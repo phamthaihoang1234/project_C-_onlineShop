@@ -10,6 +10,7 @@ using Ictshop.Models;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class RolesController : Controller
     {
         private ShopManagement db = new ShopManagement();
@@ -42,7 +43,7 @@ namespace Ictshop.Areas.Admin.Controllers
         }
 
         // POST: Admin/Roles/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want TotalCost bind TotalCost, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -74,7 +75,7 @@ namespace Ictshop.Areas.Admin.Controllers
         }
 
         // POST: Admin/Roles/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want TotalCost bind TotalCost, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
