@@ -19,8 +19,6 @@ namespace Ictshop.Models
 
         public DateTime? OrderDate { get; set; }
 
-       
-
         public int? UserID { get; set; }
 
         public int? StatusID { get; set; }

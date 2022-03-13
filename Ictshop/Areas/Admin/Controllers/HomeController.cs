@@ -9,15 +9,15 @@ using Ictshop.App_Start;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
-    [AdminAuthorize]
+    
     public class HomeController : Controller
         
     {
         ShopManagement db = new ShopManagement();
-       
+
         // GET: Admin/Home
-        
-        
+
+        [AdminAuthorize(FunctionCode = "PM4")]
         public ActionResult Index(int ?page)
         {
            

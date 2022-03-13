@@ -10,13 +10,23 @@ namespace Ictshop.Models
 {
     public class AdminAuthorize:AuthorizeAttribute
     {
+        public string FunctionCode = "";
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             if(SessionCofig.getUser() == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new
                     RouteValueDictionary(new { controller = "LoginAdmin", action = "Login"}));
+                return;
             }
+            var permisson = new MapPermission();
+            if (permisson.checkPermisson(SessionCofig.getUser().RoleID, FunctionCode) == false)
+            {
+                filterContext.Result = new RedirectToRouteResult(new
+                    RouteValueDictionary(new { controller = "LoginAdmin", action = "NoPermisson" }));
+                return;
+            }
+
             return;
            
         }

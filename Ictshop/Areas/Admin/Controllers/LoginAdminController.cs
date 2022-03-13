@@ -13,5 +13,10 @@ namespace Ictshop.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult NoPermisson()
+        {
+            return View();
+        }
     }
 }

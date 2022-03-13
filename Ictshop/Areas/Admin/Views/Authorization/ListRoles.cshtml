@@ -1,0 +1,8 @@
+﻿
+@model IEnumerable<Ictshop.Models.Role>
+
+
+@foreach (var item in Model)
+{
+    <a href="/Admin/Authorization/ListByRoleID?RoleID=@item.RoleID">@item.RoleName | </a>
+}

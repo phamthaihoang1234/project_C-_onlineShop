@@ -60,7 +60,7 @@ D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\Source-Management\Ictsho
 D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\Source-Management\Ictshop\bin\Newtonsoft.Json.xml
 D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\Source-Management\Ictshop\bin\Antlr3.Runtime.pdb
 D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\Source-Management\Ictshop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\Source-Management\Ictshop\obj\Debug\Ictshop.csproj.AssemblyReference.cache
 D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\Source-Management\Ictshop\obj\Debug\Ictshop.csproj.CopyComplete
 D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\Source-Management\Ictshop\obj\Debug\Ictshop.dll
 D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\Source-Management\Ictshop\obj\Debug\Ictshop.pdb
+D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\Source-Management\Ictshop\obj\Debug\Ictshop.csproj.AssemblyReference.cache

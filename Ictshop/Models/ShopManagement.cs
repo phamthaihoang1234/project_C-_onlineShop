@@ -8,15 +8,17 @@ namespace Ictshop.Models
     public partial class ShopManagement : DbContext
     {
         public ShopManagement()
-            : base("name=ShopManagement")
+            : base("name=Shopmanagement")
         {
         }
 
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categorys { get; set; }
+        public virtual DbSet<Function> Functions { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Order_Status> Order_Status { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
@@ -32,6 +34,10 @@ namespace Ictshop.Models
                 .Property(e => e.CateName)
                 .IsFixedLength();
 
+            modelBuilder.Entity<Function>()
+                .Property(e => e.FunctionCode)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Order>()
                 .HasMany(e => e.OrderDetails)
                 .WithRequired(e => e.Order)
@@ -45,6 +51,10 @@ namespace Ictshop.Models
                 .Property(e => e.TotalCost)
                 .HasPrecision(18, 0);
 
+            modelBuilder.Entity<Permission>()
+                .Property(e => e.FunctionCode)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Product>()
                 .Property(e => e.Price)
                 .HasPrecision(18, 0);
@@ -53,6 +63,10 @@ namespace Ictshop.Models
                 .HasMany(e => e.OrderDetails)
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Role>()
+                .Property(e => e.RoleName)
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Phone)

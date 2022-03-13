@@ -1,128 +1,109 @@
-﻿using System;
+﻿using Ictshop.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Ictshop.Models;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
-    [AdminAuthorize]
-    public class RolesController : Controller
+    public class AuthorizationController : Controller
     {
-        private ShopManagement db = new ShopManagement();
-
-        // GET: Admin/Roles
-        public ActionResult Index()
+        ShopManagement db = new ShopManagement();
+        // GET: Admin/Authorization
+        public ActionResult Home()
         {
-            return View(db.Roles.ToList());
+            TempData["ListRoles"] = db.Roles.ToList();
+            var Functions = db.Functions.ToList();
+            return View(Functions);
         }
 
-        // GET: Admin/Roles/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult ListRoles()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Role Role = db.Roles.Find(id);
-            if (Role == null)
-            {
-                return HttpNotFound();
-            }
-            return View(Role);
+            var model = db.Roles.ToList();
+            return View(model);
+        }
+        public ActionResult ListByRoleID(int RoleID = 0)
+        {
+            TempData["ListRolesByID"] = db.Functions.SqlQuery("select * from [Function] f join " +
+            "permission p on f.FunctionCode = p.FunctionCode where p.RoleId = @id", new SqlParameter("@id", RoleID));
+            var Functions = db.Functions.ToList();
+            return View("Home", Functions);
         }
 
-        // GET: Admin/Roles/Create
+        // GET: Admin/Authorization/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: Admin/Authorization/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Roles/Create
-        // To protect from overposting attacks, please enable the specific properties you want TotalCost bind TotalCost, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Admin/Authorization/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RoleID,RoleName")] Role Role)
+        public ActionResult Create(FormCollection collection)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Roles.Add(Role);
-                db.SaveChanges();
+                // TODO: Add insert logic here
+
                 return RedirectToAction("Index");
             }
-
-            return View(Role);
+            catch
+            {
+                return View();
+            }
         }
 
-        // GET: Admin/Roles/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Admin/Authorization/Edit/5
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Role Role = db.Roles.Find(id);
-            if (Role == null)
-            {
-                return HttpNotFound();
-            }
-            return View(Role);
+            return View();
         }
 
-        // POST: Admin/Roles/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want TotalCost bind TotalCost, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Admin/Authorization/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RoleID,RoleName")] Role Role)
+        public ActionResult Edit(int id, FormCollection collection)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(Role).State = EntityState.Modified;
-                db.SaveChanges();
+                // TODO: Add update logic here
+
                 return RedirectToAction("Index");
             }
-            return View(Role);
+            catch
+            {
+                return View();
+            }
         }
 
-        // GET: Admin/Roles/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Admin/Authorization/Delete/5
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Role Role = db.Roles.Find(id);
-            if (Role == null)
-            {
-                return HttpNotFound();
-            }
-            return View(Role);
+            return View();
         }
 
-        // POST: Admin/Roles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        // POST: Admin/Authorization/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
         {
-            Role Role = db.Roles.Find(id);
-            db.Roles.Remove(Role);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }
