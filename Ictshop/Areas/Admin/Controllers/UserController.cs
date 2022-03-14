@@ -43,30 +43,30 @@ namespace Ictshop.Areas.Admin.Controllers
         }
 
         //// GET: Admin/Users/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.IDQuyen = new SelectList(db.Roles, "IDQuyen", "TenQuyen");
-        //    return View();
-        //}
+        public ActionResult Create()
+        {
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName");
+            return View();
+        }
 
-        //// POST: Admin/Users/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "MaUser,FullName,Email,Phone,Password,IDQuyen")] User User)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Users.Add(User);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: Admin/Users/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "UserID,FullName,Email,Phone,Password,RoleID")] User User)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Users.Add(User);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-        //    ViewBag.IDQuyen = new SelectList(db.Roles, "IDQuyen", "TenQuyen", User.IDQuyen);
-        //    return View(User);
-        //}
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName", User.RoleID);
+            return View(User);
+        }
 
 
-            // Chỉnh sửa người dùng
+        // Chỉnh sửa người dùng
         // GET: Admin/Users/Edit/5
         public ActionResult Edit(int? id)
         {

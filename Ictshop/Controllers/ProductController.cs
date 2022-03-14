@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Ictshop.Models;
+using PagedList;
 
 namespace Ictshop.Controllers
 {
@@ -35,10 +36,13 @@ namespace Ictshop.Controllers
             }
             return View(chitiet);
         }
-        public ActionResult ListProduct()
-        {
-            var model = db.Products.ToList();
-            return View(model);
+        public ActionResult ListProduct(int? page)
+        {           
+            if (page == null) page = 1;
+            var model = db.Products.OrderBy(x => x.ProductID).ToList();
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult ListBrand()
@@ -46,24 +50,40 @@ namespace Ictshop.Controllers
             var model = db.Brands.ToList();
             return PartialView(model);
         }
-        public ActionResult ListByBrand(int BrandID = 0)
+        public ActionResult ListByBrand(int? page,int BrandID = 0)
         {
-            if(BrandID != 0)
+            if (page == null) page = 1;
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+            if (BrandID != 0)
             {
                 var model = db.Products.Where(p => p.BrandID  == BrandID).ToList();
-                return View("ListProduct",model);
+                return View("ListProduct", model.ToPagedList(pageNumber, pageSize));
             }
             return View();
         }
 
-        public ActionResult ListByCateID(int CateID = 0)
+        public ActionResult ListByCateID(int? page,int CateID = 0)
         {
+            if (page == null) page = 1;        
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
             if (CateID != 0)
             {
                 var model = db.Products.Where(p => p.CateID == CateID).ToList();
-                return View("ListProduct", model);
+                return View("ListProduct", model.ToPagedList(pageNumber, pageSize));
             }
             return View();
+        }
+
+        public ActionResult Search(int? page, string key)
+        {
+            if (page == null) page = 1;
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+            var products = db.Products.Where(p => p.ProductName.Contains(key));
+            var model = products.OrderBy(x => x.ProductID).ToList();
+            return View("ListProduct",model.ToPagedList(pageNumber, pageSize));
         }
 
     }

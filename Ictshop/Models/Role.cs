@@ -16,7 +16,7 @@ namespace Ictshop.Models
             Users = new HashSet<User>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoleID { get; set; }
 
         [StringLength(50)]

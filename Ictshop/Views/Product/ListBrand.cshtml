@@ -2,7 +2,8 @@
 @model IEnumerable<Ictshop.Models.Brand>
 
 
-     <a href="/Product/ListProduct">All</a><br/>
+    
+    <a  href="/Product/ListProduct">All</a><br/>
     @foreach (var item in Model)
     {
         <a href="/Product/ListByBrand?BrandID=@item.BrandID">

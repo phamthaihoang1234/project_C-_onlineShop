@@ -150,7 +150,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -309,7 +308,7 @@
     <Content Include="Areas\Admin\Views\Roles\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Roles\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Authorization\Home.cshtml" />
+    <Content Include="Areas\Admin\Views\Authorization\ListByRoleID.cshtml" />
     <Content Include="Areas\Admin\Views\Authorization\ListRoles.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -350,7 +349,6 @@
     <Content Include="Views\Shared\_ProductLayout.cshtml" />
     <Content Include="Views\Product\ListBrand.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
-    <Content Include="Views\Search\SearchResult.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>

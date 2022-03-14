@@ -1,11 +1,13 @@
 ﻿
-@model IEnumerable<Ictshop.Models.Product>
+@model PagedList.IPagedList<Ictshop.Models.Product>
+
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "ListProduct";
     Layout = "~/Views/Shared/_ProductLayout.cshtml";
 }
-<div>
-    
+<div class="row">
+   
     @foreach (var item in Model)
     {
         <div class="col-md-3 col-sm-6">
@@ -14,7 +16,7 @@
             </a>
             <center>
                 <h3>@item.ProductName</h3>
-                <h3 style="color:red">Giá: @item.Price</h3>
+                <h3 style="color:red">Giá:  @String.Format("{0:0,0}", item.Price)</h3>
                 <br />
                 @using (Html.BeginForm("ThemGioHang", "Cart", new { @cProID = item.ProductID, @strURL = Request.Url.ToString() }))
                 {
@@ -22,11 +24,17 @@
 
                 }
                 <a href="@Url.Action("xemchitiet", new {@ProductID=item.ProductID })">Xem chi tiết</a>
+
             </center>
         </div>
-    }
-</div>
 
+    }
+    <div class="col-md-12">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("ListProduct",
+            new { page }))
+    </div>
+</div>
 
 
 
