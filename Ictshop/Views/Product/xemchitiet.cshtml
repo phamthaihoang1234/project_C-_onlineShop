@@ -14,13 +14,13 @@
         <img src="@Url.Content("~/HinhanhSP/" +@Model.Image)" />
         <br />
         <h3> @Model.ProductName</h3>
-        <h3 style="color:red">Giá: @Model.Price</h3>
+        <h3 style="color:red">Giá: @String.Format("{0:0,0}", Model.Price)</h3>
         <br />
-        @Model.Description
+        Description: @Model.Description
         <br />
         @using (Html.BeginForm("ThemGioHang","Cart",new { @cProID=Model.ProductID, @strURL=Request.Url.ToString()}))
         {
-                <input type="submit" value="Mua hàng" id="bgnGioHang" />
+                <input class="bg-primary" type="submit" value="Add to cart" id="bgnGioHang" />
 
         }
         

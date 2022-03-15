@@ -17,6 +17,8 @@ namespace Ictshop.Models
         {
             get { return cProQuantity * cProPrice; }
         }
+
+      
         //Hàm tạo cho giỏ hàng
         public Cart(int ProductID)
         {

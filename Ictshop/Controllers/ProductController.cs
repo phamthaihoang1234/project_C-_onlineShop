@@ -83,6 +83,7 @@ namespace Ictshop.Controllers
             int pageNumber = (page ?? 1);
             var products = db.Products.Where(p => p.ProductName.Contains(key));
             var model = products.OrderBy(x => x.ProductID).ToList();
+            
             return View("ListProduct",model.ToPagedList(pageNumber, pageSize));
         }
 

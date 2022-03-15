@@ -6,9 +6,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <center><h2 class="text-info"> GIỎ HÀNG</h2></center>
-
-<table class="table-bordered font-italic divGioHang">
-    <tr>
+<table style="margin-top:50px;" class="table-bordered font-italic divGioHang">
+    <tr style="background-color:orangered">
         <th> Mã SP</th>
 
         <th> Tên SP</th>
@@ -21,8 +20,6 @@
 
         <th> Thành tiền</th>
     </tr>
-
-
 
     @foreach (var item in Model)
     {
@@ -42,7 +39,7 @@
 
                 <td>@String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
                 <td>
-                    <input type="submit" value="Cập nhật" class="btn-secondary" />
+                    <input type="submit" min="1" value="Cập nhật" class="btn-secondary" />
                     <br />
                     @*Xóa giỏ hàng gọi về Action XoaGioHang*@
                     <button class="btn-success">@Html.ActionLink("Xóa", "XoaGioHang", new { @cProID = item.cProID })</button>

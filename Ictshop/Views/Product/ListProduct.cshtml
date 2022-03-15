@@ -29,7 +29,7 @@
                         <div class="panel-body text-center">
                             @using (Html.BeginForm("ThemGioHang", "Cart", new { @cProID = item.ProductID, @strURL = Request.Url.ToString() }))
                             {                            
-                                <input type="submit" value="Mua hàng" id="bgnGioHang" />
+                                <input type="submit" value="Add to cart" id="bgnGioHang" />
                             }
                             <a href="@Url.Action("xemchitiet", new {@ProductID=item.ProductID })">Xem chi tiết</a>
                         </div>
@@ -37,9 +37,9 @@
                 </div>
             }
             </div>
-        <section class="panel">
+       
             <div class="panel-body">
-                <div class="pull-right">
+                <div>
                     <ul class="pagination pagination-sm pro-page-list">
                         <li>
                             @Html.PagedListPager(Model, page => Url.Action("ListProduct",
@@ -48,7 +48,6 @@
                     </ul>
                 </div>
             </div>
-        </section>
     </div>
 </div>
 <style>

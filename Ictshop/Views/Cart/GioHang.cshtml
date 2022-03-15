@@ -7,58 +7,66 @@
 }
     <h2 class=""> GIỎ HÀNG <i class="fa fa-shopping-cart"></i></h2>
 <br />
-<table class="table-hover table-bordered divGioHang">
-    <tr style="">
-        <th> Mã SP</th>
+<div>
+    <table class=" table-bordered divGioHang">
+        <tr style="background-color:orangered">
+            <th> Mã SP</th>
 
-        <th> Tên SP</th>
+            <th> Tên SP</th>
 
-        <th> Ảnh bìa</th>
+            <th> Ảnh bìa</th>
 
-        <th> Đơn giá</th>
+            <th> Đơn giá</th>
 
-        <th> Số lượng</th>
+            <th> Số lượng</th>
 
-        <th> Thành tiền</th>
-    </tr>
-
-
-
-    @foreach (var item in Model)
-    {
-        <tr class="font-italic">
-            <td> @item.cProID</td>
-
-            <td> @item.cProName</td>
-
-            <td> <img src="@Url.Content("~/HinhanhSP/" +item.cProImage)" width="50" height="50" /></td>
-
-            <td>  @String.Format("{0:0,0}", item.cProPrice) VNĐ</td>
-
-            <td> @item.cProQuantity</td>
-
-            <td>   @String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
-
-
+            <th> Thành tiền</th>
         </tr>
 
-    }
 
-   
 
-<tr>
-    <td colspan="6" style="text-align:right">
-
-        @Html.ActionLink("Chỉnh sửa giỏ hàng", "SuaGioHang")
-    </td>
-    <td colspan="6" style="text-align:right;color:blue">
-        @using (Html.BeginForm("DatHang", "Cart",new { @class=""}))
+        @foreach (var item in Model)
         {
-            <input type="submit" value="Đặt hàng" class="btn-danger" />
+            <tr class="font-italic">
+                <td> @item.cProID</td>
+
+                <td> @item.cProName</td>
+
+                <td> <img src="@Url.Content("~/HinhanhSP/" +item.cProImage)" width="50" height="50" /></td>
+
+                <td>  @String.Format("{0:0,0}", item.cProPrice) VNĐ</td>
+
+                <td> @item.cProQuantity</td>
+
+                <td>   @String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
+
+
+            </tr>
+
         }
-    </td>
-</tr>
-</table>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa giỏ hàng", "SuaGioHang")
+        </td>
+        <td>
+            @using (Html.BeginForm("DatHang", "Cart", new { @class = "" }))
+            {
+                <input type="submit" value="Đặt hàng" class="btn-danger" />
+            }
+        </td>
+        <td>Total</td>
+        <td>
+            @String.Format("{0:0,0}", @ViewBag.TotalPrice) VND
+           
+        </td>
+        
+
+    </tr>
+    </table>
+</div>
 
 @*Css giỏ hàng*@
 <style type="text/css">
