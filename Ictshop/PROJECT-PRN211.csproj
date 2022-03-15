@@ -228,6 +228,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="HinhanhSP\p1.jpg" />
+    <Content Include="HinhanhSP\p2.jpg" />
+    <Content Include="HinhanhSP\p4.jpg" />
+    <Content Include="HinhanhSP\p5.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />

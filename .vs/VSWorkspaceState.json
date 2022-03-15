@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Ictshop",
+    "\\Ictshop\\Controllers"
   ],
-  "SelectedNode": "\\Ictshop.sln",
+  "SelectedNode": "\\Ictshop\\Controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }
