@@ -40,7 +40,7 @@ namespace Ictshop.Controllers
         {           
             if (page == null) page = 1;
             var model = db.Products.OrderBy(x => x.ProductID).ToList();
-            int pageSize = 2;
+            int pageSize = 3;
             int pageNumber = (page ?? 1);
             return View(model.ToPagedList(pageNumber, pageSize));
         }
