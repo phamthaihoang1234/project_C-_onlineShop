@@ -228,9 +228,17 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="HinhanhSP\p1.jpg" />
+    <Content Include="HinhanhSP\p10.jpg" />
+    <Content Include="HinhanhSP\p11.jpg" />
+    <Content Include="HinhanhSP\p12.jpg" />
+    <Content Include="HinhanhSP\p13.jpg" />
     <Content Include="HinhanhSP\p2.jpg" />
     <Content Include="HinhanhSP\p4.jpg" />
     <Content Include="HinhanhSP\p5.jpg" />
+    <Content Include="HinhanhSP\p6.jpg" />
+    <Content Include="HinhanhSP\p7.jpg" />
+    <Content Include="HinhanhSP\p8.jpg" />
+    <Content Include="HinhanhSP\p9.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
