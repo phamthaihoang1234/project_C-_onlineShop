@@ -10,7 +10,6 @@ namespace Ictshop.Controllers
     public class BrandController : Controller
     {
         ShopManagement db = new ShopManagement();
-        // GET: Danhmuc
         public ActionResult DanhmucPartial()
         {
             var danhmuc = db.Brands.ToList();

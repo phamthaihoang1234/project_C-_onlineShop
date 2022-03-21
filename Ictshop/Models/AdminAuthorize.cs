@@ -10,6 +10,7 @@ namespace Ictshop.Models
 {
     public class AdminAuthorize:AuthorizeAttribute
     {
+      
         public string FunctionCode = "";
         public override void OnAuthorization(AuthorizationContext filterContext)
         {

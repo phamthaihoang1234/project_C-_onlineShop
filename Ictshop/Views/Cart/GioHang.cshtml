@@ -5,22 +5,22 @@
     ViewBag.Title = "GioHang";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <h2 class=""> GIỎ HÀNG <i class="fa fa-shopping-cart"></i></h2>
+    <h2 class=""> Your Cart <i class="fa fa-shopping-cart"></i></h2>
 <br />
 <div>
-    <table class=" table-bordered divGioHang">
-        <tr style="background-color:orangered">
-            <th> Mã SP</th>
+    <table class=" table-bordered table">
+        <tr style="background-color: #03dffc ">
+            <th> Product ID</th>
 
-            <th> Tên SP</th>
+            <th> ProductName </th>
 
-            <th> Ảnh bìa</th>
+            <th> Image </th>
 
-            <th> Đơn giá</th>
+            <th> UnitPrice </th>
 
-            <th> Số lượng</th>
+            <th> Quantity </th>
 
-            <th> Thành tiền</th>
+            <th> Total </th>
         </tr>
 
 
@@ -76,12 +76,13 @@
         font-size:large
     }
 
-        .divGioHang td {
+    .divGioHang td {
             padding: 10px;
             border: 2px solid #EEEEEE;
             text-align:center
-        }
-        .divGioHang th{
+    }
+        
+    .divGioHang th{
             text-align:center
-        }
+       }
 </style>
