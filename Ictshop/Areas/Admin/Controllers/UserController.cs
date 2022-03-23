@@ -52,8 +52,9 @@ namespace Ictshop.Areas.Admin.Controllers
         // POST: Admin/Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,FullName,Email,Phone,Password,RoleID")] User User)
+        public ActionResult Create([Bind(Include = "UserID,FullName,Email,Phone,Password,Address,RoleID")] User User)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Users.Add(User);
@@ -86,7 +87,7 @@ namespace Ictshop.Areas.Admin.Controllers
         // POST: Admin/Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,FullName,Email,Phone,Password,RoleID")] User User)
+        public ActionResult Edit([Bind(Include = "UserID,FullName,Email,Phone,Password,Address,RoleID")] User User)
         {
             if (ModelState.IsValid)
             {

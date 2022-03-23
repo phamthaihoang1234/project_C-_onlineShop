@@ -5,19 +5,18 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Xoá vĩnh viễn người dùng</h2>
+<h2>CONFIRM DELETE USER ACCOUNT OF USER "@Model.FullName.ToUpper()"</h2>
 
 
 <div>
-    <h4>User</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Hoten)
+            @Html.DisplayNameFor(model => model.FullName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Hoten)
+            @Html.DisplayFor(model => model.FullName)
         </dd>
 
         <dt>
@@ -29,27 +28,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Dienthoai)
+            @Html.DisplayNameFor(model => model.Phone)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Dienthoai)
+            @Html.DisplayFor(model => model.Phone)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Matkhau)
+            @Html.DisplayNameFor(model => model.Password)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Matkhau)
+            @Html.DisplayFor(model => model.Password)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Role.TenQuyen)
+            @Html.DisplayNameFor(model => model.Address)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Role.TenQuyen)
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.RoleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.RoleName)
         </dd>
 
     </dl>
@@ -57,9 +64,10 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-warning" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<div class="form-actions no-color">
+    <a href="/Admin/Users" class="btn btn-warning">Cancel</a>
+    <input type="submit" value="Delete" class="btn btn-secondary" />
+
+</div>
     }
 </div>
