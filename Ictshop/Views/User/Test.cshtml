@@ -1,23 +1,34 @@
-﻿@model Ictshop.Models.User
+﻿@model Ictshop.Models.LoginModel
+
 @{
-    ViewBag.Title = "Test";
+    ViewBag.Title = "Dangnhap";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var u = Session["use"] as Ictshop.Models.User;
 }
 
-@{
-    if (u != null)
-    {
+<h2>Hãy đăng nhập để sử dụng đầy đủ tính năng của Website</h2>
 
-        <h2>Xin chào : @u.Email</h2>
-        @Html.ActionLink("Đăng xuất", "DangXuat", "User")
-    }
+@using (Html.BeginForm("Dangnhap", "User", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.userMail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.userMail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.userMail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
 
-    <div> Team PRN211</div>
-
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a href="/User/ForgotPass"> <u>Forgot Password</u></a>
+                <input type="submit" value="Login" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 }
-
-
-
+@ViewBag.Fail
 
 
