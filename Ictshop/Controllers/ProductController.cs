@@ -40,7 +40,7 @@ namespace Ictshop.Controllers
         {           
             if (page == null) page = 1;
             var model = db.Products.OrderBy(x => x.ProductID).ToList();
-            int pageSize = 3;
+            int pageSize = 6;
             int pageNumber = (page ?? 1);
             return View(model.ToPagedList(pageNumber, pageSize));
         }
@@ -55,6 +55,7 @@ namespace Ictshop.Controllers
             if (page == null) page = 1;
             int pageSize = 2;
             int pageNumber = (page ?? 1);
+            ViewBag.BrandID = BrandID;  
             if (BrandID != 0)
             {
                 var model = db.Products.Where(p => p.BrandID  == BrandID).ToList();

@@ -1,45 +1,71 @@
-﻿@model IEnumerable<Ictshop.Models.Order>
+﻿
+@model PagedList.IPagedList<Ictshop.Models.Order>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Order Management</h2>
+<form action="/Admin/Order/Index" id="myform" method="post">
+    <select name="StatusID" onchange="ChangeStatus()">
+        <option value=0>All Status</option>
+        @foreach (var item in ViewBag.Status)
+        {
+            if (@item.StatusID == @ViewBag.StatusID)
+            {
+                <option selected value=@item.StatusID>@item.StatusName</option>
+            }
+            else
+            {
+                  <option value=@item.StatusID>@item.StatusName</option>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+            }
+            
+        }
+    </select>
+    <script>
+	function ChangeStatus(){
+		document.getElementById("myform").submit();
+	}
+    </script>
+</form>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.User.FullName)
+            @Html.ActionLink("Full name", "Index", new { sortOrder = ViewBag.NameSortParm })
+          
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OrderDate)
+            @Html.ActionLink("Order Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+          
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Order_Status.StatusName)
+            @Html.ActionLink("Order Status", "Index", new { sortOrder = ViewBag.StatusSortParm })
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.User.FullName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OrderDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Order_Status.StatusName)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.OrderID })     
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order_Status.StatusName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.OrderID })
+            </td>
+        </tr>
+    }
 
 </table>
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

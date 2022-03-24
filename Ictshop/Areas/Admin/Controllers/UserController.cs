@@ -4,12 +4,9 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Security.Cryptography;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Ictshop.Models;
-using PagedList;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
@@ -20,19 +17,10 @@ namespace Ictshop.Areas.Admin.Controllers
 
         // Xem quản lý tất cả người dùng
         // GET: Admin/Users
-        public ActionResult Index(int? page)
+        public ActionResult Index()
         {
-            //Pageing
-            if (page == null) page = 1;
-            int pageSize = 5;
-            int pageNumber = (page ?? 1);
-
-
-            var Users = db.Users.OrderBy(n => n.RoleID);
-
-
-
-            return View(Users.ToPagedList(pageNumber, pageSize));
+            var Users = db.Users.Include(n => n.Role);
+            return View(Users.ToList());
         }
 
         //Xem chi tiết người dùng theo Mã người dùng
@@ -66,18 +54,7 @@ namespace Ictshop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserID,FullName,Email,Phone,Password,Address,RoleID")] User User)
         {
-            //Lưu mât khẩu dưới dạng mã hóa
-            byte[] temp = ASCIIEncoding.ASCII.GetBytes(User.Password);
-            byte[] hasData = new MD5CryptoServiceProvider().ComputeHash(temp);
-
-            string hasPassWord = "";
-
-            foreach (byte b in hasData)
-            {
-                hasPassWord += b;
-            }
-            User.Password = hasPassWord;
-            //Check valid
+            
             if (ModelState.IsValid)
             {
                 db.Users.Add(User);

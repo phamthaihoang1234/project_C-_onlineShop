@@ -14,6 +14,7 @@ namespace Ictshop.Models
         {
             Orders = new HashSet<Order>();
         }
+
         public int UserID { get; set; }
 
         [StringLength(50)]
@@ -32,8 +33,6 @@ namespace Ictshop.Models
         public string Address { get; set; }
 
         public int RoleID { get; set; }
-
-        public bool Status { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

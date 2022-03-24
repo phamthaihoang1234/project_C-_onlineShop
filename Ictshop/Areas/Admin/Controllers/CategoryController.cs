@@ -14,22 +14,11 @@ namespace Ictshop.Areas.Admin.Controllers
     public class CategorysController : Controller
     {
         private ShopManagement db = new ShopManagement();
-        public static bool Contains(string source, string value, StringComparison comparisonType)
-        {
-            return source?.IndexOf(value, comparisonType) >= 0;
-        }
-        // GET: Admin/Categorys
-        public ActionResult Index(string name)
-        {
-            var data = db.Categorys.ToList();
-            if (!String.IsNullOrEmpty(name))
-            {
-                ViewBag.searchName = name;
-                StringComparison comp = StringComparison.OrdinalIgnoreCase;
-                data = data.FindAll(b => Contains(b.CateName, name.Trim(), comp));
-            }
 
-            return View(data.ToList());
+        // GET: Admin/Categorys
+        public ActionResult Index()
+        {
+            return View(db.Categorys.ToList());
         }
 
         // GET: Admin/Categorys/Details/5

@@ -13,10 +13,55 @@ namespace Ictshop.Areas.Admin.Controllers
     {
         // GET: Admin/Order
         ShopManagement db = new ShopManagement();
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder,int? page)
         {
-            var orders = db.Orders.OrderBy(x => x.OrderID);
-            return View(orders);
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.StatusSortParm = sortOrder == "Status" ? "status_desc" : "Status";
+            var orders = from o in db.Orders select o;
+            ViewBag.Status = db.Order_Status.ToList();
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    orders = orders.OrderByDescending(s => s.User.FullName);
+                    break;
+                case "Date":
+                    orders = orders.OrderBy(s => s.OrderDate);
+                    break;
+                case "date_desc":
+                    orders = orders.OrderByDescending(s => s.OrderDate);
+                    break;
+                case "status_desc":
+                    orders = orders.OrderByDescending(s => s.OrderDate);
+                    break;
+                case "Status":
+                    orders = orders.OrderBy(s => s.OrderDate);
+                    break;
+                default:
+                    orders = orders.OrderBy(s => s.User.FullName);
+                    break;
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(orders.ToPagedList(pageNumber, pageSize));
+        }
+        [HttpPost]
+        public ActionResult Index(int StatusID,int? page)
+        {
+            ViewBag.CurrentSort = StatusID;
+            ViewBag.Status = db.Order_Status.ToList();
+            ViewBag.StatusID = StatusID;
+            var orders = db.Orders.ToList() ;
+            if(StatusID != 0)
+            {
+                orders= (from item in orders
+                         where item.StatusID == StatusID
+                         select item).ToList();
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(orders.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/Order/Details/5

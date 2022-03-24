@@ -15,7 +15,7 @@
                 <div class="col-md-4">
                     <section class="panel">
                         <div class="pro-img-box">
-                            <img src=@Url.Content("~/HinhanhSP/"+item.Image) class="img-responsive" alt="" />
+                            <img src=@Url.Content("~/Images/"+item.Image) class="img-responsive" alt="" />
                             
                         </div>
                         <div class="panel-body text-center">
@@ -43,7 +43,7 @@
                     <ul class="pagination pagination-sm pro-page-list">
                         <li>
                             @Html.PagedListPager(Model, page => Url.Action("ListProduct",
-                                    new { page }))
+                                    new { page, BrandID = ViewBag.BrandID }))
                            </li>
                     </ul>
                 </div>
