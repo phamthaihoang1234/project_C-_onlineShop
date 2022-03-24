@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Ictshop.Controllers
 {
-    //test commit
+    //tesst commit khong co .vs
     
     public class HomeController : Controller
     {
