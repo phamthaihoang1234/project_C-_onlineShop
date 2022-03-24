@@ -585,7 +585,6 @@ D:\CSharp\New folder\Ictshop\bin\System.Web.WebPages.Razor.xml
 D:\CSharp\New folder\Ictshop\bin\Newtonsoft.Json.xml
 D:\CSharp\New folder\Ictshop\bin\Antlr3.Runtime.pdb
 D:\CSharp\New folder\Ictshop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\CSharp\New folder\Ictshop\obj\Debug\PROJECT-PRN211.csproj.AssemblyReference.cache
 D:\CSharp\New folder\Ictshop\obj\Debug\Ictshop.Migrations.AddThanhtien.resources
 D:\CSharp\New folder\Ictshop\obj\Debug\PROJECT-PRN211.csproj.GenerateResource.cache
 D:\CSharp\New folder\Ictshop\obj\Debug\PROJECT-PRN211.csproj.CoreCompileInputs.cache
