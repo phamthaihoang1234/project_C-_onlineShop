@@ -14,9 +14,10 @@
     <tr>
 
         <th>
-            Mã hãng
+            Brand ID
         </th>
-        <th> Tên hãng
+        <th> 
+            Brand Name
         </th>
         <th></th>
     </tr>
@@ -30,9 +31,9 @@
         @Html.DisplayFor(modelItem => item.BrandName)
     </td>
     <td>
-        @Html.ActionLink("Sửa", "Edit", new { id = item.BrandID }) |
-        @Html.ActionLink("Chi tiết", "Details", new { id = item.BrandID }) |
-        @Html.ActionLink("Xoá", "Delete", new { id = item.BrandID })
+        @Html.ActionLink("Edit", "Edit", new { id = item.BrandID }) |
+        @Html.ActionLink("Detail", "Details", new { id = item.BrandID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.BrandID })
     </td>
 </tr>
 }
