@@ -347,13 +347,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\dtiphonePartial.cshtml" />
     <Content Include="Views\Product\dtsamsungpartial.cshtml" />
-    <Content Include="Views\Brand\BrandPartial.cshtml" />
+    <Content Include="Views\Brand\DanhmucPartial.cshtml" />
     <Content Include="Views\Home\SlidePartial.cshtml" />
     <Content Include="Views\Product\dtxiaomipartial.cshtml" />
     <Content Include="Views\Product\xemchitiet.cshtml" />
     <Content Include="Views\User\Dangky.cshtml" />
     <Content Include="Views\User\Dangnhap.cshtml" />
-    <Content Include="Views\User\ForgotPass.cshtml" />
+    <Content Include="Views\User\Test.cshtml" />
     <Content Include="Web.Config" />
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
