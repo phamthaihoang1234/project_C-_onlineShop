@@ -8,36 +8,36 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Quản lý sản phẩm </h2>
+<h2>Product management </h2>
 
 <p>
-    <button class="btn-default">@Html.ActionLink("Thêm mới", "Create")</button>
+    <button class="btn-default">@Html.ActionLink("New Product", "Create")</button>
 </p>
 <table class="table table-bordered">
     <tr>
 
         <th>
-            Tên sản phẩm
+            Product Name
         </th>
         <th>
-            Giá tiền
+            Price
         </th>
         <th>
-            Số lượng
+            Quantity
         </th>
         <th>
-            Mô tả
+            Description
         </th>
         <th>
-            Ảnh bìa
+            Image
         </th>
         <th>
-            Tên hãng
+            Brand
         </th>
         <th>
-            Loại sản phẩm
+            Category
         </th>
-        <th> Hành động</th>
+        <th> Action</th>
     </tr>
 
     @foreach (var item in Model)
@@ -57,7 +57,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>        
             <td>
-                <img src="@Url.Content("~/HinhanhSP/" +item.Image)" width="50" height="50" />
+                <img src="@Url.Content("~/Images/" +item.Image)" width="50" height="50" />
                 @*@Html.DisplayFor(modelItem => item.Anhbia)*@
             </td>
             <td>
@@ -67,9 +67,9 @@
                 @Html.DisplayFor(modelItem => item.Category.CateName)
             </td>
             <td>
-                @Html.ActionLink("Sửa", "Edit", new { id = item.ProductID })|
-                @Html.ActionLink("Chi tiết", "Details", new { id = item.ProductID }) |
-                @Html.ActionLink("Xoá", "Delete", new { id = item.ProductID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID })|
+                @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
             </td>
         </tr>
     }
