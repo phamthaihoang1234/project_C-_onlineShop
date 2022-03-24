@@ -460,3 +460,9 @@ D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\PROJECT-PRN211\Ictshop\o
 D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\PROJECT-PRN211\Ictshop\obj\Debug\Ictshop.dll
 D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\PROJECT-PRN211\Ictshop\obj\Debug\Ictshop.pdb
 D:\FPTUNIVERSITY\Semester5\Spring2022\PRN211\Project C#\PROJECT-PRN211\Ictshop\obj\Debug\PROJECT-PRN211.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\project_C-_onlineShop\Ictshop\obj\Debug\PROJECT-PRN211.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\project_C-_onlineShop\Ictshop\obj\Debug\Ictshop.Migrations.AddThanhtien.resources
+C:\Users\Admin\Desktop\project_C-_onlineShop\Ictshop\obj\Debug\PROJECT-PRN211.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\project_C-_onlineShop\Ictshop\obj\Debug\PROJECT-PRN211.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\project_C-_onlineShop\Ictshop\obj\Debug\Ictshop.dll
+C:\Users\Admin\Desktop\project_C-_onlineShop\Ictshop\obj\Debug\Ictshop.pdb

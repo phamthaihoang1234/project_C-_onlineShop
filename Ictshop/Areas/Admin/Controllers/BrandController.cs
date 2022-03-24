@@ -18,8 +18,33 @@ namespace Ictshop.Areas.Admin.Controllers
         // GET: Admin/Brands
         public ActionResult Index()
         {
+<<<<<<< HEAD
+            var data = db.Brands.ToList();
+            if (!String.IsNullOrEmpty(name)){
+                ViewBag.searchName = name;
+                data = data.FindAll(b => b.BrandName.Contains(name.Trim()));
+            }
+            
+            return View(data.ToList());
+        }
+
+
+/*        public JsonResult SearchByName(string name)
+        {
+            var data = from b in db.Brands select b;
+            var json = JsonConvert.SerializeObject(data.ToList());
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SearchById(int? id)
+        {
+            var data = db.Brands.Find(id);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+*/
+=======
             return View(db.Brands.ToList());
         }
+>>>>>>> a2fba8a0e9701361a9b5c8bb1c98b922dc39d975
 
         // GET: Admin/Brands/Details/5
         public ActionResult Details(int? id)

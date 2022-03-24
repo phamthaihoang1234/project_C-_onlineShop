@@ -30,9 +30,11 @@
         </button><!-- Navbar Search-->
          <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
-            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+            <input id="text-search" class="form-control" type="text" 
+                   placeholder="Search for Name..." value="@ViewBag.searchName"  
+                   aria-label="Search" aria-describedby="basic-addon2" />
             <div class="input-group-append">
-                <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                <button onclick="SearchByName()" class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
             </div>
         </div>
         </form>
@@ -60,11 +62,11 @@
                         </div>
                         <br />
                         <div style="padding-left:20px">
-                            @Html.ActionLink("Hãng sản xuất", "Index", "Brands")
+                            @Html.ActionLink("Brand", "Index", "Brands")
                         </div>
                         <br />
                         <div style="padding-left:20px">
-                            @Html.ActionLink("Hệ điều hành", "Index", "Categorys")
+                            @Html.ActionLink("Category", "Index", "Categorys")
                         </div>
                         <br />
                         <div style="padding-left:20px">
@@ -127,3 +129,10 @@
     <script src="~/Areas/Assets/dist/assets/demo/datatables-demo.js"></script>
 </body>
 </html>
+<script>
+    function SearchByName() {
+        var name = $("#text-search").val();
+        var searchUrl = window.location; 
+        alert(searchUrl);
+    }
+</script>
