@@ -5,18 +5,18 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Quản lý hãng điện thoại</h2>
+<h2>Brand Management</h2>
 
 <p>
-    @Html.ActionLink("Thêm mới hãng", "Create")
+    @Html.ActionLink("Create New Brand", "Create")
 </p>
 <table class="table">
     <tr>
-
         <th>
-            Mã hãng
+            Brand ID
         </th>
-        <th> Tên hãng
+        <th> 
+            Brand Name
         </th>
         <th></th>
     </tr>
@@ -30,9 +30,9 @@
         @Html.DisplayFor(modelItem => item.BrandName)
     </td>
     <td>
-        @Html.ActionLink("Sửa", "Edit", new { id = item.BrandID }) |
-        @Html.ActionLink("Chi tiết", "Details", new { id = item.BrandID }) |
-        @Html.ActionLink("Xoá", "Delete", new { id = item.BrandID })
+        @Html.ActionLink("Edit", "Edit", new { id = item.BrandID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.BrandID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.BrandID })
     </td>
 </tr>
 }

@@ -21,6 +21,9 @@
             padding-left:20px;
         }
     </style>
+    <script>
+        var name = 
+    </script>
 </head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
@@ -30,7 +33,8 @@
         </button><!-- Navbar Search-->
          <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
-            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+            <input class="form-control" type="text" placeholder="Search for..." 
+                   aria-label="Search" aria-describedby="basic-addon2" id="txt-search"/>
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
             </div>
@@ -56,29 +60,29 @@
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading" style="color:white"> <h5>Quản lý</h5></div>
                         <div style="padding-left:20px">
-                            @Html.ActionLink("Sản phẩm", "Index", "Home")
+                            @Html.ActionLink("Product", "Index", "Home")
                         </div>
                         <br />
                         <div style="padding-left:20px">
-                            @Html.ActionLink("Hãng sản xuất", "Index", "Brands")
+                            @Html.ActionLink("Brand", "Index", "Brands")
                         </div>
                         <br />
                         <div style="padding-left:20px">
-                            @Html.ActionLink("Hệ điều hành", "Index", "Categorys")
+                            @Html.ActionLink("Category", "Index", "Categorys")
                         </div>
                         <br />
                         <div style="padding-left:20px">
-                            @Html.ActionLink("Người dùng", "Index", "Users")
+                            @Html.ActionLink("User", "Index", "Users")
                         </div>
                         <br />
                         <div style="padding-left:20px">
-                            @Html.ActionLink("Các quyền", "Index", "Roles")
+                            @Html.ActionLink("Role", "Index", "Roles")
                         </div>
                         <div style="margin-top:20px; padding-left:20px">
-                            @Html.ActionLink("Quản lí đơn hàng", "Index", "Order")
+                            @Html.ActionLink("Order", "Index", "Order")
                         </div>
                         <div style="margin-top: 20px; padding-left: 20px">
-                            <a href="/Admin/Authorization/ListByRoleID?RoleID=1">Phân quyền</a>
+                            <a href="/Admin/Authorization/ListByRoleID?RoleID=1"> Authorization </a>
                         </div>
                     </div>
                 </div>

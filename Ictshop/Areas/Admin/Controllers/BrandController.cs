@@ -16,9 +16,16 @@ namespace Ictshop.Areas.Admin.Controllers
         private ShopManagement db = new ShopManagement();
 
         // GET: Admin/Brands
-        public ActionResult Index()
+        public ActionResult Index(string name)
         {
-            return View(db.Brands.ToList());
+            var data = db.Brands.ToList();
+            if (!String.IsNullOrEmpty(name))
+            {
+                ViewBag.searchName = name;
+                data = data.FindAll(b => b.BrandName.Contains(name.Trim()));
+            }
+
+            return View(data);
         }
 
         // GET: Admin/Brands/Details/5
