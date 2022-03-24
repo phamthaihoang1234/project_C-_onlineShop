@@ -11,43 +11,53 @@
 {
     @Html.Hidden("RoleID", TempData["RoleID"])
     @Html.AntiForgeryToken()
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FunctionCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FuctionName)
-            </th>
-            <th>
-                <a for="FunctionCode">Permisson</a>
-            </th>
-            <th></th>
-        </tr>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FunctionCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FuctionName)
+        </th>
+        <th>
+            <a for="FunctionCode">Permisson</a>
+        </th>
+        <th></th>
+    </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FunctionCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FuctionName)
-                </td>
-                @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.FunctionCode }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.FunctionCode }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.FunctionCode })
-                    </td>*@
-                <td>
-                    <input type="checkbox"
-                           @foreach (var data in TempData["ListPermissonByRoleID"] as List<Ictshop.Models.Permission>) { @(data.FunctionCode.Equals(item.FunctionCode) ? "checked" : "")  }>
-                    @Html.Hidden("FunctionCode", TempData["FunctionCode"])
-                </td>
-            </tr>
-        }
-    </table>
-    <button disabled style="border-radius:10px" class="btn-primary" type="submit">Save your change</button>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FunctionCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuctionName)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.FunctionCode }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FunctionCode }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FunctionCode })
+                </td>*@
+            <td>
+                <input type="checkbox" name="functionCodes" value="@item.FunctionCode"
+                       @foreach (var data in TempData["ListPermissonByRoleID"] as List<Ictshop.Models.Permission>) { @(data.FunctionCode.Equals(item.FunctionCode) ? "checked" : "") }>
+                @Html.Hidden("FunctionCode", TempData["FunctionCode"])
+            </td>
+        </tr>
+    }
+</table>
+<button style="border-radius:10px" class="btn-success" type="submit">Save your change</button>
 }
+
+<script>
+    function Show() {
+        var list = [];
+        $.each($("input[name='functionCodes']:checked"), function () {
+            list.push($(this).val());
+        });
+        console.log(list);
+    }
+</script>
 
 

@@ -43,7 +43,6 @@ namespace Ictshop.Areas.Admin.Controllers
                 permission.RoleId = RoleID;
                 permission.FunctionCode = item;
                 permissonsList.Add(permission);
-              
             }
             db.Permissions.AddRange(permissonsList);
             db.SaveChanges();
