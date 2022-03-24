@@ -343,7 +343,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\dtiphonePartial.cshtml" />
     <Content Include="Views\Product\dtsamsungpartial.cshtml" />
-    <Content Include="Views\Brand\DanhmucPartial.cshtml" />
+    <Content Include="Views\Brand\BrandPartial.cshtml" />
     <Content Include="Views\Home\SlidePartial.cshtml" />
     <Content Include="Views\Product\dtxiaomipartial.cshtml" />
     <Content Include="Views\Product\xemchitiet.cshtml" />
