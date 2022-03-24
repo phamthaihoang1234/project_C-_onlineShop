@@ -58,7 +58,7 @@ namespace Ictshop.Controllers
                 Product.cProQuantity = int.Parse(f["txtSoLuong"].ToString());
 
             }
-            return RedirectToAction("GioHang");
+            return RedirectToAction("Cart");
         }
         public ActionResult XoaGioHang(int cProID)
         {

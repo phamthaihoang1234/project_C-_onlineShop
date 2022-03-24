@@ -8,29 +8,49 @@
 }
 
 <h2>Order Management</h2>
-<form action="/Admin/Order/Index" id="myform" method="post">
-    <select name="StatusID" onchange="ChangeStatus()">
-        <option value=0>All Status</option>
-        @foreach (var item in ViewBag.Status)
-        {
-            if (@item.StatusID == @ViewBag.StatusID)
-            {
-                <option selected value=@item.StatusID>@item.StatusName</option>
-            }
-            else
-            {
-                  <option value=@item.StatusID>@item.StatusName</option>
+<div class="row">
+    <div class="col-md-6">
+        <form action="/Admin/Order/Index" id="myform" method="post">
+            <select name="StatusID" onchange="ChangeStatus()">
+                <option value=0>All Status</option>
+                @foreach (var item in ViewBag.Status)
+                {
+                    if (@item.StatusID == @ViewBag.StatusID)
+                    {
+                        <option selected value=@item.StatusID>@item.StatusName</option>
+                    }
+                    else
+                    {
+                        <option value=@item.StatusID>@item.StatusName</option>
 
+                    }
+
+                }
+            </select>
+            <script>
+                function ChangeStatus() {
+                    document.getElementById("myform").submit();
+                }
+            </script>
+        </form>
+    </div>
+    <div class="col-md-6">
+        
+        <div class="col-12">
+            @using (Html.BeginForm("Search", "Order"))
+            {
+                <input required type="date" name="dateFrom" />
+                <input required type="date" name="dateTo" />
+                <button type="submit">Search</button>
             }
-            
-        }
-    </select>
-    <script>
-	function ChangeStatus(){
-		document.getElementById("myform").submit();
-	}
-    </script>
-</form>
+            </div>
+
+               
+    </div>
+</div>
+
+
+
 <table class="table">
     <tr>
         <th>

@@ -63,6 +63,19 @@ namespace Ictshop.Areas.Admin.Controllers
             int pageNumber = (page ?? 1);
             return View(orders.ToPagedList(pageNumber, pageSize));
         }
+        public ActionResult Search(int? page, DateTime dateFrom,DateTime dateTo)
+        {
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            var orders = from item in db.Orders.ToList()
+                         where item.OrderDate >= dateFrom && item.OrderDate <= dateTo   
+                         select item;       
+            var model = orders.ToList();
+            ViewBag.Status = db.Order_Status.ToList();
+            
+            return View("Index", model.ToPagedList(pageNumber, pageSize));
+        }
 
         // GET: Admin/Order/Details/5
         public ActionResult Details(int id)

@@ -8,7 +8,6 @@ using PagedList;
 
 namespace Ictshop.Controllers
 {
-    //commit
     public class ProductController : Controller
     {
         ShopManagement db = new ShopManagement();
