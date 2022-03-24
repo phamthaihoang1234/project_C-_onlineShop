@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Ictshop.Models.User>
+﻿@model PagedList.IPagedList<Ictshop.Models.User>
+
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -14,52 +16,63 @@
 <table class="table table-bordered">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FullName)
+            FullName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone)
+            Phone
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
+            Password
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            Address
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Role.RoleName)
+            RoleName
         </th>
-        <th> Hành động</th>
+        <th>
+            Action
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.FullName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Email)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Phone)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Password)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Address)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Role.RoleName)
-    </td>
-    <td>
-        @Html.ActionLink("Sửa", "Edit", new { id = item.UserID }) |
-        @Html.ActionLink("Chi tiết", "Details", new { id = item.UserID }) |
-        @Html.ActionLink("Xoá", "Delete", new { id = item.UserID })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role.RoleName)
+            </td>
+            <td>
+                @*@Html.ActionLink("Sửa", "Edit", new { id = item.UserID }) |*@
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.UserID }) |
+                @Html.ActionLink("Xoá", "Delete", new { id = item.UserID })
+            </td>
+        </tr>
+    }
 
 </table>
+<!-- Thêm mã phân trang -->
+<br />
+
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+    <!-- Kết thúc -->
