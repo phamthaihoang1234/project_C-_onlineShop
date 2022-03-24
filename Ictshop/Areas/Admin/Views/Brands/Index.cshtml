@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Ictshop.Models.Brand>
+﻿@model PagedList.IPagedList<Ictshop.Models.Brand>
+
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -7,35 +9,51 @@
 
 <h2>Brand Management</h2>
 
-<p>
-    @Html.ActionLink("Create New Brand", "Create")
-</p>
+<button class="btn btn-outline-dark text-left">
+    @Html.ActionLink("New Brand", "Create")
+</button>
+
+<form action="~/Admin/Brands/Index" class="input-group" style="padding-top: 20px;">
+    <input class="form-control" type="text" placeholder="Search for Name..." value="@ViewBag.textSearch"
+           aria-label="Search" aria-describedby="basic-addon2" id="txt-search" name="name" />
+    <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</form>
 <table class="table">
     <tr>
 
         <th>
             Brand ID
         </th>
-        <th> 
+        <th>
             Brand Name
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.BrandID)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.BrandName)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.BrandID }) |
-        @Html.ActionLink("Detail", "Details", new { id = item.BrandID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.BrandID })
-    </td>
-</tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrandID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrandName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BrandID }) |
+                @Html.ActionLink("Detail", "Details", new { id = item.BrandID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BrandID })
+            </td>
+        </tr>
+    }
 </table>
+<br />
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))

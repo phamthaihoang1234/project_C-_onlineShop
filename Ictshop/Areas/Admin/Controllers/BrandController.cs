@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Ictshop.Models;
+using PagedList;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
@@ -16,14 +17,19 @@ namespace Ictshop.Areas.Admin.Controllers
         private ShopManagement db = new ShopManagement();
 
         // GET: Admin/Brands
-        public ActionResult Index(string name)
+        public ActionResult Index(string name, int? page)
         {
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
             var data = db.Brands.ToList();
             if (!String.IsNullOrEmpty(name))
             {
+                ViewBag.textSearch = name;
                 data = data.FindAll(b => b.BrandName.Contains(name));
             }
-            return View(data);
+            return View(data.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/Brands/Details/5
