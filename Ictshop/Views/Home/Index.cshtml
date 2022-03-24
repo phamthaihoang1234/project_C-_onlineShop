@@ -1,40 +1,36 @@
 ﻿@{
-    ViewBag.Title = "PASS-PRN SHOP";
-    
+    ViewBag.Title = "ONLINE SHOP";
+
 }
 
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <br />
 <div class="row">
-    <div class="col-md-8">
-       @Html.Action("SlidePartial","Home")
+    <div class="col-md-12">
+        @Html.Action("SlidePartial", "Home")
     </div>
-    <div class="col-md-4">
-        <img src="~/HinhanhSP/qc3.gif" class="img-responsive" alt="" />
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
 </div>
-<div>
-    <img class="img-responsive" src="~/HinhanhSP/ban1.jpg" />
-</div>
+
+
 <br />
 <div class="spnoibat">
     <div class="row">
 
-        <h3> SẢN PHẨM NỔI BẬT</h3>
-        <div class="col-md-4">
-            <img src="~/HinhanhSP/spnb1.png" class="img-responsive" alt="" />
-        </div>
-        <div class="col-md-4">
-            <img src="~/HinhanhSP/spnb2.png" class="img-responsive" alt="" />
-        </div>
-        <div class="col-md-4">
-            <img src="~/HinhanhSP/spnb3.png" class="img-responsive" alt="" />
-        </div>
+        <h3>New Product </h3>
+        @foreach (var item in @ViewBag.NewProducts)
+        {
+            <div class="col-md-4">
+                <img src="@Url.Content("~/Images/"+item.Image)" class="img-responsive" alt="no image" />
+                <a href="@Url.Action("xemchitiet","Product", new {@ProductID=item.ProductID })">Xem chi tiết</a>
+            </div>
+        }
     </div>
 </div>
 <div class="danhmuc">
-    @Html.Action("BrandPartial", "Brand")
+    @Html.Action("DanhmucPartial", "Brand")
 </div>
 <div class="dt">
     @Html.Action("dtiphonePartial", "Product")

@@ -10,7 +10,7 @@ namespace Ictshop.Controllers
     public class CartController : Controller
     {
         ShopManagement db = new ShopManagement();
-        public List<Cart> LayGioHang()
+        public List<Cart> GetCart()
         {
             List<Cart> lstGioHang = Session["GioHang"] as List<Cart>;
             if (lstGioHang == null)
@@ -29,7 +29,7 @@ namespace Ictshop.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-            List<Cart> lstGioHang = LayGioHang();
+            List<Cart> lstGioHang = GetCart();
             Cart Product = lstGioHang.Find(n => n.cProID == cProID);
             if (Product == null)
             {
@@ -51,7 +51,7 @@ namespace Ictshop.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-            List<Cart> lstGioHang = LayGioHang();
+            List<Cart> lstGioHang = GetCart();
             Cart Product = lstGioHang.SingleOrDefault(n => n.cProID == cProID);
             if (Product != null)
             {
@@ -68,7 +68,7 @@ namespace Ictshop.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-            List<Cart> lstGioHang = LayGioHang();
+            List<Cart> lstGioHang = GetCart();
             Cart Product = lstGioHang.SingleOrDefault(n => n.cProID == cProID);
             if (Product != null)
             {
@@ -80,15 +80,15 @@ namespace Ictshop.Controllers
                 Session["GioHang"] = null;
                 return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("GioHang");
+            return RedirectToAction("Cart");
         }
-        public ActionResult GioHang()
+        public ActionResult Cart()
         {
             if (Session["GioHang"] == null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            List<Cart> lstGioHang = LayGioHang();
+            List<Cart> lstGioHang = GetCart();
             double totalPrice = 0;
             foreach (var item in lstGioHang)
             {
@@ -117,7 +117,7 @@ namespace Ictshop.Controllers
             }
             return dTongTien;
         }
-        public ActionResult GioHangPartial()
+        public ActionResult CartPartial()
         {
             if (TongSoLuong() == 0)
             {
@@ -127,13 +127,13 @@ namespace Ictshop.Controllers
             ViewBag.TongTien = TongTien();
             return PartialView();
         }
-        public ActionResult SuaGioHang()
+        public ActionResult EditCart()
         {
             if (Session["GioHang"] == null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            List<Cart> lstGioHang = LayGioHang();
+            List<Cart> lstGioHang = GetCart();
             return View(lstGioHang);
 
         }
@@ -151,7 +151,7 @@ namespace Ictshop.Controllers
             }
             Order ddh = new Order();
             User kh = (User)Session["use"];
-            List<Cart> gh = LayGioHang();
+            List<Cart> gh = GetCart();
             ddh.UserID = kh.UserID;
             ddh.OrderDate = DateTime.Now;
             ddh.StatusID = 1;

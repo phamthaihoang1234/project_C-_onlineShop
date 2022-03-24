@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Cửa hàng Điện tử chính hãng</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
@@ -25,14 +25,16 @@
         }
 
         .navbar-inverse {
-            background-color: #39B54A;
+            background-color: black;
             border-color: #39B54A;
         }
 
         .top_header {
-            background-color: black;
+            background-color: gray;
             padding-left: 110px;
-            color: white;
+            color: black;
+            height:30px;
+            
         }
 
         .form-inline {
@@ -55,7 +57,7 @@
         }
 
             .navbar-inverse .navbar-nav > li > a:hover {
-                color: black;
+                color: red;
             }
 
         .navbar-brand {
@@ -71,7 +73,7 @@
             }
 
         .giohang {
-            color: white;
+            color: black;
         }
     </style>
 
@@ -89,14 +91,12 @@
 
         <div class="top_header col-md-12">
 
-            <div class="row">
-                @*<div class="col-sm-2"><img class="navbar-brand" src="~/HinhanhSP/logo1.jpg" width="20" height="20" style="padding:0" /></div>*@
+            <div class="row">           
                 <div class="col-sm-4 col-md-0" style="font-size:large">TeamPRN211</div>
                 
                 <div class="col-sm-4 col-md-0" style="padding-left:250px">
-                    @Html.Action("GioHangPartial", "Cart", new { @class = "giohang" })
-                </div>
-                @*@Html.Action("GioHangPartial", "GioHang",new { @style = "color:while" })*@
+                    @Html.Action("CartPartial", "Cart", new { @class = "giohang" })
+                </div>             
                 @{
                     if (u != null)
                     {
@@ -104,15 +104,15 @@
                             Xin chào : @u.Email
                             &nbsp;
                             @*@Html.ActionLink("ĐĂNG XUẤT", "DangXuat", "User", new { style = "color:red" })*@
-                            <a style="color:red" href="/User/DangXuat"> Đăng xuất </a>
+                            <a style="color:red" href="/User/DangXuat"> Logout </a>
                         </div>
                     }
                     else
                     {
                         <div class="col-sm-4 col-md-0">
-                            <a style="color:white" href="/User/Dangky"> Đăng ký</a>
+                            <a style="color:white" href="/User/Dangky"> Register</a>
                             &nbsp;
-                            <a style="color:white" href="/User/Dangnhap"> Đăng nhập </a>
+                            <a style="color:white" href="/User/Dangnhap"> Login </a>
                         </div>
                     }
                 }
@@ -122,28 +122,19 @@
 
         </div>
         <div class="container">
-
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <img class="navbar-brand" src="~/HinhanhSP/logo1.jpg" width="50" height="50" style="padding:0" />
+               
+                <img class="navbar-brand" src="~/Images/logo1.jpg" width="50" height="50" style="padding:0" />
                 @Html.ActionLink(" Online Store", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @using (Html.BeginForm("Search", "Product")){
-                  <input class="form-control mr-sm-2"  name="key" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                }
+                
             </div>
 
             <div class="navbar-collapse collapse">
-            
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="/Home/Contact" title="LIENHE">
                             @*<span><i class="fas fa-headphones"></i></span>*@
-                            <span>LIÊN HỆ</span>
+                            <span>Contact</span>
 
                         </a>
                     </li>              
@@ -153,10 +144,19 @@
                     <li>
                         <a style="color:white"
                            class="nav-link"
-                           href="@Url.Action("Index", "Orders")">ĐƠN HÀNG</a>
+                           href="@Url.Action("Index", "Orders")">MY ORDERS</a>
                     </li>
 
                 </ul>
+            </div>
+            <div class="row">
+                @using (Html.BeginForm("Search", "Product")){
+                <div class="col-12">
+                    <input required class="form-control mr-sm-2" name="key" type="search" placeholder="Search.." aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </div>
+                
+                }
             </div>
 
         </div>

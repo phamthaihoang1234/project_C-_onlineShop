@@ -14,7 +14,8 @@ namespace Ictshop.Controllers
 
         ShopManagement db = new ShopManagement();
         public ActionResult Index()
-        {           
+        {   
+            ViewBag.NewProducts = db.Products.OrderByDescending(p => p.ProductID).Take(3).ToList();
             return View();
 
         }
