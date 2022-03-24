@@ -5,18 +5,18 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Category Management</h2>
+<h2>Quản lý hệ điều hành</h2>
 
 <p>
-    @Html.ActionLink("Create New Category", "Create")
+    @Html.ActionLink("Thêm mới hệ điều hành", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            Category ID
+            Mã hệ điều hành
         </th>
         <th>
-            Category Name
+            Tên hệ điều hành
         </th>
         <th></th>
     </tr>
@@ -30,9 +30,9 @@
         @Html.DisplayFor(modelItem => item.CateName)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.CateID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.CateID }) |
-        @Html.ActionLink("Delete ", "Delete", new { id = item.CateID })
+        @Html.ActionLink("Sửa", "Edit", new { id = item.CateID }) |
+        @Html.ActionLink("Chi tiết", "Details", new { id = item.CateID }) |
+        @Html.ActionLink("Thêm mới ", "Delete", new { id = item.CateID })
     </td>
 </tr>
 }

@@ -110,13 +110,9 @@ namespace Ictshop.Areas.Admin.Controllers
         {
             try
             {
-                // Sửa sản phẩm theo mã sản phẩm
                 var oldItem = db.Orders.Find(order.OrderID);
-                oldItem.OrderDate = order.OrderDate;
                 oldItem.StatusID = order.StatusID;
-                // lưu lại
                 db.SaveChanges();
-                // xong chuyển qua index
                 return RedirectToAction("Index");
             }
             catch

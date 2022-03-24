@@ -19,7 +19,6 @@ namespace Ictshop.Models
         [StringLength(50)]
         public string FunctionCode { get; set; }
 
-        [Required]
         [StringLength(150)]
         public string Note { get; set; }
 

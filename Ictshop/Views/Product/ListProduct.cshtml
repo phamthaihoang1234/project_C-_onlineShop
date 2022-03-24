@@ -43,7 +43,7 @@
                     <ul class="pagination pagination-sm pro-page-list">
                         <li>
                             @Html.PagedListPager(Model, page => Url.Action("ListProduct",
-                                    new { page, BrandID = ViewBag.BrandID }))
+                                    new { page, BrandID = ViewBag.BrandID,CateID = ViewBag.CateID }))
                            </li>
                     </ul>
                 </div>

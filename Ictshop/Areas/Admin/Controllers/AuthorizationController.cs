@@ -1,6 +1,8 @@
 ﻿using Ictshop.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -21,31 +23,37 @@ namespace Ictshop.Areas.Admin.Controllers
         }
         public ActionResult ListByRoleID(int RoleID)
         {
-            TempData["RoleID"] = RoleID;
+            ViewBag.RoleID = RoleID;
             TempData["FunctionCode"] = db.Functions.ToList();
+            ViewBag.ListPermissonByRoleID = db.Permissions.Where(p => p.RoleId == RoleID).ToList();
             TempData["ListPermissonByRoleID"] = db.Permissions.Where(p => p.RoleId == RoleID) .ToList();
             var Functions = db.Functions.ToList();
             return View(Functions);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ListByRoleID()
+        public ActionResult UpdateRole()
         {
             int RoleID = Int32.Parse(Request.Form["RoleID"]);
             db.Permissions.RemoveRange(db.Permissions.Where(p => p.RoleId == RoleID));
             db.SaveChanges();
-            Permission permission = new Permission();
-            var permissonsList = db.Permissions.ToList();
-            string[] permissons = {"PM1", "PM2"};
-            foreach (string item in permissons)
-            {
-                permission.RoleId = RoleID;
-                permission.FunctionCode = item;
-                permissonsList.Add(permission);
+            try
+                {
+                Permission permission = new Permission();
+                string[] permissons = Request.Form.GetValues("FunctionCode");
+                foreach (string item in permissons)
+                {
+                    permission.RoleId = RoleID;
+                    permission.FunctionCode = item;
+                    db.Permissions.Add(permission);
+                    db.SaveChanges();
+                    db.Entry(permission).State = EntityState.Detached;
+                }
             }
-            db.Permissions.AddRange(permissonsList);
-            db.SaveChanges();
+            catch (DbEntityValidationException e)
+            {
+                Console.WriteLine(e);
+            }    
             TempData["ListPermissonByRoleID"] = db.Permissions.Where(p => p.RoleId == RoleID).ToList();
             var Functions = db.Functions.ToList();
             return View("ListByRoleID",Functions);

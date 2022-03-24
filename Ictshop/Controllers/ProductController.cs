@@ -36,12 +36,24 @@ namespace Ictshop.Controllers
             }
             return View(chitiet);
         }
-        public ActionResult ListProduct(int? page)
+        public ActionResult ListProduct(int? page, int BrandID = 0, int CateID = 0)
         {           
             if (page == null) page = 1;
             var model = db.Products.OrderBy(x => x.ProductID).ToList();
-            int pageSize = 6;
+            int pageSize = 3;
             int pageNumber = (page ?? 1);
+            ViewBag.BrandID = BrandID;
+            ViewBag.CateID = CateID;
+            if (BrandID != 0)
+            {
+                 model = db.Products.Where(p => p.BrandID == BrandID).ToList();
+               
+            }
+            if (CateID != 0)
+            {
+                 model = db.Products.Where(p => p.CateID == CateID).ToList();
+               
+            }
             return View(model.ToPagedList(pageNumber, pageSize));
         }
 
@@ -53,7 +65,7 @@ namespace Ictshop.Controllers
         public ActionResult ListByBrand(int? page,int BrandID = 0)
         {
             if (page == null) page = 1;
-            int pageSize = 2;
+            int pageSize = 3;
             int pageNumber = (page ?? 1);
             ViewBag.BrandID = BrandID;  
             if (BrandID != 0)
@@ -67,8 +79,9 @@ namespace Ictshop.Controllers
         public ActionResult ListByCateID(int? page,int CateID = 0)
         {
             if (page == null) page = 1;        
-            int pageSize = 2;
+            int pageSize = 3;
             int pageNumber = (page ?? 1);
+            ViewBag.CateID = CateID;
             if (CateID != 0)
             {
                 var model = db.Products.Where(p => p.CateID == CateID).ToList();
@@ -80,7 +93,7 @@ namespace Ictshop.Controllers
         public ActionResult Search(int? page, string key)
         {
             if (page == null) page = 1;
-            int pageSize = 2;
+            int pageSize = 3;
             int pageNumber = (page ?? 1);
             var products = db.Products.Where(p => p.ProductName.Contains(key));
             var model = products.OrderBy(x => x.ProductID).ToList();
