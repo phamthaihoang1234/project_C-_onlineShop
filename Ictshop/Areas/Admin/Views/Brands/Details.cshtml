@@ -18,7 +18,13 @@
         <dd>
             @Html.DisplayFor(model => model.BrandName)
         </dd>
+        <dt>
+            Brand Image
+        </dt>
 
+        <dd>
+            <img src="@Url.Content("~/Images/"+Model.BrandImg)" class="img-responsive" alt="no image" />
+        </dd>
     </dl>
 </div>
 <p>
