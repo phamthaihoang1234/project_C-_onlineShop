@@ -16,6 +16,10 @@ namespace Ictshop.Areas.Admin.Controllers
     {
         private ShopManagement db = new ShopManagement();
 
+        public bool ContainsIgnoredCase(string word, string search)
+        {
+            return word.ToLower().Contains(search.ToLower());
+        }
         // GET: Admin/Brands
         public ActionResult Index(string name, int? page)
         {
@@ -27,7 +31,8 @@ namespace Ictshop.Areas.Admin.Controllers
             if (!String.IsNullOrEmpty(name))
             {
                 ViewBag.textSearch = name;
-                data = data.FindAll(b => b.BrandName.Contains(name));
+                StringComparison comp = new StringComparison();
+                data = data.FindAll(b => ContainsIgnoredCase(b.BrandName, name));
             }
             return View(data.ToPagedList(pageNumber, pageSize));
         }
