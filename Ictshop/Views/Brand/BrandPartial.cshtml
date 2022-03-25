@@ -6,16 +6,17 @@
 
 <div class="bg-success">
 
-    <h3> DANH MỤC  </h3>
+    <h3 style="text-align:center"> DANH MỤC  </h3>
 
-    <div class="row">
-
+    <div style="background-color: white; margin-left: auto; margin-right: auto; display: block;" class="row">
         @foreach (var item in Model)
         {
-            <div class="col-lg-1">
-                <button class="success"><a href="#"> @item.BrandName</a></button>
+            <div class="col-md-2">
+                
+                <a href="/Product/ListByBrand?BrandID=@item.BrandID">
+                    <img src="@Url.Content("~/Images/Brand/"+item.BrandImg)" class="img-responsive" alt="no image" />
+                </a>
             </div>
         }
-
     </div>
 </div>
