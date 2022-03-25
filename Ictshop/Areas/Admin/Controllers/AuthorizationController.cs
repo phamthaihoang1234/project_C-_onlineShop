@@ -24,7 +24,6 @@ namespace Ictshop.Areas.Admin.Controllers
         public ActionResult ListByRoleID(int RoleID)
         {
             ViewBag.RoleID = RoleID;
-            TempData["FunctionCode"] = db.Functions.ToList();
             ViewBag.ListPermissonByRoleID = db.Permissions.Where(p => p.RoleId == RoleID).ToList();
             TempData["ListPermissonByRoleID"] = db.Permissions.Where(p => p.RoleId == RoleID) .ToList();
             var Functions = db.Functions.ToList();
@@ -55,7 +54,9 @@ namespace Ictshop.Areas.Admin.Controllers
                 Console.WriteLine(e);
             }    
             TempData["ListPermissonByRoleID"] = db.Permissions.Where(p => p.RoleId == RoleID).ToList();
-            var Functions = db.Functions.ToList();
+            ViewBag.RoleID = RoleID;
+            ViewBag.ListPermissonByRoleID = db.Permissions.Where(p => p.RoleId == RoleID).ToList();
+            var Functions = db.Functions.ToList();             
             return View("ListByRoleID",Functions);
         }
 

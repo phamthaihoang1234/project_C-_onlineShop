@@ -138,6 +138,7 @@
     <Compile Include="App_Start\SessionCofig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthorizationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
@@ -325,6 +326,7 @@
     <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Authorization\ListByRoleID.cshtml" />
     <Content Include="Areas\Admin\Views\Authorization\ListRoles.cshtml" />
+    <Content Include="Areas\Admin\Views\DashBoard\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
