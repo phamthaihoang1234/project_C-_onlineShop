@@ -1,12 +1,12 @@
-﻿USE [master]
+USE [master]
 GO
-/****** Object:  Database [PROJECT_PRN211]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Database [PROJECT_PRN211]    Script Date: 3/25/2022 10:32:23 PM ******/
 CREATE DATABASE [PROJECT_PRN211]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'PROJECT_PRN211', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.NNGHIAA\MSSQL\DATA\PROJECT_PRN211.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+( NAME = N'PROJECT_PRN211', FILENAME = N'D:\SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\PROJECT_PRN211.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
  LOG ON 
-( NAME = N'PROJECT_PRN211_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.NNGHIAA\MSSQL\DATA\PROJECT_PRN211_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+( NAME = N'PROJECT_PRN211_log', FILENAME = N'D:\SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\PROJECT_PRN211_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
  WITH CATALOG_COLLATION = DATABASE_DEFAULT
 GO
 ALTER DATABASE [PROJECT_PRN211] SET COMPATIBILITY_LEVEL = 150
@@ -76,13 +76,11 @@ ALTER DATABASE [PROJECT_PRN211] SET DELAYED_DURABILITY = DISABLED
 GO
 ALTER DATABASE [PROJECT_PRN211] SET ACCELERATED_DATABASE_RECOVERY = OFF  
 GO
-EXEC sys.sp_db_vardecimal_storage_format N'PROJECT_PRN211', N'ON'
-GO
 ALTER DATABASE [PROJECT_PRN211] SET QUERY_STORE = OFF
 GO
 USE [PROJECT_PRN211]
 GO
-/****** Object:  Table [dbo].[Brand]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Table [dbo].[Brand]    Script Date: 3/25/2022 10:32:23 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -90,13 +88,14 @@ GO
 CREATE TABLE [dbo].[Brand](
 	[BrandID] [int] IDENTITY(1,1) NOT NULL,
 	[BrandName] [nchar](10) NULL,
+	[BrandImg] [nchar](10) NULL,
  CONSTRAINT [PK_dbo.Brand] PRIMARY KEY CLUSTERED 
 (
 	[BrandID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Category]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Table [dbo].[Category]    Script Date: 3/25/2022 10:32:23 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -110,7 +109,7 @@ CREATE TABLE [dbo].[Category](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Function]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Table [dbo].[Function]    Script Date: 3/25/2022 10:32:23 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -124,7 +123,7 @@ CREATE TABLE [dbo].[Function](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Order]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Table [dbo].[Order]    Script Date: 3/25/2022 10:32:23 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,7 +139,7 @@ CREATE TABLE [dbo].[Order](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Order_Status]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Table [dbo].[Order_Status]    Script Date: 3/25/2022 10:32:23 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -154,7 +153,7 @@ CREATE TABLE [dbo].[Order_Status](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[OrderDetail]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Table [dbo].[OrderDetail]    Script Date: 3/25/2022 10:32:23 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -172,7 +171,7 @@ CREATE TABLE [dbo].[OrderDetail](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Permission]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Table [dbo].[Permission]    Script Date: 3/25/2022 10:32:23 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -188,7 +187,7 @@ CREATE TABLE [dbo].[Permission](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Product]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Table [dbo].[Product]    Script Date: 3/25/2022 10:32:23 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -211,7 +210,7 @@ CREATE TABLE [dbo].[Product](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Role]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Table [dbo].[Role]    Script Date: 3/25/2022 10:32:23 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -225,7 +224,7 @@ CREATE TABLE [dbo].[Role](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[User]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Table [dbo].[User]    Script Date: 3/25/2022 10:32:23 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -238,6 +237,7 @@ CREATE TABLE [dbo].[User](
 	[Password] [varchar](50) NULL,
 	[Address] [varchar](100) NULL,
 	[RoleID] [int] NULL,
+	[Status] [bit] NULL,
  CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
 (
 	[UserID] ASC
@@ -246,12 +246,12 @@ CREATE TABLE [dbo].[User](
 GO
 SET IDENTITY_INSERT [dbo].[Brand] ON 
 
-INSERT [dbo].[Brand] ([BrandID], [BrandName]) VALUES (1, N'Asus      ')
-INSERT [dbo].[Brand] ([BrandID], [BrandName]) VALUES (2, N'Dell      ')
-INSERT [dbo].[Brand] ([BrandID], [BrandName]) VALUES (3, N'Msi       ')
-INSERT [dbo].[Brand] ([BrandID], [BrandName]) VALUES (4, N'Lenovo    ')
-INSERT [dbo].[Brand] ([BrandID], [BrandName]) VALUES (5, N'Thinkpad  ')
-INSERT [dbo].[Brand] ([BrandID], [BrandName]) VALUES (6, N'Macbook   ')
+INSERT [dbo].[Brand] ([BrandID], [BrandName], [BrandImg]) VALUES (1, N'Asus      ', NULL)
+INSERT [dbo].[Brand] ([BrandID], [BrandName], [BrandImg]) VALUES (2, N'Dell      ', NULL)
+INSERT [dbo].[Brand] ([BrandID], [BrandName], [BrandImg]) VALUES (3, N'Msi       ', NULL)
+INSERT [dbo].[Brand] ([BrandID], [BrandName], [BrandImg]) VALUES (4, N'Lenovo    ', NULL)
+INSERT [dbo].[Brand] ([BrandID], [BrandName], [BrandImg]) VALUES (5, N'Thinkpad  ', NULL)
+INSERT [dbo].[Brand] ([BrandID], [BrandName], [BrandImg]) VALUES (6, N'Macbook   ', NULL)
 SET IDENTITY_INSERT [dbo].[Brand] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Category] ON 
@@ -271,7 +271,7 @@ INSERT [dbo].[Function] ([FunctionCode], [FuctionName]) VALUES (N'PM7', N'admin'
 GO
 SET IDENTITY_INSERT [dbo].[Order] ON 
 
-INSERT [dbo].[Order] ([OrderID], [OrderDate], [StatusID], [UserID]) VALUES (6, CAST(N'2022-03-13T23:17:51.000' AS DateTime), 3, 1)
+INSERT [dbo].[Order] ([OrderID], [OrderDate], [StatusID], [UserID]) VALUES (6, NULL, 4, 1)
 SET IDENTITY_INSERT [dbo].[Order] OFF
 GO
 INSERT [dbo].[Order_Status] ([StatusID], [StatusName]) VALUES (1, N'Đang chờ xác nhận')
@@ -286,10 +286,10 @@ INSERT [dbo].[Permission] ([RoleID], [FunctionCode], [Note]) VALUES (1, N'PM1', 
 INSERT [dbo].[Permission] ([RoleID], [FunctionCode], [Note]) VALUES (1, N'PM2', NULL)
 INSERT [dbo].[Permission] ([RoleID], [FunctionCode], [Note]) VALUES (1, N'PM3', NULL)
 INSERT [dbo].[Permission] ([RoleID], [FunctionCode], [Note]) VALUES (1, N'PM4', NULL)
-INSERT [dbo].[Permission] ([RoleID], [FunctionCode], [Note]) VALUES (1, N'PM5', NULL)
 INSERT [dbo].[Permission] ([RoleID], [FunctionCode], [Note]) VALUES (1, N'PM6', NULL)
 INSERT [dbo].[Permission] ([RoleID], [FunctionCode], [Note]) VALUES (3, N'PM2', NULL)
 INSERT [dbo].[Permission] ([RoleID], [FunctionCode], [Note]) VALUES (3, N'PM3', NULL)
+INSERT [dbo].[Permission] ([RoleID], [FunctionCode], [Note]) VALUES (4, N'PM1', NULL)
 GO
 SET IDENTITY_INSERT [dbo].[Product] ON 
 
@@ -313,33 +313,44 @@ SET IDENTITY_INSERT [dbo].[Role] ON
 INSERT [dbo].[Role] ([RoleId], [RoleName]) VALUES (1, N'Admin')
 INSERT [dbo].[Role] ([RoleId], [RoleName]) VALUES (2, N'Manager')
 INSERT [dbo].[Role] ([RoleId], [RoleName]) VALUES (3, N'Staff')
+INSERT [dbo].[Role] ([RoleId], [RoleName]) VALUES (4, N'Customer')
 SET IDENTITY_INSERT [dbo].[Role] OFF
 GO
 SET IDENTITY_INSERT [dbo].[User] ON 
 
-INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID]) VALUES (1, N'admin', N'Admin@gmail.com', N'0923213', N'123', N'hanoi', 1)
-INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID]) VALUES (2, N'nguyen nghia', N'nghia123@gmail.com', N'0923211', N'123', N'hanoi', 2)
+INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID], [Status]) VALUES (1, N'admin', N'Admin@gmail.com', N'0923213   ', N'3244185981728979115075721453575112', N'thaibinh', 1, 1)
+INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID], [Status]) VALUES (2, N'nguyen nghia', N'nghia123@gmail.com', N'0923211', N'123', N'hanoi', 2, 1)
+INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID], [Status]) VALUES (3, N'ducanh', N'ducanhbui09@gmail.com', N'0943993221', N'123', N'hanam', 2, 1)
+INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID], [Status]) VALUES (19, N'asdasdaa', N'asdasdasdasd@gmail.com', N'0943993221', N'3244185981728979115075721453575112', N'asddd', 4, 0)
+INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID], [Status]) VALUES (21, N'ac', N'123@gmail.com', N'0943993221', N'3244185981728979115075721453575112', N'a', 4, 0)
+INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID], [Status]) VALUES (22, N'asdasd', N'234@gmail.com', N'0943993221', N'3244185981728979115075721453575112', N'hanam', 4, 0)
+INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID], [Status]) VALUES (1020, N'ggg', N'fgh@gmail.com', N'89800     ', N'3244185981728979115075721453575112', N'ssf', 4, 1)
+INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID], [Status]) VALUES (1022, N'as', N'111111@gmail.com', N'0943993221', N'3244185981728979115075721453575112', N'as', 4, NULL)
+INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID], [Status]) VALUES (1024, N'2', N'222222@gmail.com', N'0943993221', N'3244185981728979115075721453575112', N'Thái Bình', 4, NULL)
+INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID], [Status]) VALUES (1025, N'a', N'444@gmail.com', N'0943993221', N'3244185981728979115075721453575112', N'Thái Bình', 4, NULL)
+INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID], [Status]) VALUES (1026, N'dfdf', N'555@gmail.com', N'0943993221', N'3244185981728979115075721453575112', N'Thái Bình', 4, NULL)
+INSERT [dbo].[User] ([UserID], [Fullname], [Email], [Phone], [Password], [Address], [RoleID], [Status]) VALUES (1027, N'a', N'777@gmail.co', N'0943993221', N'3244185981728979115075721453575112', N'Thái Bình', 4, NULL)
 SET IDENTITY_INSERT [dbo].[User] OFF
 GO
-/****** Object:  Index [IX_Madon]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Index [IX_Madon]    Script Date: 3/25/2022 10:32:24 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Madon] ON [dbo].[OrderDetail]
 (
 	[OrderID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Masp]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Index [IX_Masp]    Script Date: 3/25/2022 10:32:24 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Masp] ON [dbo].[OrderDetail]
 (
 	[ProductID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Mahang]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Index [IX_Mahang]    Script Date: 3/25/2022 10:32:24 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Mahang] ON [dbo].[Product]
 (
 	[BrandID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Mahdh]    Script Date: 3/14/2022 8:07:21 AM ******/
+/****** Object:  Index [IX_Mahdh]    Script Date: 3/25/2022 10:32:24 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Mahdh] ON [dbo].[Product]
 (
 	[CateID] ASC
