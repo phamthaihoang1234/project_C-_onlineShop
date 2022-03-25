@@ -18,9 +18,9 @@ namespace Ictshop.Areas.Admin.Controllers
         // GET: Admin/Home
 
         [AdminAuthorize(FunctionCode = "PM4")]
-        public ActionResult Index(int ?page)
+        public ActionResult Index(int ?page, string key)
         {
-           
+
             // 1. Tham số int? dùng để thể hiện null và kiểu int( số nguyên)
             // page có thể có giá trị là null ( rỗng) và kiểu int.
 
@@ -38,7 +38,19 @@ namespace Ictshop.Areas.Admin.Controllers
             // nếu page = null thì lấy giá trị 1 cho biến pageNumber.
             int pageNumber = (page ?? 1);
 
+
+            var products = db.Products.Where(p => p.ProductName.Contains(key));
+            var model = products.OrderBy(x => x.ProductID);
+
+            if (model.ToList().Count > 0)
+            {
+                sp = model;
+            }
+
+
+
             // 5. Trả về các sản phẩm được phân trang theo kích thước và số trang.
+
             return View(sp.ToPagedList(pageNumber, pageSize));
 
         }
@@ -66,7 +78,9 @@ namespace Ictshop.Areas.Admin.Controllers
         public ActionResult Create(Product Product)
         {
             try
-            { 
+            {
+                Product.BrandID = 5;
+                Product.CateID = 3;
                 //Thêm  sản phẩm mới
                 db.Products.Add(Product);
                 // Lưu lại
