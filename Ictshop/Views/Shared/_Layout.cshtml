@@ -33,8 +33,7 @@
             background-color: gray;
             padding-left: 110px;
             color: black;
-            height:30px;
-            
+            height: 30px;
         }
 
         .form-inline {
@@ -91,12 +90,12 @@
 
         <div class="top_header col-md-12">
 
-            <div class="row">           
+            <div class="row">
                 <div class="col-sm-4 col-md-0" style="font-size:large">TeamPRN211</div>
-                
+
                 <div class="col-sm-4 col-md-0" style="padding-left:250px">
                     @Html.Action("CartPartial", "Cart", new { @class = "giohang" })
-                </div>             
+                </div>
                 @{
                     if (u != null)
                     {
@@ -123,10 +122,10 @@
         </div>
         <div class="container">
             <div class="navbar-header">
-               
+
                 <img class="navbar-brand" src="~/Images/logo1.jpg" width="50" height="50" style="padding:0" />
                 @Html.ActionLink(" Online Store", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                
+
             </div>
 
             <div class="navbar-collapse collapse">
@@ -137,7 +136,7 @@
                             <span>Contact</span>
 
                         </a>
-                    </li>              
+                    </li>
                     <li>
                         @Html.Action("Category", "Home")
                     </li>
@@ -150,12 +149,13 @@
                 </ul>
             </div>
             <div class="row">
-                @using (Html.BeginForm("Search", "Product")){
-                <div class="col-12">
-                    <input required class="form-control mr-sm-2" name="key" type="search" placeholder="Search.." aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </div>
-                
+                @using (Html.BeginForm("Search", "Product"))
+                {
+                    <div class="col-12">
+                        <input required class="form-control mr-sm-2" name="key" type="search" placeholder="Search.." aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </div>
+
                 }
             </div>
 
@@ -169,7 +169,7 @@
         @RenderBody()
         <hr />
         <div>
-            <img class="img-responsive" src="~/Images/ban2.jpg" />
+            <img class="img-responsive" src="~/HinhanhSP/ban2.jpg" />
         </div>
         <br />
     </div>

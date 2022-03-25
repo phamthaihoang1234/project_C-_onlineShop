@@ -18,13 +18,13 @@ namespace Ictshop.Controllers
                 lstGioHang = new List<Cart>();
                 Session["GioHang"] = lstGioHang;
             }
-            
+
             return lstGioHang;
         }
         public ActionResult ThemGioHang(int cProID, string strURL)
         {
             Product sp = db.Products.SingleOrDefault(n => n.ProductID == cProID);
-            if ( sp == null)
+            if (sp == null)
             {
                 Response.StatusCode = 404;
                 return null;
@@ -45,31 +45,18 @@ namespace Ictshop.Controllers
         }
         public ActionResult CapNhatGioHang(FormCollection f)
         {
-            //Product sp = db.Products.SingleOrDefault(n => n.ProductID== cProID);
-            //if (sp == null)
-            //{
-            //    Response.StatusCode = 404;
-            //    return null;
-            //}
-            //List<Cart> lstGioHang = GetCart();
-            //Cart Product = lstGioHang.SingleOrDefault(n => n.cProID == cProID);
-            //if (Product != null)
-            //{
-            //    Product.cProQuantity = int.Parse(f["txtSoLuong"].ToString());
-
-            //}
             string[] quantities = f.GetValues("quantity");
             List<Cart> lstCart = (List<Cart>)Session["GioHang"];
-            for(int i = 0; i < lstCart.Count; i++)
+            for (int i = 0; i < lstCart.Count; i++)
             {
-                lstCart[i].cProQuantity = Convert.ToInt32(quantities[i]);   
+                lstCart[i].cProQuantity = Convert.ToInt32(quantities[i]);
             }
             Session["GioHang"] = lstCart;
             return RedirectToAction("Cart");
         }
         public ActionResult XoaGioHang(int cProID)
         {
-            Product sp = db.Products.SingleOrDefault(n => n.ProductID== cProID);
+            Product sp = db.Products.SingleOrDefault(n => n.ProductID == cProID);
             if (sp == null)
             {
                 Response.StatusCode = 404;
@@ -85,23 +72,24 @@ namespace Ictshop.Controllers
             if (lstGioHang.Count == 0)
             {
                 Session["GioHang"] = null;
-              
+
             }
             return RedirectToAction("Cart");
         }
         public ActionResult Cart()
-        {          
+        {
             List<Cart> lstGioHang = Session["GioHang"] as List<Cart>;
-            if(lstGioHang != null)
+            if (lstGioHang != null)
             {
-               double totalPrice = 0;
+                double totalPrice = 0;
                 foreach (var item in lstGioHang)
                 {
                     totalPrice += item.ThanhTien;
                 }
                 ViewBag.TotalPrice = totalPrice;
+                Session["TotalPrice"] = totalPrice;
             }
-            
+
             return View(lstGioHang);
         }
         private int TongSoLuong()
@@ -145,7 +133,7 @@ namespace Ictshop.Controllers
 
         }
 
-        [HttpPost]
+
         public ActionResult DatHang()
         {
             if (Session["use"] == null || Session["use"].ToString() == "")
@@ -162,18 +150,25 @@ namespace Ictshop.Controllers
             ddh.UserID = kh.UserID;
             ddh.OrderDate = DateTime.Now;
             ddh.StatusID = 1;
-            Console.WriteLine(ddh);
+            double totalPrice = 0;
+            foreach (var item in gh)
+            {
+                totalPrice += item.ThanhTien;
+            }
+            ddh.TotalPrice = totalPrice;
+
+            //Console.WriteLine(ddh);
             db.Orders.Add(ddh);
             db.SaveChanges();
             foreach (var item in gh)
             {
                 OrderDetail ctDH = new OrderDetail();
-                decimal thanhtien =  item.cProQuantity * (decimal) item.cProPrice;
+                decimal thanhtien = item.cProQuantity * (decimal)item.cProPrice;
                 ctDH.OrderID = ddh.OrderID;
                 ctDH.ProductID = item.cProID;
                 ctDH.Quantity = item.cProQuantity;
                 ctDH.UnitPrice = (decimal)item.cProPrice;
-                ctDH.TotalCost =  thanhtien;
+                ctDH.TotalCost = thanhtien;
                 db.OrderDetails.Add(ctDH);
             }
             db.SaveChanges();

@@ -17,7 +17,7 @@
         </th>
         <th>
             Đơn giá / 1 sản phẩm
-         </th>
+        </th>
         <th>
             Thành tiền
         </th>
@@ -25,20 +25,22 @@
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Product.ProductName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Quantity)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.UnitPrice)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.TotalCost)
-    </td>
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.UnitPrice)
+
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.TotalCost)
+
+            </td>
+        </tr>
     }
 
 </table>

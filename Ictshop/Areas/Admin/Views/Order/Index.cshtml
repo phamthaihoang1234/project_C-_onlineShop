@@ -10,7 +10,7 @@
 <h2>Order Management</h2>
 <div class="row">
     <div class="col-md-6">
-        <form action="/Admin/Order/Index" id="myform" method="post">
+        <form action="/Admin/Order/Index" id="myform">
             <select name="StatusID" onchange="ChangeStatus()">
                 <option value=0>All Status</option>
                 @foreach (var item in ViewBag.Status)
@@ -35,17 +35,17 @@
         </form>
     </div>
     <div class="col-md-6">
-        
+
         <div class="col-12">
-            @using (Html.BeginForm("Search", "Order"))
+            @using (Html.BeginForm("Index", "Order"))
             {
                 <input required type="date" name="dateFrom" />
                 <input required type="date" name="dateTo" />
                 <button type="submit">Search</button>
             }
-            </div>
+        </div>
 
-               
+
     </div>
 </div>
 
@@ -55,11 +55,11 @@
     <tr>
         <th>
             @Html.ActionLink("Full name", "Index", new { sortOrder = ViewBag.NameSortParm })
-          
+
         </th>
         <th>
             @Html.ActionLink("Order Date", "Index", new { sortOrder = ViewBag.DateSortParm })
-          
+
         </th>
         <th>
             @Html.ActionLink("Order Status", "Index", new { sortOrder = ViewBag.StatusSortParm })
@@ -88,4 +88,4 @@
 
 </table>
 @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    new { page, sortOrder = ViewBag.CurrentSort, dateFrom = ViewBag.dateFrom, dateTo = ViewBag.dateTo, StatusID = ViewBag.StatusID }))

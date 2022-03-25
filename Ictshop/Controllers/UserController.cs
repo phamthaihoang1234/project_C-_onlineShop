@@ -182,7 +182,7 @@ namespace Ictshop.Controllers
             smtpServer.Send(mail);
 
 
-            return View("Login");
+            return Content("<script language='javascript' type='text/javascript'>alert('New password has been sent in your email. Pleasd check!');window.location.href = '/User/Login';</script>");
         }
 
 

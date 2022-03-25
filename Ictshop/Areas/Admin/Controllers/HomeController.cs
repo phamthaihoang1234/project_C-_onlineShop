@@ -1,7 +1,11 @@
-﻿using Ictshop.Models;
-using PagedList;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using Ictshop.Models;
+using PagedList;
+using Ictshop.App_Start;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
@@ -16,7 +20,6 @@ namespace Ictshop.Areas.Admin.Controllers
         [AdminAuthorize(FunctionCode = "PM4")]
         public ActionResult Index(int? page, string key)
         {
-
             if (page == null) page = 1;
             ViewBag.branch = db.Brands.ToList();
             var sp = db.Products.OrderBy(x => x.ProductID);
@@ -35,20 +38,9 @@ namespace Ictshop.Areas.Admin.Controllers
             {
                 sp = model;
             }
-
-
-
-
             return View(sp.ToPagedList(pageNumber, pageSize));
 
         }
-
-        public ActionResult Details(int id)
-        {
-            var dt = db.Products.Find(id);
-            return View(dt);
-        }
-
         [HttpPost]
         public ActionResult Index(int? page, int BrandID)
         {
@@ -67,23 +59,12 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(products.ToPagedList(pageNumber, pageSize));
         }
 
-        //[HttpPost]
-        //public ActionResult searchByCate(int? page, int CateID)
-        //{
-
-        //    ViewBag.cate = db.Categorys.ToList();
-        //    ViewBag.CateID = CateID;
-        //    var products = db.Products.ToList();
-        //    if (CateID != 0)
-        //    {
-        //        products = (from item in products
-        //                    where item.CateID == CateID
-        //                    select item).ToList();
-        //    }
-        //    int pageSize = 6;
-        //    int pageNumber = (page ?? 1);
-        //    return View();
-        //}
+        // Xem chi tiết người dùng GET: Admin/Home/Details/5 
+        public ActionResult Details(int id)
+        {
+            var dt = db.Products.Find(id);
+            return View(dt);
+        }
 
         // Tạo sản phẩm mới phương thức GET: Admin/Home/Create
         public ActionResult Create()
@@ -117,6 +98,7 @@ namespace Ictshop.Areas.Admin.Controllers
         {
             try
             {
+                // Sửa sản phẩm theo mã sản phẩm
                 var oldItem = db.Products.Find(Product.ProductID);
                 oldItem.ProductName = Product.ProductName;
                 oldItem.Price = Product.Price;
@@ -127,7 +109,9 @@ namespace Ictshop.Areas.Admin.Controllers
                 oldItem.Ram = Product.Ram;
                 oldItem.BrandID = Product.BrandID;
                 oldItem.CateID = Product.CateID;
+                // lưu lại
                 db.SaveChanges();
+                // xong chuyển qua index
                 return RedirectToAction("Index");
             }
             catch
@@ -136,6 +120,7 @@ namespace Ictshop.Areas.Admin.Controllers
             }
         }
 
+        // Xoá sản phẩm phương thức GET: Admin/Home/Delete/5
         public ActionResult Delete(int id)
         {
             var dt = db.Products.Find(id);
@@ -144,18 +129,19 @@ namespace Ictshop.Areas.Admin.Controllers
 
 
 
+        // Tạo sản phẩm mới phương thức POST: Admin/Home/Create
         [HttpPost]
         public ActionResult Create(Product Product)
         {
-            var hangselected = new SelectList(db.Brands, "BrandID", "BrandName");
-            ViewBag.BrandID = hangselected;
-            var hdhselected = new SelectList(db.Categorys, "CateID", "CateName");
-            ViewBag.CateID = hdhselected;
             try
             {
-
+                Product.BrandID = 5;
+                Product.CateID = 3;
+                //Thêm  sản phẩm mới
                 db.Products.Add(Product);
+                // Lưu lại
                 db.SaveChanges();
+                // Thành công chuyển đến trang index
                 return RedirectToAction("Index");
             }
             catch
@@ -168,13 +154,17 @@ namespace Ictshop.Areas.Admin.Controllers
 
 
 
+        // Xoá sản phẩm phương thức POST: Admin/Home/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
+                //Lấy được thông tin sản phẩm theo ID(mã sản phẩm)
                 var dt = db.Products.Find(id);
+                // Xoá
                 db.Products.Remove(dt);
+                // Lưu lại
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -18,7 +18,7 @@ namespace Ictshop.Controllers
         // Hiển thị danh sách đơn hàng
         public ActionResult Index()
         {
-            
+
             //Kiểm tra đang đăng nhập
             if (Session["use"] == null || Session["use"].ToString() == "")
             {
@@ -26,7 +26,7 @@ namespace Ictshop.Controllers
             }
             User kh = (User)Session["use"];
             int maND = kh.UserID;
-            var Orders = db.Orders.Include(d => d.User).Where(d=>d.UserID == maND);
+            var Orders = db.Orders.Include(d => d.User).Where(d => d.UserID == maND);
             return View(Orders.ToList());
         }
 
@@ -39,7 +39,7 @@ namespace Ictshop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Order Order = db.Orders.Find(id);
-            var chitiet = db.OrderDetails.Include(d => d.Product).Where(d=> d.OrderID == id).ToList();
+            var chitiet = db.OrderDetails.Include(d => d.Product).Where(d => d.OrderID == id).ToList();
             if (Order == null)
             {
                 return HttpNotFound();
