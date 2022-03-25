@@ -1,18 +1,47 @@
 ﻿@model PagedList.IPagedList<Ictshop.Models.User>
 
 @using PagedList.Mvc;
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Quản lý người dùng</h2>
+<h2>User management</h2>
 
-
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <p>
-    <button class="btn-default"> @Html.ActionLink("Thêm mới", "Create") </button>
+    <button class="btn btn-warning" style="color: black;"> @Html.ActionLink("New User", "Create") <i class="fas fa-plus-circle"></i> </button>
 </p>
+
+<div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+    <div class="col-md2" style="padding-left: 20px">
+        <label for="role"> Role </label>
+        <select class="form-control" id="role">
+            <option value="0" selected="@(ViewBag.SelectedID == 0)">All</option>
+            @foreach (var item in @ViewBag.Role)
+            {
+                <option value="@item.RoleID" selected="@(ViewBag.SelectedID == item.RoleID)"> @item.RoleName </option>
+            }
+        </select>
+    </div>
+    <div class="col-md4" style="padding-left: 20px">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="-- All Name -- " value="@ViewBag.txtName">
+    </div>
+    <div class="col-md4" style="padding-left: 20px">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" id="phone" placeholder="-- All Phone -- " value="@ViewBag.txtPhone">
+    </div>
+    <div class="col-md4" style="padding-left: 20px">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="-- All Email -- " value="@ViewBag.txtEmail">
+    </div>
+    <div class="col-md2" style="padding-left: 20px; padding-top:6px;">
+        <br />
+        <button class="btn btn-success" onclick="Filter()"> Filter <i class="fas fa-filter"></i> </button>
+        <button class="btn btn-primary" onclick="Clear()"> Reset <i class="fas fa-redo"></i> </button>
+    </div>
+</div>
 <table class="table table-bordered">
     <tr>
         <th>
@@ -60,19 +89,36 @@
                 @Html.DisplayFor(modelItem => item.Role.RoleName)
             </td>
             <td>
-                @*@Html.ActionLink("Sửa", "Edit", new { id = item.UserID }) |*@
-                @Html.ActionLink("Chi tiết", "Details", new { id = item.UserID }) |
-                @Html.ActionLink("Xoá", "Delete", new { id = item.UserID })
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |*@
+                @Html.ActionLink("Detail", "Details", new { id = item.UserID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
             </td>
         </tr>
     }
 
 </table>
-<!-- Thêm mã phân trang -->
 <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
 
-    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-
-    <!-- Kết thúc -->
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+    {
+        page,
+        name = ViewBag.txtName,
+        roleID = ViewBag.selectedID,
+        email = ViewBag.txtEmail,
+        phone = ViewBag.txtPhone
+    }))
+    <script>
+    function Filter() {
+        var roleID = $('#role').val();
+        var name = $("#name").val();
+        var phone = $("#phone").val();
+        var email = $("#email").val();
+        var url = "/Admin/Users?name=" + name + "&phone=" + phone + "&email=" + email + "&roleID=" + roleID;
+        console.log(url);
+        window.location.href = url;
+    }
+    function Clear() {
+        window.location.href = "/Admin/Users";
+    }
+    </script>

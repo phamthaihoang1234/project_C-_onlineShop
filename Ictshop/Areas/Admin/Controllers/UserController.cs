@@ -18,33 +18,60 @@ namespace Ictshop.Areas.Admin.Controllers
     {
         private ShopManagement db = new ShopManagement();
 
-        public ActionResult Index(int? page)
+        public bool ContainsIgnoredCase(string word, string search)
         {
-            //Pageing
-            if (page == null) page = 1;
-            int pageSize = 5;
-            int pageNumber = (page ?? 1);
-
-
-            var Users = db.Users.OrderBy(n => n.RoleID);
-
-
-
-            return View(Users.ToPagedList(pageNumber, pageSize));
+            return word.Trim().ToLower().Contains(search.Trim().ToLower());
         }
+        public ActionResult Index(int? page, string name, string email, string phone, int? roleID)
+        {
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            roleID = roleID ?? 0;
+
+            ViewBag.txtName = name;
+            ViewBag.txtEmail = email;
+            ViewBag.txtPhone = phone;
+            ViewBag.selectedID = roleID;
+            var roles = db.Roles.ToList();
+            ViewBag.Role = roles;
+            ViewBag.SelectedRole = roleID;
+
+
+            /*var users = db.Users.OrderBy(u => u.RoleID)
+                .Where(u => String.IsNullOrEmpty(name) || ContainsIgnoredCase(u.FullName, name))
+                .Where(u => String.IsNullOrEmpty(email) || ContainsIgnoredCase(u.Email, email))
+                .Where(u => String.IsNullOrEmpty(phone) || ContainsIgnoredCase(u.Phone, phone))
+                .Where(u => roleID == 0 || u.Role.RoleID == roleID);*/
+
+
+            var users = db.Users.ToList()
+                .FindAll(u => (String.IsNullOrEmpty(name) || ContainsIgnoredCase(u.FullName, name))
+                        && (String.IsNullOrEmpty(email) || ContainsIgnoredCase(u.Email, email))
+                        && (String.IsNullOrEmpty(phone) || ContainsIgnoredCase(u.Phone, phone))
+                        && (roleID == 0 || u.Role.RoleID == roleID)
+                       );
+
+            return View(users.ToPagedList(pageNumber, pageSize));
+        }
+
+
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             User User = db.Users.Find(id);
             if (User == null)
             {
                 return HttpNotFound();
             }
+
             return View(User);
         }
+
 
         public ActionResult Create()
         {
@@ -52,10 +79,12 @@ namespace Ictshop.Areas.Admin.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserID,FullName,Email,Phone,Password,Address,RoleID")] User User)
         {
+
             byte[] temp = ASCIIEncoding.ASCII.GetBytes(User.Password);
             byte[] hasData = new MD5CryptoServiceProvider().ComputeHash(temp);
 
@@ -66,6 +95,7 @@ namespace Ictshop.Areas.Admin.Controllers
                 hasPassWord += b;
             }
             User.Password = hasPassWord;
+
             if (ModelState.IsValid)
             {
                 db.Users.Add(User);
@@ -76,6 +106,7 @@ namespace Ictshop.Areas.Admin.Controllers
             ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName", User.RoleID);
             return View(User);
         }
+
 
 
         public ActionResult Edit(int? id)
@@ -107,6 +138,7 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(User);
         }
 
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,6 +152,7 @@ namespace Ictshop.Areas.Admin.Controllers
             }
             return View(User);
         }
+
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
