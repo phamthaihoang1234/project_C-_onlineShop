@@ -1,13 +1,13 @@
 ﻿@model Ictshop.Models.LoginModel
 
 @{
-    ViewBag.Title = "Dangnhap";
+    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Hãy đăng nhập để sử dụng đầy đủ tính năng của Website</h2>
 
-@using (Html.BeginForm("Dangnhap", "User", FormMethod.Post))
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
 {
     <div class="form-horizontal">
         <hr />

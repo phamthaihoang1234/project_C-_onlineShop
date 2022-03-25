@@ -143,7 +143,7 @@ namespace Ictshop.Controllers
         {
             if (Session["use"] == null || Session["use"].ToString() == "")
             {
-                return RedirectToAction("Dangnhap", "User");
+                return RedirectToAction("Login", "User");
             }
             if (Session["GioHang"] == null)
             {

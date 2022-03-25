@@ -1,30 +1,29 @@
 ﻿@model Ictshop.Models.LoginModel
 
 @{
-    ViewBag.Title = "Dangnhap";
+    ViewBag.Title = "Forgot Password";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Hãy đăng nhập để sử dụng đầy đủ tính năng của Website</h2>
 
-@using (Html.BeginForm("Dangnhap", "User", FormMethod.Post))
+@using (Html.BeginForm("ForgotPass", "User", FormMethod.Post))
 {
     <div class="form-horizontal">
         <hr />
+        <h2 style="padding-left: 190px;">CONFIRM YOUR EMAIL</h2>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.userMail, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.userMail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.userMail, "", new { @class = "text-danger" })
+                <input name="email" class="form-control" />
             </div>
         </div>
         
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <a href="/User/ForgotPass"> <u>Forgot Password</u></a>
-                <input type="submit" value="Login" class="btn btn-default" />
+                <input type="submit" value="Reset password" class="btn btn-default" />
             </div>
         </div>
     </div>

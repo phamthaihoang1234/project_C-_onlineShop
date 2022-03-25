@@ -5,7 +5,8 @@
     {
         <div class="col-md-3 col-sm-6">
             <a href="@Url.Action("xemchitiet", new {@ProductID=item.ProductID })">
-            <img src=@Url.Content("~/HinhanhSP/"+item.Image) class="img-responsive" alt="" width="400" height="400" /></a>
+                <img src=@Url.Content("~/Images/"+item.Image) class="img-responsive" alt="" width="400" height="400" />
+            </a>
             <center>
                 <h3>@item.ProductName</h3>
                 <h3 style="color:red">Giá: @item.Price</h3>
@@ -21,13 +22,13 @@
         </div>
     }
     @*<div class="col-md-3 col-sm-6">
-            <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
+            <img src="~/Images/ip3.jpg" class="img-responsive" alt="" />
         </div>
         <div class="col-md-3 col-sm-6">
-            <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
+            <img src="~/Images/ip3.jpg" class="img-responsive" alt="" />
         </div>
         <div class="col-md-3 col-sm-6">
-            <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
+            <img src="~/Images/ip3.jpg" class="img-responsive" alt="" />
         </div>*@
 </div>
 

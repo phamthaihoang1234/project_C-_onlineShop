@@ -789,3 +789,4 @@ D:\CSharp\AAAAAAAAAAA\Ictshop\obj\Debug\PROJECT-PRN211.csproj.CoreCompileInputs.
 D:\CSharp\AAAAAAAAAAA\Ictshop\obj\Debug\PROJECT-PRN211.csproj.CopyComplete
 D:\CSharp\AAAAAAAAAAA\Ictshop\obj\Debug\Ictshop.dll
 D:\CSharp\AAAAAAAAAAA\Ictshop\obj\Debug\Ictshop.pdb
+D:\CSharp\AAAAAAAAAAA\Ictshop\obj\Debug\PROJECT-PRN211.csproj.AssemblyReference.cache

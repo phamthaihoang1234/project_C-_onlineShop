@@ -22,7 +22,7 @@ namespace Ictshop.Controllers
             //Kiểm tra đang đăng nhập
             if (Session["use"] == null || Session["use"].ToString() == "")
             {
-                return RedirectToAction("Dangnhap", "User");
+                return RedirectToAction("Login", "User");
             }
             User kh = (User)Session["use"];
             int maND = kh.UserID;

@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Ictshop",
+    "\\Ictshop\\Areas",
+    "\\Ictshop\\Areas\\Admin",
+    "\\Ictshop\\Areas\\Admin\\Views",
+    "\\Ictshop\\Areas\\Admin\\Views\\Shared"
   ],
-  "SelectedNode": "\\PROJECT-PRN211.sln",
+  "SelectedNode": "\\Ictshop\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
   "PreviewInSolutionExplorer": false
 }

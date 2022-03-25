@@ -6,35 +6,35 @@
     {
         <div class="col-md-3 col-sm-6">
             <a href="@Url.Action("xemchitiet", new {@ProductID=item.ProductID })">
-                <img src=@Url.Content("~/HinhanhSP/" + item.Image) class="img-responsive" alt="" width="400" height="400" />
+                <img src=@Url.Content("~/Images/" + item.Image) class="img-responsive" alt="" width="400" height="400" />
             </a>
-                <center>
-                    <h3> @item.ProductName</h3>
-                    <h3 style="color:red">Giá: @item.Price</h3>
-                    <br />
-                    @using (Html.BeginForm("ThemGioHang", "Cart", new { @iMasp = item.ProductID, @strURL = Request.Url.ToString() }))
-                    {
-                        <input type="submit" value="Mua hàng" id="bgnGioHang" />
+            <center>
+                <h3> @item.ProductName</h3>
+                <h3 style="color:red">Giá: @item.Price</h3>
+                <br />
+                @using (Html.BeginForm("ThemGioHang", "Cart", new { @iMasp = item.ProductID, @strURL = Request.Url.ToString() }))
+                {
+                    <input type="submit" value="Mua hàng" id="bgnGioHang" />
 
-                    }
+                }
 
-                    @*<h4> <a href="@Url.Action("xemchitiet", new {@Masp=item.Masp })">Xem chi tiết</a></h4>*@
+                @*<h4> <a href="@Url.Action("xemchitiet", new {@Masp=item.Masp })">Xem chi tiết</a></h4>*@
 
 
-                </center>
+            </center>
 
-</div>
+        </div>
     }
 
 
     @*<div class="col-md-3 col-sm-6">
-            <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
+            <img src="~/Images/ip3.jpg" class="img-responsive" alt="" />
         </div>
         <div class="col-md-3 col-sm-6">
-            <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
+            <img src="~/Images/ip3.jpg" class="img-responsive" alt="" />
         </div>
         <div class="col-md-3 col-sm-6">
-            <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
+            <img src="~/Images/ip3.jpg" class="img-responsive" alt="" />
         </div>*@
 </div>
 
