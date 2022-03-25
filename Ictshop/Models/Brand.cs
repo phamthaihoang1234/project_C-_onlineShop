@@ -20,6 +20,8 @@ namespace Ictshop.Models
         [StringLength(10)]
         public string BrandName { get; set; }
 
+        public string BrandImg { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
     }

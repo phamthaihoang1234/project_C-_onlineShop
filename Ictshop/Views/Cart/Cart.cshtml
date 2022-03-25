@@ -3,86 +3,81 @@
 
 @{
     ViewBag.Title = "GioHang";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_ProductLayout.cshtml";
 }
-    <h2 class=""> Your Cart <i class="fa fa-shopping-cart"></i></h2>
+<h2 class=""> Your Cart <i class="fa fa-shopping-cart"></i></h2>
 <br />
-<div>
-    <table class=" table-bordered table">
-        <tr style="background-color: #03dffc ">
-            <th> Product ID</th>
 
-            <th> ProductName </th>
-
-            <th> Image </th>
-
-            <th> UnitPrice </th>
-
-            <th> Quantity </th>
-
-            <th> Total </th>
-        </tr>
-
-
-
-        @foreach (var item in Model)
-        {
-            <tr class="font-italic">
-                <td> @item.cProID</td>
-
-                <td> @item.cProName</td>
-
-                <td> <img src="@Url.Content("~/Images/" +item.cProImage)" width="50" height="50" /></td>
-
-                <td>  @String.Format("{0:0,0}", item.cProPrice) VNĐ</td>
-
-                <td> @item.cProQuantity</td>
-
-                <td>   @String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
-
-
+@if(Session["GioHang"] != null)
+{
+  using(Html.BeginForm("CapNhatGioHang", "Cart", FormMethod.Post)){ 
+    <div>
+        <table class=" table-bordered table">
+            <tr style="background-color: white ">
+                <th> Product ID</th>
+                <th> ProductName </th>
+                <th> Image </th>
+                <th> UnitPrice </th>
+                <th> Quantity </th>
+                <th> Total </th>
+                <th> Action </th>
             </tr>
-
-        }
-
-    <tr>
-        <td></td>
-        <td></td>
-        <td>
-            @Html.ActionLink("Chỉnh sửa giỏ hàng", "EditCart")
-        </td>
-        <td>
-            @using (Html.BeginForm("DatHang", "Cart", new { @class = "" }))
+            @foreach (var item in (List<Cart>)Session["GioHang"])
             {
-                <input type="submit" value="Đặt hàng" class="btn-danger" />
+                <tr class="font-italic">
+                    <td>@item.cProID</td>
+                    <td>@item.cProName</td>
+                    <td><img src="@Url.Content("~/Images/" +item.cProImage)" width="50" height="50" /></td>
+                    <td>@String.Format("{0:0,0}", item.cProPrice) VNĐ</td>
+                    <td>
+                        <input min="1" type="number" name="quantity" value="@item.cProQuantity" />
+                    </td>
+                    <td>@String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
+                    <td> <button class="btn-success">@Html.ActionLink("Xóa", "XoaGioHang", new { @cProID = item.cProID })</button></td>
+                </tr>
+
             }
-        </td>
-        <td>Total</td>
-        <td>
-            @String.Format("{0:0,0}", @ViewBag.TotalPrice) VND
-           
-        </td>
-        
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn-success">Update</button>
+                </td>
+                <td>
+                    @using (Html.BeginForm("DatHang", "Cart", new { @class = "" }))
+                    {
+                        <input type="submit" value="Đặt hàng" class="btn-danger" />
+                    }
+                </td>
+                <td>Total</td>
+                <td>
+                    @String.Format("{0:0,0}", @ViewBag.TotalPrice) VND
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+}
+else
+{
 
-    </tr>
-    </table>
-</div>
-
-@*Css giỏ hàng*@
+   <h3>No items in your cart!</h3>
+    
+}
 <style type="text/css">
     .divGioHang {
         border: 2px solid #EEEEEE;
         margin-left: 10%;
-        font-size:large
+        font-size: large
     }
 
-    .divGioHang td {
+        .divGioHang td {
             padding: 10px;
             border: 2px solid #EEEEEE;
-            text-align:center
-    }
-        
-    .divGioHang th{
-            text-align:center
-       }
+            text-align: center
+        }
+
+        .divGioHang th {
+            text-align: center
+        }
 </style>
