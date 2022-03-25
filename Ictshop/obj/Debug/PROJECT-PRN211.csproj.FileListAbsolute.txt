@@ -1052,3 +1052,4 @@ D:\CSharp\FFFFFFFFFFFF\Ictshop\bin\Newtonsoft.Json.xml
 D:\CSharp\FFFFFFFFFFFF\Ictshop\bin\Antlr3.Runtime.pdb
 D:\CSharp\FFFFFFFFFFFF\Ictshop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\CSharp\FFFFFFFFFFFF\Ictshop\obj\Debug\PROJECT-PRN211.csproj.CopyComplete
+D:\CSharp\FFFFFFFFFFFF\Ictshop\obj\Debug\PROJECT-PRN211.csproj.AssemblyReference.cache

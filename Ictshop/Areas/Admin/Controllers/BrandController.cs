@@ -12,7 +12,7 @@ using PagedList;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
-    [AdminAuthorize(FunctionCode = "PM2")]
+    [AdminAuthorize(FunctionCode = "PM3")]
     public class BrandsController : Controller
     {
         private ShopManagement db = new ShopManagement();

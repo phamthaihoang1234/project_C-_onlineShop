@@ -11,10 +11,11 @@ using System.Web.Mvc;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
+    [AdminAuthorize(FunctionCode = "PM8")]
     public class AuthorizationController : Controller
     {
         ShopManagement db = new ShopManagement();
- 
+
         public ActionResult ListRoles()
         {
             var model = db.Roles.ToList();
@@ -24,7 +25,7 @@ namespace Ictshop.Areas.Admin.Controllers
         {
             ViewBag.RoleID = RoleID;
             ViewBag.ListPermissonByRoleID = db.Permissions.Where(p => p.RoleId == RoleID).ToList();
-            TempData["ListPermissonByRoleID"] = db.Permissions.Where(p => p.RoleId == RoleID) .ToList();
+            TempData["ListPermissonByRoleID"] = db.Permissions.Where(p => p.RoleId == RoleID).ToList();
             var Functions = db.Functions.ToList();
             return View(Functions);
         }
@@ -36,7 +37,7 @@ namespace Ictshop.Areas.Admin.Controllers
             db.Permissions.RemoveRange(db.Permissions.Where(p => p.RoleId == RoleID));
             db.SaveChanges();
             try
-                {
+            {
                 Permission permission = new Permission();
                 string[] permissons = Request.Form.GetValues("FunctionCode");
                 foreach (string item in permissons)
@@ -51,12 +52,12 @@ namespace Ictshop.Areas.Admin.Controllers
             catch (DbEntityValidationException e)
             {
                 Console.WriteLine(e);
-            }    
+            }
             TempData["ListPermissonByRoleID"] = db.Permissions.Where(p => p.RoleId == RoleID).ToList();
             ViewBag.RoleID = RoleID;
             ViewBag.ListPermissonByRoleID = db.Permissions.Where(p => p.RoleId == RoleID).ToList();
-            var Functions = db.Functions.ToList();             
-            return View("ListByRoleID",Functions);
+            var Functions = db.Functions.ToList();
+            return View("ListByRoleID", Functions);
         }
 
 
@@ -123,6 +124,6 @@ namespace Ictshop.Areas.Admin.Controllers
             }
         }
 
-        
+
     }
 }

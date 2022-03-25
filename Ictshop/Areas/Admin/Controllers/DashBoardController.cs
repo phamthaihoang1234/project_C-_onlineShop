@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
+    [AdminAuthorize(FunctionCode = "PM1")]
     public class DashBoardController : Controller
     {
         // GET: Admin/DashBoard

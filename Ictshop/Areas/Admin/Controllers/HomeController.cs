@@ -9,7 +9,7 @@ using Ictshop.App_Start;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
-
+    [AdminAuthorize(FunctionCode = "PM2")]
     public class HomeController : Controller
 
     {
@@ -17,7 +17,7 @@ namespace Ictshop.Areas.Admin.Controllers
 
         // GET: Admin/Home
 
-        [AdminAuthorize(FunctionCode = "PM4")]
+
         public ActionResult Index(int? page, string key)
         {
             if (page == null) page = 1;
@@ -60,6 +60,7 @@ namespace Ictshop.Areas.Admin.Controllers
         }
 
         // Xem chi tiết người dùng GET: Admin/Home/Details/5 
+
         public ActionResult Details(int id)
         {
             var dt = db.Products.Find(id);
@@ -67,6 +68,7 @@ namespace Ictshop.Areas.Admin.Controllers
         }
 
         // Tạo sản phẩm mới phương thức GET: Admin/Home/Create
+
         public ActionResult Create()
         {
             //Để tạo dropdownList bên view
@@ -79,6 +81,7 @@ namespace Ictshop.Areas.Admin.Controllers
 
 
         // Sửa sản phẩm GET lấy ra ID sản phẩm: Admin/Home/Edit/5
+
         public ActionResult Edit(int id)
         {
             // Hiển thị dropdownlist
@@ -93,6 +96,7 @@ namespace Ictshop.Areas.Admin.Controllers
         }
 
         // edit
+
         [HttpPost]
         public ActionResult Edit(Product Product)
         {
@@ -121,6 +125,7 @@ namespace Ictshop.Areas.Admin.Controllers
         }
 
         // Xoá sản phẩm phương thức GET: Admin/Home/Delete/5
+
         public ActionResult Delete(int id)
         {
             var dt = db.Products.Find(id);
@@ -130,6 +135,7 @@ namespace Ictshop.Areas.Admin.Controllers
 
 
         // Tạo sản phẩm mới phương thức POST: Admin/Home/Create
+
         [HttpPost]
         public ActionResult Create(Product Product)
         {
@@ -155,6 +161,7 @@ namespace Ictshop.Areas.Admin.Controllers
 
 
         // Xoá sản phẩm phương thức POST: Admin/Home/Delete/5
+        [AdminAuthorize(FunctionCode = "PM4")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

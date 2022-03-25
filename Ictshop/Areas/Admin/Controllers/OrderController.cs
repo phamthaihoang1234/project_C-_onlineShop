@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
-    //[AdminAuthorize(FunctionCode = "PM5")]
+    [AdminAuthorize(FunctionCode = "PM7")]
     public class OrderController : Controller
     {
         // GET: Admin/Order

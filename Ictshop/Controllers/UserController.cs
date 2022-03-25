@@ -97,10 +97,15 @@ namespace Ictshop.Controllers
 
 
             var islogin = db.Users.SingleOrDefault(x => x.Email.Equals(userMail) && x.Password.Equals(hasPassWord));
-
+            var u = Session["use"] as User;
             if (islogin != null)
             {
-                if (userMail == "Admin@gmail.com")
+                if (islogin.RoleID == 1)
+                {
+                    Session["use"] = islogin;
+                    return RedirectToAction("Index", "Admin/DashBoard");
+                }
+                if (islogin.RoleID == 2)
                 {
                     Session["use"] = islogin;
                     return RedirectToAction("Index", "Admin/Home");
@@ -152,13 +157,13 @@ namespace Ictshop.Controllers
 
             MailMessage mail = new MailMessage();
             SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
-            smtpServer.Credentials = new System.Net.NetworkCredential("ducanhbui09@gmail.com", "0943993221");
+            smtpServer.Credentials = new System.Net.NetworkCredential("ducanhbui090@gmail.com", "ducanh993");
             smtpServer.Port = 587;
             smtpServer.EnableSsl = true;
 
             var newpass = generatePassword().Trim();
 
-            mail.From = new MailAddress("ducanhbui09@gmail.com");
+            mail.From = new MailAddress("ducanhbui090@gmail.com");
             mail.To.Add(email);
             mail.Subject = "CONFIRM YOUR ACCOUNT";
             mail.Body = "Email: " + email + "\nPassword: " + newpass;
