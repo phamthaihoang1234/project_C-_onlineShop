@@ -17,21 +17,12 @@ namespace Ictshop.Areas.Admin.Controllers
         public ActionResult Index(int? page, string key)
         {
 
-            // 1. Tham số int? dùng để thể hiện null và kiểu int( số nguyên)
-            // page có thể có giá trị là null ( rỗng) và kiểu int.
-
-            // 2. Nếu page = null thì đặt lại là 1.
             if (page == null) page = 1;
             ViewBag.branch = db.Brands.ToList();
-            // 3. Tạo truy vấn sql, lưu ý phải sắp xếp theo trường nào đó, ví dụ OrderBy
-            // theo ProductID mới có thể phân trang.
             var sp = db.Products.OrderBy(x => x.ProductID);
 
-            // 4. Tạo kích thước trang (pageSize) hay là số sản phẩm hiển thị trên 1 trang
             int pageSize = 6;
 
-            // 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
-            // nếu page = null thì lấy giá trị 1 cho biến pageNumber.
             int pageNumber = (page ?? 1);
 
 
@@ -47,13 +38,11 @@ namespace Ictshop.Areas.Admin.Controllers
 
 
 
-            // 5. Trả về các sản phẩm được phân trang theo kích thước và số trang.
 
             return View(sp.ToPagedList(pageNumber, pageSize));
 
         }
 
-        // Xem chi tiết người dùng GET: Admin/Home/Details/5 
         public ActionResult Details(int id)
         {
             var dt = db.Products.Find(id);
@@ -128,7 +117,6 @@ namespace Ictshop.Areas.Admin.Controllers
         {
             try
             {
-                // Sửa sản phẩm theo mã sản phẩm
                 var oldItem = db.Products.Find(Product.ProductID);
                 oldItem.ProductName = Product.ProductName;
                 oldItem.Price = Product.Price;
@@ -139,9 +127,7 @@ namespace Ictshop.Areas.Admin.Controllers
                 oldItem.Ram = Product.Ram;
                 oldItem.BrandID = Product.BrandID;
                 oldItem.CateID = Product.CateID;
-                // lưu lại
                 db.SaveChanges();
-                // xong chuyển qua index
                 return RedirectToAction("Index");
             }
             catch
@@ -150,7 +136,6 @@ namespace Ictshop.Areas.Admin.Controllers
             }
         }
 
-        // Xoá sản phẩm phương thức GET: Admin/Home/Delete/5
         public ActionResult Delete(int id)
         {
             var dt = db.Products.Find(id);
@@ -159,7 +144,6 @@ namespace Ictshop.Areas.Admin.Controllers
 
 
 
-        // Tạo sản phẩm mới phương thức POST: Admin/Home/Create
         [HttpPost]
         public ActionResult Create(Product Product)
         {
@@ -170,11 +154,8 @@ namespace Ictshop.Areas.Admin.Controllers
             try
             {
 
-                //Thêm  sản phẩm mới
                 db.Products.Add(Product);
-                // Lưu lại
                 db.SaveChanges();
-                // Thành công chuyển đến trang index
                 return RedirectToAction("Index");
             }
             catch
@@ -187,17 +168,13 @@ namespace Ictshop.Areas.Admin.Controllers
 
 
 
-        // Xoá sản phẩm phương thức POST: Admin/Home/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                //Lấy được thông tin sản phẩm theo ID(mã sản phẩm)
                 var dt = db.Products.Find(id);
-                // Xoá
                 db.Products.Remove(dt);
-                // Lưu lại
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

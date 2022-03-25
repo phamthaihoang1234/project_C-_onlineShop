@@ -14,7 +14,6 @@ namespace Ictshop.Areas.Admin.Controllers
     public class AuthorizationController : Controller
     {
         ShopManagement db = new ShopManagement();
-        // GET: Admin/Authorization
  
         public ActionResult ListRoles()
         {
@@ -62,25 +61,21 @@ namespace Ictshop.Areas.Admin.Controllers
 
 
 
-        // GET: Admin/Authorization/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Admin/Authorization/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Authorization/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
 
                 return RedirectToAction("Index");
             }
@@ -90,19 +85,16 @@ namespace Ictshop.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/Authorization/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Admin/Authorization/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
 
                 return RedirectToAction("Index");
             }
@@ -112,19 +104,16 @@ namespace Ictshop.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/Authorization/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Admin/Authorization/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
             }

@@ -5,8 +5,9 @@
     "\\Ictshop\\Areas",
     "\\Ictshop\\Areas\\Admin",
     "\\Ictshop\\Areas\\Admin\\Views",
+    "\\Ictshop\\Areas\\Admin\\Views\\Home",
     "\\Ictshop\\Areas\\Admin\\Views\\Shared"
   ],
-  "SelectedNode": "\\Ictshop\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
+  "SelectedNode": "\\Ictshop\\Areas\\Admin\\Views\\Home\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

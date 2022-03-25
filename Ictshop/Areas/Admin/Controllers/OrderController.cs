@@ -77,26 +77,22 @@ namespace Ictshop.Areas.Admin.Controllers
             return View("Index", model.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: Admin/Order/Details/5
         public ActionResult Details(int id)
         {
             var order = db.Orders.Find(id);    
             return View(order);
         }
 
-        // GET: Admin/Order/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Order/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
 
                 return RedirectToAction("Index");
             }
@@ -106,18 +102,14 @@ namespace Ictshop.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/Order/Edit/5
         public ActionResult Edit(int id)
         {
-            // Hiển thị dropdownlist
             var dt = db.Orders.Find(id);
             var hdhselected = new SelectList(db.Order_Status, "StatusID", "StatusName", dt.StatusID);
             ViewBag.StatusID = hdhselected;
-            // 
             return View(dt);
         }
 
-        // POST: Admin/Order/Edit/5
         [HttpPost]
         public ActionResult Edit(Order order)
         {
@@ -134,14 +126,12 @@ namespace Ictshop.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/Order/Delete/5
         public ActionResult Delete(int id)
         {
             
             return View();
         }
 
-        // POST: Admin/Order/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

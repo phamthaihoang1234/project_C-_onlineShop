@@ -18,8 +18,6 @@ namespace Ictshop.Areas.Admin.Controllers
     {
         private ShopManagement db = new ShopManagement();
 
-        // Xem quản lý tất cả người dùng
-        // GET: Admin/Users
         public ActionResult Index(int? page)
         {
             //Pageing
@@ -34,39 +32,30 @@ namespace Ictshop.Areas.Admin.Controllers
 
             return View(Users.ToPagedList(pageNumber, pageSize));
         }
-
-        //Xem chi tiết người dùng theo Mã người dùng
-        // GET: Admin/Users/Details/5
         public ActionResult Details(int? id)
         {
-            // Nếu không có người dùng có mã được truyền vào thì trả về trang báo lỗi
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            // Khai báo một người dùng theo mã
             User User = db.Users.Find(id);
             if (User == null)
             {
                 return HttpNotFound();
             }
-            // trả về trang chi tiết người dùng
             return View(User);
         }
 
-        //// GET: Admin/Users/Create
         public ActionResult Create()
         {
             ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName");
             return View();
         }
 
-        // POST: Admin/Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserID,FullName,Email,Phone,Password,Address,RoleID")] User User)
         {
-            //Lưu mât khẩu dưới dạng mã hóa
             byte[] temp = ASCIIEncoding.ASCII.GetBytes(User.Password);
             byte[] hasData = new MD5CryptoServiceProvider().ComputeHash(temp);
 
@@ -77,7 +66,6 @@ namespace Ictshop.Areas.Admin.Controllers
                 hasPassWord += b;
             }
             User.Password = hasPassWord;
-            //Check valid
             if (ModelState.IsValid)
             {
                 db.Users.Add(User);
@@ -90,8 +78,6 @@ namespace Ictshop.Areas.Admin.Controllers
         }
 
 
-        // Chỉnh sửa người dùng
-        // GET: Admin/Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -107,7 +93,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(User);
         }
 
-        // POST: Admin/Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UserID,FullName,Email,Phone,Password,Address,RoleID")] User User)
@@ -122,8 +107,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(User);
         }
 
-        // Xoá người dùng 
-        // GET: Admin/Users/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -138,7 +121,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(User);
         }
 
-        // POST: Admin/Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -21,7 +21,6 @@ namespace Ictshop.Areas.Admin.Controllers
         {
             return word.ToLower().Contains(search.ToLower());
         }
-        // GET: Admin/Brands
         public ActionResult Index(string name, int? page)
         {
             if (page == null) page = 1;
@@ -38,7 +37,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(data.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: Admin/Brands/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -53,13 +51,11 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(Brand);
         }
 
-        // GET: Admin/Brands/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Brands/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BrandID,BrandName")] Brand Brand, string img)
@@ -75,7 +71,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(Brand);
         }
 
-        // GET: Admin/Brands/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,7 +85,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(Brand);
         }
 
-        // POST: Admin/Brands/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "BrandID,BrandName")] Brand Brand, string img)
@@ -104,7 +98,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(Brand);
         }
 
-        // GET: Admin/Brands/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -119,7 +112,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(Brand);
         }
 
-        // POST: Admin/Brands/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

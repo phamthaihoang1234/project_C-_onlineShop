@@ -21,7 +21,6 @@ namespace Ictshop.Areas.Admin.Controllers
         {
             return word.ToLower().Contains(search.ToLower());
         }
-        // GET: Admin/Categorys
         public ActionResult Index(string name, int? page)
         {
             if (page == null) page = 1;
@@ -37,7 +36,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(data.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: Admin/Categorys/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -52,13 +50,11 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(Category);
         }
 
-        // GET: Admin/Categorys/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Categorys/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CateID,CateName")] Category Category)
@@ -73,7 +69,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(Category);
         }
 
-        // GET: Admin/Categorys/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,9 +83,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(Category);
         }
 
-        // POST: Admin/Categorys/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want TotalCost bind TotalCost, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CateID,CateName")] Category Category)
@@ -104,7 +96,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(Category);
         }
 
-        // GET: Admin/Categorys/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -119,7 +110,6 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(Category);
         }
 
-        // POST: Admin/Categorys/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
