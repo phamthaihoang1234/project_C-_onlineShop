@@ -13,17 +13,17 @@ namespace Ictshop.Controllers
         ShopManagement db = new ShopManagement();
         public ActionResult dtiphonepartial()
         {
-            var ip = db.Products.Where(n=>n.ProductID==2).Take(4).ToList();
+            var ip = db.Products.Where(n=>n.CateID==2).Take(4).ToList();
            return PartialView(ip);
         }
         public ActionResult dtsamsungpartial()
         {
-            var ss = db.Products.Where(n => n.ProductID == 1).Take(4).ToList();
+            var ss = db.Products.Where(n => n.CateID == 1).Take(4).ToList();
             return PartialView(ss);
         }
         public ActionResult dtxiaomipartial()
         {
-            var mi = db.Products.Where(n => n.ProductID == 3).Take(4).ToList();
+            var mi = db.Products.Where(n => n.CateID == 3).Take(4).ToList();
             return PartialView(mi);
         }
         public ActionResult xemchitiet(int ProductID=0)
