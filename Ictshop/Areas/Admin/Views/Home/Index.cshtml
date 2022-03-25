@@ -67,9 +67,9 @@
         <th>
             Brand
         </th>
-        <th>
+        @*<th>
             Category
-        </th>
+        </th>*@
         <th> Action</th>
     </tr>
 
@@ -96,9 +96,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Brand.BrandName)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Category.CateName)
-            </td>
+            </td>*@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ProductID })|
                 @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
