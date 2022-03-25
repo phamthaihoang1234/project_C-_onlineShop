@@ -73,6 +73,22 @@ namespace Ictshop.Areas.Admin.Controllers
             return View();
         }
 
+
+        // Sửa sản phẩm GET lấy ra ID sản phẩm: Admin/Home/Edit/5
+        public ActionResult Edit(int id)
+        {
+            // Hiển thị dropdownlist
+            var dt = db.Products.Find(id);
+            var hangselected = new SelectList(db.Brands, "BrandID", "BrandName",dt.BrandID);
+            ViewBag.BrandID = hangselected;
+            var hdhselected = new SelectList(db.Categorys, "CateID", "CateName",dt.CateID);
+            ViewBag.CateID = hdhselected;
+           // 
+            return View(dt);
+            
+        }
+
+
         // Tạo sản phẩm mới phương thức POST: Admin/Home/Create
         [HttpPost]
         public ActionResult Create(Product Product)
@@ -92,20 +108,6 @@ namespace Ictshop.Areas.Admin.Controllers
             {
                 return View();
             }
-        }
-
-        // Sửa sản phẩm GET lấy ra ID sản phẩm: Admin/Home/Edit/5
-        public ActionResult Edit(int id)
-        {
-            // Hiển thị dropdownlist
-            var dt = db.Products.Find(id);
-            var hangselected = new SelectList(db.Brands, "BrandID", "BrandName",dt.BrandID);
-            ViewBag.BrandID = hangselected;
-            var hdhselected = new SelectList(db.Categorys, "CateID", "CateName",dt.CateID);
-            ViewBag.CateID = hdhselected;
-           // 
-            return View(dt);
-            
         }
 
         // POST: Admin/Home/Edit/5
