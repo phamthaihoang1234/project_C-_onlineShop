@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Ictshop.Models;
+﻿using Ictshop.Models;
 using PagedList;
-using Ictshop.App_Start;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
-    
+
     public class HomeController : Controller
-        
+
     {
         ShopManagement db = new ShopManagement();
 
         // GET: Admin/Home
 
         [AdminAuthorize(FunctionCode = "PM4")]
-        public ActionResult Index(int ?page, string key)
+        public ActionResult Index(int? page, string key)
         {
 
             // 1. Tham số int? dùng để thể hiện null và kiểu int( số nguyên)
@@ -26,13 +22,13 @@ namespace Ictshop.Areas.Admin.Controllers
 
             // 2. Nếu page = null thì đặt lại là 1.
             if (page == null) page = 1;
-
+            ViewBag.branch = db.Brands.ToList();
             // 3. Tạo truy vấn sql, lưu ý phải sắp xếp theo trường nào đó, ví dụ OrderBy
             // theo ProductID mới có thể phân trang.
             var sp = db.Products.OrderBy(x => x.ProductID);
 
             // 4. Tạo kích thước trang (pageSize) hay là số sản phẩm hiển thị trên 1 trang
-            int pageSize = 3;
+            int pageSize = 6;
 
             // 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
             // nếu page = null thì lấy giá trị 1 cho biến pageNumber.
@@ -41,6 +37,8 @@ namespace Ictshop.Areas.Admin.Controllers
 
             var products = db.Products.Where(p => p.ProductName.Contains(key));
             var model = products.OrderBy(x => x.ProductID);
+
+
 
             if (model.ToList().Count > 0)
             {
@@ -62,6 +60,42 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(dt);
         }
 
+        [HttpPost]
+        public ActionResult Index(int? page, int BrandID)
+        {
+
+            ViewBag.branch = db.Brands.ToList();
+            ViewBag.BrandID = BrandID;
+            var products = db.Products.ToList();
+            if (BrandID != 0)
+            {
+                products = (from item in products
+                            where item.BrandID == BrandID
+                            select item).ToList();
+            }
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            return View(products.ToPagedList(pageNumber, pageSize));
+        }
+
+        //[HttpPost]
+        //public ActionResult searchByCate(int? page, int CateID)
+        //{
+
+        //    ViewBag.cate = db.Categorys.ToList();
+        //    ViewBag.CateID = CateID;
+        //    var products = db.Products.ToList();
+        //    if (CateID != 0)
+        //    {
+        //        products = (from item in products
+        //                    where item.CateID == CateID
+        //                    select item).ToList();
+        //    }
+        //    int pageSize = 6;
+        //    int pageNumber = (page ?? 1);
+        //    return View();
+        //}
+
         // Tạo sản phẩm mới phương thức GET: Admin/Home/Create
         public ActionResult Create()
         {
@@ -79,13 +113,13 @@ namespace Ictshop.Areas.Admin.Controllers
         {
             // Hiển thị dropdownlist
             var dt = db.Products.Find(id);
-            var hangselected = new SelectList(db.Brands, "BrandID", "BrandName",dt.BrandID);
+            var hangselected = new SelectList(db.Brands, "BrandID", "BrandName", dt.BrandID);
             ViewBag.BrandID = hangselected;
-            var hdhselected = new SelectList(db.Categorys, "CateID", "CateName",dt.CateID);
+            var hdhselected = new SelectList(db.Categorys, "CateID", "CateName", dt.CateID);
             ViewBag.CateID = hdhselected;
-           // 
+            // 
             return View(dt);
-            
+
         }
 
         // edit
@@ -129,10 +163,13 @@ namespace Ictshop.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Product Product)
         {
+            var hangselected = new SelectList(db.Brands, "BrandID", "BrandName");
+            ViewBag.BrandID = hangselected;
+            var hdhselected = new SelectList(db.Categorys, "CateID", "CateName");
+            ViewBag.CateID = hdhselected;
             try
             {
-                Product.BrandID = 5;
-                Product.CateID = 3;
+
                 //Thêm  sản phẩm mới
                 db.Products.Add(Product);
                 // Lưu lại
@@ -146,9 +183,9 @@ namespace Ictshop.Areas.Admin.Controllers
             }
         }
 
-        
-        
-        
+
+
+
 
         // Xoá sản phẩm phương thức POST: Admin/Home/Delete/5
         [HttpPost]

@@ -18,23 +18,32 @@ namespace Ictshop.Models
         public int ProductID { get; set; }
 
         [StringLength(50)]
+        [Required]
         public string ProductName { get; set; }
 
+        [Required]
         public decimal? Price { get; set; }
 
+        [Required]
         public int? Quantity { get; set; }
 
         [Column(TypeName = "ntext")]
+        [Required]
         public string Description { get; set; }
 
+        [Required]
         public int? Memory { get; set; }
 
+        [Required]
         public bool? NewProduct { get; set; }
 
+        [Required]
         public int? Ram { get; set; }
 
         [StringLength(10)]
+        [Required]
         public string Image { get; set; }
+
 
         public int? BrandID { get; set; }
 

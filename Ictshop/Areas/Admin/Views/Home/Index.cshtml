@@ -10,9 +10,42 @@
 
 <h2>Product management </h2>
 
-<p>
-    <button class="btn-default">@Html.ActionLink("New Product", "Create")</button>
-</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            <button class="btn-default">@Html.ActionLink("New Product", "Create")</button>
+        </p>
+    </div>
+
+    <div class="col-md-6">
+        <form action="/Admin/Home/Index" id="myform" method="post">
+            <select name="BrandID" onchange="ChangeBrand()">
+                <option value=0>All Branch</option>
+                @foreach (var item in ViewBag.branch)
+                {
+                    if (@item.BrandID == @ViewBag.BrandID)
+                    {
+                        <option selected value=@item.BrandID>@item.BrandName</option>
+                    }
+                    else
+                    {
+                        <option value=@item.BrandID>@item.BrandName</option>
+
+                    }
+
+                }
+            </select>
+            <script>
+                function ChangeBrand() {
+                    document.getElementById("myform").submit();
+                }
+            </script>
+        </form>
+    </div>
+
+</div>
+
 <table class="table table-bordered">
     <tr>
 
@@ -55,7 +88,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
-            </td>        
+            </td>
             <td>
                 <img src="@Url.Content("~/Images/" +item.Image)" width="50" height="50" />
                 @*@Html.DisplayFor(modelItem => item.Anhbia)*@
@@ -83,4 +116,4 @@
     @Html.PagedListPager(Model, page => Url.Action("Index",
         new { page }))
 
-<!-- Kết thúc -->
+    <!-- Kết thúc -->
