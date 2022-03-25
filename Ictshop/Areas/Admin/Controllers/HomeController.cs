@@ -88,29 +88,7 @@ namespace Ictshop.Areas.Admin.Controllers
             
         }
 
-
-        // Tạo sản phẩm mới phương thức POST: Admin/Home/Create
-        [HttpPost]
-        public ActionResult Create(Product Product)
-        {
-            try
-            {
-                Product.BrandID = 5;
-                Product.CateID = 3;
-                //Thêm  sản phẩm mới
-                db.Products.Add(Product);
-                // Lưu lại
-                db.SaveChanges();
-                // Thành công chuyển đến trang index
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // POST: Admin/Home/Edit/5
+        // edit
         [HttpPost]
         public ActionResult Edit(Product Product)
         {
@@ -138,6 +116,30 @@ namespace Ictshop.Areas.Admin.Controllers
             }
         }
 
+
+
+        // Tạo sản phẩm mới phương thức POST: Admin/Home/Create
+        [HttpPost]
+        public ActionResult Create(Product Product)
+        {
+            try
+            {
+                Product.BrandID = 5;
+                Product.CateID = 3;
+                //Thêm  sản phẩm mới
+                db.Products.Add(Product);
+                // Lưu lại
+                db.SaveChanges();
+                // Thành công chuyển đến trang index
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        
         
         // Xoá sản phẩm phương thức GET: Admin/Home/Delete/5
         public ActionResult Delete(int id)
