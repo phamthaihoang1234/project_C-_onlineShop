@@ -12,10 +12,12 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+             @*hiển thị nhãn label*@
             @Html.DisplayNameFor(model => model.Brand.BrandName)
         </dt>
 
         <dd>
+            @*hiển thị giá trị model tương ứng*@
             @Html.DisplayFor(model => model.Brand.BrandName)
         </dd>
 
@@ -100,6 +102,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-warning"/> |
+            @*add link về trang chủ*@
             @Html.ActionLink("Về trang chủ", "Index")
         </div>
     }
