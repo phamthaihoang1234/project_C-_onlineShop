@@ -116,6 +116,13 @@ namespace Ictshop.Areas.Admin.Controllers
             }
         }
 
+        // Xoá sản phẩm phương thức GET: Admin/Home/Delete/5
+        public ActionResult Delete(int id)
+        {
+            var dt = db.Products.Find(id);
+            return View(dt);
+        }
+
 
 
         // Tạo sản phẩm mới phương thức POST: Admin/Home/Create
@@ -141,12 +148,7 @@ namespace Ictshop.Areas.Admin.Controllers
 
         
         
-        // Xoá sản phẩm phương thức GET: Admin/Home/Delete/5
-        public ActionResult Delete(int id)
-        {
-            var dt = db.Products.Find(id);
-            return View(dt);
-        }
+        
 
         // Xoá sản phẩm phương thức POST: Admin/Home/Delete/5
         [HttpPost]
