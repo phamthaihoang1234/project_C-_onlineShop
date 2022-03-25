@@ -18,12 +18,12 @@ namespace Ictshop.Controllers
         }
         public ActionResult dtsamsungpartial()
         {
-            var ss = db.Products.Where(n => n.CateID == 1).Take(4).ToList();
+            var ss = db.Products.Where(n => n.ProductID == 2).Take(4).ToList();
             return PartialView(ss);
         }
         public ActionResult dtxiaomipartial()
         {
-            var mi = db.Products.Where(n => n.CateID == 3).Take(4).ToList();
+            var mi = db.Products.Where(n => n.ProductID == 2).Take(4).ToList();
             return PartialView(mi);
         }
         public ActionResult xemchitiet(int ProductID=0)
