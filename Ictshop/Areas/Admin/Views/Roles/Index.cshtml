@@ -30,9 +30,9 @@
         @Html.DisplayFor(modelItem => item.RoleName)
     </td>
     <td>
-        @Html.ActionLink("Sửa", "Edit", new { id = item.RoleID }) |
-        @Html.ActionLink("Chi tiết", "Details", new { id = item.RoleID }) |
-        @Html.ActionLink("Xoá", "Delete", new { id = item.RoleID })
+        @Html.ActionLink("Edit", "Edit", new { id = item.RoleID }) 
+        @*@Html.ActionLink("Chi tiết", "Details", new { id = item.RoleID }) |
+        @Html.ActionLink("Xoá", "Delete", new { id = item.RoleID })*@
     </td>
 </tr>
 }

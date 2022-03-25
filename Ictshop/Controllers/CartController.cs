@@ -43,21 +43,28 @@ namespace Ictshop.Controllers
                 return Redirect(strURL);
             }
         }
-        public ActionResult CapNhatGioHang(int cProID, FormCollection f)
+        public ActionResult CapNhatGioHang(FormCollection f)
         {
-            Product sp = db.Products.SingleOrDefault(n => n.ProductID== cProID);
-            if (sp == null)
-            {
-                Response.StatusCode = 404;
-                return null;
-            }
-            List<Cart> lstGioHang = GetCart();
-            Cart Product = lstGioHang.SingleOrDefault(n => n.cProID == cProID);
-            if (Product != null)
-            {
-                Product.cProQuantity = int.Parse(f["txtSoLuong"].ToString());
+            //Product sp = db.Products.SingleOrDefault(n => n.ProductID== cProID);
+            //if (sp == null)
+            //{
+            //    Response.StatusCode = 404;
+            //    return null;
+            //}
+            //List<Cart> lstGioHang = GetCart();
+            //Cart Product = lstGioHang.SingleOrDefault(n => n.cProID == cProID);
+            //if (Product != null)
+            //{
+            //    Product.cProQuantity = int.Parse(f["txtSoLuong"].ToString());
 
+            //}
+            string[] quantities = f.GetValues("quantity");
+            List<Cart> lstCart = (List<Cart>)Session["GioHang"];
+            for(int i = 0; i < lstCart.Count; i++)
+            {
+                lstCart[i].cProQuantity = Convert.ToInt32(quantities[i]);   
             }
+            Session["GioHang"] = lstCart;
             return RedirectToAction("Cart");
         }
         public ActionResult XoaGioHang(int cProID)
@@ -78,23 +85,23 @@ namespace Ictshop.Controllers
             if (lstGioHang.Count == 0)
             {
                 Session["GioHang"] = null;
-                return RedirectToAction("Index", "Home");
+              
             }
             return RedirectToAction("Cart");
         }
         public ActionResult Cart()
-        {
-            if (Session["GioHang"] == null)
+        {          
+            List<Cart> lstGioHang = Session["GioHang"] as List<Cart>;
+            if(lstGioHang != null)
             {
-                return RedirectToAction("Index", "Home");
+               double totalPrice = 0;
+                foreach (var item in lstGioHang)
+                {
+                    totalPrice += item.ThanhTien;
+                }
+                ViewBag.TotalPrice = totalPrice;
             }
-            List<Cart> lstGioHang = GetCart();
-            double totalPrice = 0;
-            foreach (var item in lstGioHang)
-            {
-                totalPrice += item.ThanhTien;
-            }
-            ViewBag.TotalPrice = totalPrice;
+            
             return View(lstGioHang);
         }
         private int TongSoLuong()
