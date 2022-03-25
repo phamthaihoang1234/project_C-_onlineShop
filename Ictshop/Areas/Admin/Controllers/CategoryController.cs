@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Ictshop.Models;
+using PagedList;
 
 namespace Ictshop.Areas.Admin.Controllers
 {
@@ -15,10 +17,24 @@ namespace Ictshop.Areas.Admin.Controllers
     {
         private ShopManagement db = new ShopManagement();
 
-        // GET: Admin/Categorys
-        public ActionResult Index()
+        public bool ContainsIgnoredCase(string word, string search)
         {
-            return View(db.Categorys.ToList());
+            return word.ToLower().Contains(search.ToLower());
+        }
+        // GET: Admin/Categorys
+        public ActionResult Index(string name, int? page)
+        {
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+            var data = db.Categorys.ToList();
+            if (!String.IsNullOrEmpty(name))
+            {
+                ViewBag.textSearch = name;
+                data = data.FindAll(c => ContainsIgnoredCase(c.CateName, name));
+            }
+            return View(data.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/Categorys/Details/5
@@ -43,8 +59,6 @@ namespace Ictshop.Areas.Admin.Controllers
         }
 
         // POST: Admin/Categorys/Create
-        // To protect from overposting attacks, please enable the specific properties you want TotalCost bind TotalCost, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CateID,CateName")] Category Category)

@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Ictshop.Models.Category>
+﻿@model PagedList.IPagedList<Ictshop.Models.Category>
+
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -6,14 +8,22 @@
 }
 
 <h2>Category Management</h2>
-
 <button class="btn btn-outline-dark">
     @Html.ActionLink("New Category", "Create")
 </button>
+<form action="~/Admin/Categorys/Index" class="input-group" style="padding-top: 20px;">
+    <input class="form-control" type="text" placeholder="Search for Category Name..." value="@ViewBag.textSearch"
+           aria-label="Search" aria-describedby="basic-addon2" id="txt-search" name="name" />
+    <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</form>
 <table class="table">
     <tr>
         <th>
-           Category ID
+            Category ID
         </th>
         <th>
             Category Name
@@ -21,20 +31,26 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.CateID)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CateName)
-    </td>
-    <td>
-        @Html.ActionLink("Sửa", "Edit", new { id = item.CateID }) |
-        @Html.ActionLink("Chi tiết", "Details", new { id = item.CateID }) |
-        @Html.ActionLink("Thêm mới ", "Delete", new { id = item.CateID })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CateID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CateName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CateID }) |
+                @Html.ActionLink("Detail", "Details", new { id = item.CateID }) |
+                @Html.ActionLink("Delete ", "Delete", new { id = item.CateID })
+            </td>
+        </tr>
+    }
 
 </table>
+
+ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
