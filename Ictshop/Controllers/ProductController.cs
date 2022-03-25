@@ -11,20 +11,20 @@ namespace Ictshop.Controllers
     public class ProductController : Controller
     {
         ShopManagement db = new ShopManagement();
-        public ActionResult dtiphonepartial()
+        public ActionResult Monitorpartial()
         {
-            var ip = db.Products.Where(n=>n.CateID==2).Take(4).ToList();
-           return PartialView(ip);
+            var Monitor = db.Products.Where(n=>n.CateID==2).Take(4).ToList();
+           return PartialView(Monitor);
         }
-        public ActionResult dtsamsungpartial()
+        public ActionResult Asuspartial()
         {
-            var ss = db.Products.Where(n => n.ProductID == 2).Take(4).ToList();
-            return PartialView(ss);
+            var Asus = db.Products.Where(n => n.BrandID == 1).Take(4).ToList();
+            return PartialView(Asus);
         }
-        public ActionResult dtxiaomipartial()
+        public ActionResult Dellpartial()
         {
-            var mi = db.Products.Where(n => n.ProductID == 2).Take(4).ToList();
-            return PartialView(mi);
+            var Dell = db.Products.Where(n => n.BrandID == 2).Take(4).ToList();
+            return PartialView(Dell);
         }
         public ActionResult xemchitiet(int ProductID=0)
         {

@@ -1,25 +1,32 @@
-﻿
+﻿@using Ictshop.Models;
+@model List<Product>
 <div class="row">
-    <div class=" bg-danger"><h3 style="padding-left:20px"> Asus </h3></div>
+    <div class=" bg-danger"><h3 style="padding-left:20px"> Màn Hình </h3></div>
     @foreach (var item in Model)
     {
         <div class="col-md-3 col-sm-6">
             <a href="@Url.Action("xemchitiet", new {@ProductID=item.ProductID })">
-                <img src=@Url.Content("~/Images/"+item.Image) class="img-responsive" alt="" width="400" height="400" />
+                <img src=@Url.Content("~/Images/" + item.Image) class="img-responsive" alt="" width="400" height="400" />
             </a>
             <center>
-                <h3>@item.ProductName</h3>
+                <h3> @item.ProductName</h3>
                 <h3 style="color:red">Giá: @item.Price</h3>
                 <br />
-                @using (Html.BeginForm("ThemGioHang", "Cart", new { @cProID = item.ProductID, @strURL = Request.Url.ToString() }))
+                @using (Html.BeginForm("ThemGioHang", "Cart", new { @iMasp = item.ProductID, @strURL = Request.Url.ToString() }))
                 {
                     <input type="submit" value="Mua hàng" id="bgnGioHang" />
 
                 }
-                <a href="@Url.Action("xemchitiet", new {@ProductID=item.ProductID })">Xem chi tiết</a>
+
+                @*<h4> <a href="@Url.Action("xemchitiet", new {@Masp=item.Masp })">Xem chi tiết</a></h4>*@
+
+
             </center>
+
         </div>
     }
+
+
     @*<div class="col-md-3 col-sm-6">
             <img src="~/Images/ip3.jpg" class="img-responsive" alt="" />
         </div>
@@ -30,4 +37,5 @@
             <img src="~/Images/ip3.jpg" class="img-responsive" alt="" />
         </div>*@
 </div>
+
 
