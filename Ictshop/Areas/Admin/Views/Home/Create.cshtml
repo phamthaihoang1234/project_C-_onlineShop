@@ -7,10 +7,11 @@
 
 <h2>Thêm sản phẩm mới</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
+    //lấy xác thực token
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
 
         <hr />
